@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by Jerome McDonough (private) -->
 <!-- METS: Metadata Encoding and Transmission Standard -->
-<!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University.-->
-<!-- June 5, 2002 -->
-<!-- Version 1.1 -->
+<!-- Copyright © 2001, 2002, 2003 Digital Library Federation -->
+<!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
+with the assistance of Rick Beaubien (University of California), Morgan Cundiff (Library of 
+Congress), Susan Dahl (University of Alberta), Richard Gartner (Bodleian Library at Oxford),
+Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University),
+Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group),
+Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts
+Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and
+Robin Wendler (Harvard University).
+-->
+<!-- Dec. 27, 2002 -->
+<!-- Version 1.2 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -76,7 +86,21 @@
   	1. Add new structLink section for recording hyperlinks between media represented by structMap nodes.
 	2. Allow a <par> element to
 	contain a <seq> -->
-<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.loc.gov/METS/" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<!-- Dec. 27, 2002: Version 1.2 -->
+<!-- 12/27/2002 v1.2 changes:
+1. Add “USE” attribute to FileGrp, File, FLocat and FContent;
+2. Make FLocat repeatable;
+3. Have FContent mimic mdWrap in using separate binData/xmlData sections;
+4. Copyright statement added;
+5. Allow both FLocat and Fcontent in single file element;
+6. Allow behaviorSec elements to group through GROUPID attribute;
+7. allow descriptive and administrative metadata sections to be grouped through GROUPID attribute;
+8. allow <file> element to point to descriptive metadata via DMDID attribute;
+9. allow descriptive metadata and all forms of administrative metadata to point to administrative metadata via ADMID attribute;
+10. CREATED and STATUS attributes added to all desc. and adm. metadata sections; and
+11. clean up documentation in elements to reflect reality.
+-->
+<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/TR/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/TR/xlink" schemaLocation="xlink.xsd"/>
 	<xsd:element name="mets">
 		<xsd:annotation>
@@ -97,15 +121,15 @@
 	<xsd:complexType name="metsType">
 		<xsd:annotation>
 			<xsd:documentation>mets Complex Type.
-			A METS document consists of five possible subsidiary sections:
+			A METS document consists of seven possible subsidiary sections:
 			metsHdr (METS document header), dmdSec (descriptive metadata 
 			section), amdSec (administrative metadata section), fileGrp (file 
-			inventory group), and structMap (structural map).  It also has 
-			five possible attributes:
+			inventory group), structLink (structural map linking), structMap (structural map) and
+			behaviorSec (behaviors section).  It also has five possible attributes:
 			1. ID (an XML ID);
-			2. OBJID: a primary identifier assigned to the original source	document;
-			3. LABEL: a title/text string identifying the document for	users;
-			4. TYPE: a type for the object, e.g., book, journal, stereograph, etc.;
+			2. OBJID: a primary identifier assigned to the original source document;
+			3. LABEL: a title/text string identifying the document for users;
+			4. TYPE: a type for the object, e.g., book, journal, stereograph, etc.; and
 			5. PROFILE: the registered profile to which  this METS document conforms.
 			METS registry information is available from the Library of Congress at
 			http://www.loc.gov/mets.</xsd:documentation>
@@ -134,11 +158,19 @@
 								<xsd:documentation>agent: METS agent.
 								The agent element allows for various parties and their 
 								roles with respect to the METS document to be recorded.  
-								It has three attributes:
+								It has five attributes:
 								 1. ID (an XML ID);
-								  2. ROLE: one of 5 set roles with respect to the document, 
-								  CREATOR, EDITOR, ARCHIVIST, PRESERVATION, and DISSEMINATOR; and 
-								  3. TYPE: either INDIVIDUAL agent or ORGANIZATION.</xsd:documentation>
+								  2. ROLE: one of 7 set roles with respect to the document, 
+								  CREATOR, EDITOR, ARCHIVIST, PRESERVATION,  
+								  DISSEMINATOR, CUSTODIAN and IPOWNER or the
+								  value OTHER to indicate a non-set role;
+								  3. OTHERROLE: a string to specify a non-set role if
+								  OTHER is indicated in the ROLE attribute; 
+								  4. TYPE: either the set values of INDIVIDUAL agent or ORGANIZATION,
+								  or the value OTHER to indicate a non-set value; and
+								  5. OTHERTYPE: a string to indicate the type of agent
+								  if a value of OTHER is indicated in the TYPE attribute.
+								  </xsd:documentation>
 							</xsd:annotation>
 							<xsd:complexType>
 								<xsd:sequence>
@@ -206,14 +238,16 @@
 					Metadata can be either included in the METS hub document (mdWrap) or 
 					referenced via an identifier/locator (mdRef), a la Warwick Framework.  Multiple
 					dmdSec elements are allowed so that descriptive metadata
-					can be recorded for each separate item within the METS object.</xsd:documentation>
+					can be recorded for each separate item within the METS object.
+					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="amdSec" type="amdSecType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation>amdSec: Administrative Metadata Section.
 					This section records all of the administrative metadata for all items in the METS object
-					(including both structural map divs and data files),
+					(including structural map divs, data files, descriptive metadata sections
+					and adminstrative metadata sections themselves),
 					and is divided into four subsections: techMD (technical metadata), rightsMD
 					(intellectual property rights metadata), sourceMD (analog/digital source metadata), and 
 					digiprovMD (digital provenance metadata).
@@ -234,7 +268,13 @@
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:sequence>
-						<xsd:element name="fileGrp" type="fileGrpType" maxOccurs="unbounded"/>
+						<xsd:element name="fileGrp" maxOccurs="unbounded">
+							<xsd:complexType>
+								<xsd:complexContent>
+									<xsd:extension base="fileGrpType"/>
+								</xsd:complexContent>
+							</xsd:complexType>
+						</xsd:element>
 					</xsd:sequence>
 					<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
 				</xsd:complexType>
@@ -281,7 +321,8 @@
 			rightsMD (intellectual property rights metadata), sourceMD (analog/digital source 
 			metadata), and digiprovMD (digital provenance metadata, that is, the
 			history of migrations/translations performed on a digital library object from
-			it's original digital capture/encoding).  amdSecType has a single attribute, ID (XML ID).</xsd:documentation>
+			it's original digital capture/encoding).  amdSecType has a single attribute, ID (XML ID).
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="techMD" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
@@ -299,7 +340,7 @@
 					<xsd:documentation>rightsMD: intellectual property rights metadata.  
 						The rightsMD element provides a wrapper around a generic metadata section, 
 						which should contain IP rights metadata.  It has a single attribute, ID, which 
-						file/fileGrp/div elements can use to reference IP Rights metadata that applies to them.
+						other METS elements can use to reference IP Rights metadata that applies to them.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
@@ -340,14 +381,16 @@
 					The file group is used to cluster all of the digital files composing a digital
 					library object in a hierarchical arrangement (fileGrp is recursively defined
 					to enable the creation of the hierarchy).  Any file group may contain zero or
-					more file elements.  File elements in turn can contain a FLocat element
+					more file elements.  File elements in turn can contain one or more FLocat elements
 					(a pointer to a file containing content for this object) and/or a FContent 
-					element (the contents of the file Base64 encoded).  a fileGrp element
+					element (the contents of the file, in either XML or  Base64 encoding).  A fileGrp element
 					may have the following attributes:
 					1. ID: an XML ID for the element
 					2. VERSDATE: date this version/fileGrp of the digital object was created.
 					3. ADMID: IDREFs to administrative metadata sections in the METS document
-					that correspond with all files in this file group.
+					that correspond with all files in this file group;
+					4. USE: a string to indicate the intended use of files within this file group
+					(e.g., master, reference, thumbnails for image files).
 				</xsd:documentation>
 		</xsd:annotation>
 		<xsd:choice>
@@ -356,9 +399,11 @@
 				<xsd:annotation>
 					<xsd:documentation>file: File element.
 							The file element provides access to content files for a METS document.
-							A file element may contain an FLocat element, which provides a pointer to
+							A file element may contain one or more FLocat elements, which provide pointers to
 							a content file, and/or an FContent element, which wraps an encoded version
-							of the file.  It has the following attributes:
+							of the file. Note that ALL FLocat and FContent elements underneath a
+							singel file element should identify/contain identical copies of a single
+							file.  The file element has the following attributes:
 							1. ID: an XML ID for the element;
 							2. MIMETYPE: the MIME type for the file;
 							3. SEQ: an integer indicating the sequence of this file relative to the others in its 
@@ -368,15 +413,19 @@
 							6. CHECKSUM: an MD5 digest value for the included file.
 							7. OWNERID: a primary identifier assigned to the file by its owner; 
 							8. ADMID: IDREFS to administrative metadata sections in the METS document 
-							that correspond with this file; and 
-							9. GROUPID: an identifier that establishes a correspondence between this file 
+							that correspond with this file;
+							9. DMDID: IDREFS to descriptive metadata sections in the METS document
+							that correspond with this file;
+							10. GROUPID: an identifier that establishes a correspondence between this file 
 							and files in other file groups.  Typically, this will be used to associate a master 
-							file in one file group with derivative files in other file groups.
+							file in one file group with derivative files in other file groups;
+							11. USE: a string indicated the intended use of this file (e.g., master,
+							reference, thumbnail for image files).
 						</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
-					<xsd:all>
-						<xsd:element name="FLocat" minOccurs="0">
+					<xsd:sequence>
+						<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
 								<xsd:documentation>FLocat: File Location.  
 										The FLocat element provides a pointer to the location of a content file.  
@@ -388,12 +437,13 @@
 										2. LOCTYPE: the type of locator contained in the FLocat element; and
 										3. OTHERLOCTYPE: a string to indicate an alternative LOCTYPE if
 										the LOCTYPE attribute itself has a value of "OTHER";
-										4. xlink:href: see XLink standard (http://www.w3.org/TR/xlink)
-										5. xlink:role: ""
-										6. xlink:arcrole: "" 
-										7. xlink:title: ""
-										8. xlink:show: ""
-										9. xlink:actuate: ""
+										4. USE: a string indicating the intended use of the referenced file;
+										5. xlink:href: see XLink standard (http://www.w3.org/TR/xlink);
+										6. xlink:role: ""
+										7. xlink:arcrole: "" 
+										8. xlink:title: ""
+										9. xlink:show: ""
+										10. xlink:actuate: ""
 										NOTE: FLocat is an empty element.  The location of the resource
 										pointed to MUST be stored in the xlink:href element.
 									</xsd:documentation>
@@ -401,6 +451,7 @@
 							<xsd:complexType>
 								<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
 								<xsd:attributeGroup ref="LOCATION"/>
+								<xsd:attribute name="USE" type="xsd:string" use="optional"/>
 								<xsd:attributeGroup ref="xlink:simpleLink"/>
 							</xsd:complexType>
 						</xsd:element>
@@ -408,21 +459,41 @@
 							<xsd:annotation>
 								<xsd:documentation>FContent: file content.  
 										The FContent element is used to deliver a content file for a METS 
-										document within the METS file itself.  The content file must be Base 64 
-										encoded, and contained within the FContent wrapper element.  The
+										document within the METS file itself.  The content file must be 
+										either Base 64 	encoded, and contained within the subsidiary
+										binData wrapper element, or consist of XML information and
+										be contained within the subsidiary xmlData wrapper element.  The
 										FContent element has the following attribute:
 										1. ID (an XML ID)
+										2. USE: a string indicating the intended use of the embedded file.
 									</xsd:documentation>
 							</xsd:annotation>
 							<xsd:complexType>
-								<xsd:simpleContent>
-									<xsd:extension base="xsd:base64Binary">
-										<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
-									</xsd:extension>
-								</xsd:simpleContent>
+								<xsd:choice>
+									<xsd:element name="binData" type="xsd:base64Binary" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>A wrapper to contain a Base64 encoded
+											file.
+											</xsd:documentation>
+										</xsd:annotation>
+									</xsd:element>
+									<xsd:element name="xmlData" minOccurs="0">
+										<xsd:annotation>
+											<xsd:documentation>A wrapper to contain an XML encoded
+											file.
+											</xsd:documentation>
+										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:sequence>
+												<xsd:any namespace="##any" maxOccurs="unbounded"/>
+											</xsd:sequence>
+										</xsd:complexType>
+									</xsd:element>
+								</xsd:choice>
+								<xsd:attribute name="USE" type="xsd:string" use="optional"/>
 							</xsd:complexType>
 						</xsd:element>
-					</xsd:all>
+					</xsd:sequence>
 					<xsd:attribute name="ID" type="xsd:ID" use="required"/>
 					<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional"/>
 					<xsd:attribute name="SEQ" type="xsd:int" use="optional"/>
@@ -431,13 +502,16 @@
 					<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional"/>
 					<xsd:attribute name="OWNERID" type="xsd:string" use="optional"/>
 					<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
+					<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional"/>
 					<xsd:attribute name="GROUPID" type="xsd:string" use="optional"/>
+					<xsd:attribute name="USE" type="xsd:string" use="optional"/>
 				</xsd:complexType>
 			</xsd:element>
 		</xsd:choice>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
 		<xsd:attribute name="VERSDATE" type="xsd:dateTime" use="optional"/>
 		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
+		<xsd:attribute name="USE" type="xsd:string" use="optional"/>
 	</xsd:complexType>
 	<xsd:complexType name="structMapType">
 		<xsd:annotation>
@@ -452,7 +526,7 @@
 			"LOGICAL" for one which describes the intellectual structure of the work
 			(a monograph with TOC, forward, chapters, index., etc.);
 			3. LABEL: a string to describe the structMap to users.  This is primarily
-			useful where more than one subject is provided for a single object
+			useful where more than one structMap is provided for a single object
 			(e.g., both logical and physical structMap).</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
@@ -461,7 +535,7 @@
 					<xsd:documentation>div: Division.  
 						The METS standard represents a document structurally as a series of nested 
 						div elements, that is, as a hierarchy (e.g., a book, which is composed of chapters, 
-						which is composed of subchapters, which is composed of text).  Every div node 
+						which are composed of subchapters, which are composed of text).  Every div node 
 						in the structural map hierarchy may be connected (via subsidiary mptr or fptr 
 						elements) to content files which represent that div's portion of the whole document.  
 					</xsd:documentation>
@@ -477,7 +551,7 @@
 			<xsd:documentation>Div Complex Type
 					The METS standard represents a document structurally as a series of nested 
 					div elements, that is, as a hierarchy (e.g., a book, which is composed of chapters, 
-					which is composed of subchapters, which is composed of text).  Every div node 
+					which are composed of subchapters, which are composed of text).  Every div node 
 					in the structural map hierarchy may be connected (via subsidiary mptr or fptr 
 					elements) to content files which represent that div's portion of the whole document.  
 					The div element has the following attributes: 
@@ -766,7 +840,7 @@
 			 3. BTYPE: a behavior type identifier for a given set of related behaviors. 	
 			 4. CREATED: date this behavior section of the METS object was created.  
 			 5. LABEL: a description of the type of behaviors this section represents.  
-			 6. GROUPID: an identifier that establishes a correspondence between this behavior section and behavior 
+			 6. GROUPID: an identifier that establishes a correspondence between this behavior section and other behavior 
 			 sections.  Typically, this will be used to facilitate versioning of behavior sections. </xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
@@ -829,7 +903,19 @@
 			<xsd:documentation>mdSec (metadata section) Complex Type
 			A generic framework for pointing to/including metadata within a METS document,
 			a la Warwick Framework.  An mdSec element may have the following attributes:
-			1. ID: an XML ID for this element.</xsd:documentation>
+			1. ID: an XML ID for this element;
+			2. GROUPID: an identifier that may be used to indicate that different metadata sections
+			may be considered as part of a single group.  Two metadata sections with the same
+			GROUPID value are to be considered part of the same group.  This facility might
+			be used, for example, to group changed versions of the same metadata if previous
+			versions are maintained in a file for tracking purposes;
+			3. ADMID: a set of IDREFS to administrative metadata elements which apply
+			to the current descriptive or administrative metadata.  Typically used to
+			reference preservation metadata which applies to the current metadata;
+			4. CREATED: the date and time of creation for the metadata; and
+			5. STATUS: a string indicating the status of this metadata (e.g., superceded,
+			current, etc.).
+			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:all>
 			<xsd:element name="mdRef" minOccurs="0">
@@ -907,6 +993,10 @@
 			</xsd:element>
 		</xsd:all>
 		<xsd:attribute name="ID" type="xsd:ID" use="required"/>
+		<xsd:attribute name="GROUPID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional"/>
+		<xsd:attribute name="STATUS" type="xsd:string" use="optional"/>
 	</xsd:complexType>
 	<xsd:attributeGroup name="METADATA">
 		<xsd:attribute name="MDTYPE" use="required">
