@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by Jerome McDonough (private) -->
 <!-- METS: Metadata Encoding and Transmission Standard -->
 <!-- Copyright © 2001, 2002, 2003 Digital Library Federation -->
 <!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
-with the assistance of Rick Beaubien (University of California), Morgan Cundiff (Library of 
-Congress), Susan Dahl (University of Alberta), Richard Gartner (Bodleian Library at Oxford),
-Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University),
-Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group),
-Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts
-Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and
-Robin Wendler (Harvard University).
+with the assistance of Michael Alexander (British Library), Rick Beaubien (University of California), Morgan Cundiff (Library of Congress), Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen),  Richard Gartner (Bodleian Library at Oxford), Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University).
 -->
-<!-- Dec. 27, 2002 -->
-<!-- Version 1.2 -->
+<!-- May 8, 2003 -->
+<!-- Version 1.3 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -88,7 +81,7 @@ Robin Wendler (Harvard University).
 	contain a <seq> -->
 <!-- Dec. 27, 2002: Version 1.2 -->
 <!-- 12/27/2002 v1.2 changes:
-1. Add “USE” attribute to FileGrp, File, FLocat and FContent;
+1. Add "USE" attribute to FileGrp, File, FLocat and FContent;
 2. Make FLocat repeatable;
 3. Have FContent mimic mdWrap in using separate binData/xmlData sections;
 4. Copyright statement added;
@@ -100,6 +93,14 @@ Robin Wendler (Harvard University).
 10. CREATED and STATUS attributes added to all desc. and adm. metadata sections; and
 11. clean up documentation in elements to reflect reality.
 -->
+<!-- May 8, 2003: Version 1.3 -->
+<!-- 05/05/2003 v1.3 changes:
+1. Change "2. OBJID: a primary identifier assigned to the original source document" to "2. OBJID: a primary identifier assigned to the METS object."
+2. Add MODS to MDTYPEs.
+3. Modify <file> attributes so that instead of just CHECKSUM we have CHECKSUM and CHECKSUMTYPE, where CHECKSUMTYPE is a controlled vocabulary as follows:
+     HAVAL, MD5, SHA-1, SHA-256, SHA-384, SHA-512, TIGER, WHIRLPOOL
+4.Alter BehaviorSec to make it recursive, and add a new behavior element to wrap mechanism and interfaceDef elements.
+-->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/TR/xlink" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/TR/xlink" schemaLocation="xlink.xsd"/>
 	<xsd:element name="mets">
@@ -109,7 +110,7 @@ Robin Wendler (Harvard University).
 			of complex digital library objects between systems.  As such, it can be seen
 			as filling a role similar to that defined for the Submission Information Package
 			(SIP), Archival Information Package (AIP) and Dissemination Information 
-			Package (DIP) in the Reference Model	for an Open Archival Information System.
+			Package (DIP) in the Reference Model for an Open Archival Information System.
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:complexType>
@@ -127,7 +128,7 @@ Robin Wendler (Harvard University).
 			inventory group), structLink (structural map linking), structMap (structural map) and
 			behaviorSec (behaviors section).  It also has five possible attributes:
 			1. ID (an XML ID);
-			2. OBJID: a primary identifier assigned to the original source document;
+			2. OBJID: a primary identifier assigned to the METS document;
 			3. LABEL: a title/text string identifying the document for users;
 			4. TYPE: a type for the object, e.g., book, journal, stereograph, etc.; and
 			5. PROFILE: the registered profile to which  this METS document conforms.
@@ -397,29 +398,14 @@ Robin Wendler (Harvard University).
 			<xsd:element name="fileGrp" type="fileGrpType" minOccurs="0" maxOccurs="unbounded"/>
 			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>file: File element.
-							The file element provides access to content files for a METS document.
-							A file element may contain one or more FLocat elements, which provide pointers to
-							a content file, and/or an FContent element, which wraps an encoded version
-							of the file. Note that ALL FLocat and FContent elements underneath a
-							singel file element should identify/contain identical copies of a single
-							file.  The file element has the following attributes:
-							1. ID: an XML ID for the element;
-							2. MIMETYPE: the MIME type for the file;
-							3. SEQ: an integer indicating the sequence of this file relative to the others in its 
-							file group;
-							4. SIZE: the size of the file in bytes; 
-							5. CREATED: the date of creation for the file; 
-							6. CHECKSUM: an MD5 digest value for the included file.
-							7. OWNERID: a primary identifier assigned to the file by its owner; 
-							8. ADMID: IDREFS to administrative metadata sections in the METS document 
+					<xsd:documentation>. ADMID: IDREFS to administrative metadata sections in the METS document 
 							that correspond with this file;
-							9. DMDID: IDREFS to descriptive metadata sections in the METS document
+							10. DMDID: IDREFS to descriptive metadata sections in the METS document
 							that correspond with this file;
-							10. GROUPID: an identifier that establishes a correspondence between this file 
+							11. GROUPID: an identifier that establishes a correspondence between this file 
 							and files in other file groups.  Typically, this will be used to associate a master 
 							file in one file group with derivative files in other file groups;
-							11. USE: a string indicated the intended use of this file (e.g., master,
+							12. USE: a string indicated the intended use of this file (e.g., master,
 							reference, thumbnail for image files).
 						</xsd:documentation>
 				</xsd:annotation>
@@ -427,22 +413,12 @@ Robin Wendler (Harvard University).
 					<xsd:sequence>
 						<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
 							<xsd:annotation>
-								<xsd:documentation>FLocat: File Location.  
-										The FLocat element provides a pointer to the location of a content file.  
-										It uses the XLink syntax to provide linking information indicating the
-										actual location of the content file, along with a few additional attributes
-										specifying additional linking information.  The full attribute set for
-										the FLocat element is as follows:
-										1. ID (an XML ID); 
-										2. LOCTYPE: the type of locator contained in the FLocat element; and
-										3. OTHERLOCTYPE: a string to indicate an alternative LOCTYPE if
-										the LOCTYPE attribute itself has a value of "OTHER";
+								<xsd:documentation> 
+										8. xlink:title: "
+										9. xlink:show: ";
 										4. USE: a string indicating the intended use of the referenced file;
 										5. xlink:href: see XLink standard (http://www.w3.org/TR/xlink);
-										6. xlink:role: ""
-										7. xlink:arcrole: "" 
-										8. xlink:title: ""
-										9. xlink:show: ""
+										6. xlink:role: "
 										10. xlink:actuate: ""
 										NOTE: FLocat is an empty element.  The location of the resource
 										pointed to MUST be stored in the xlink:href element.
@@ -500,6 +476,20 @@ Robin Wendler (Harvard University).
 					<xsd:attribute name="SIZE" type="xsd:long" use="optional"/>
 					<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional"/>
 					<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional"/>
+					<xsd:attribute name="CHECKSUMTYPE" use="optional">
+						<xsd:simpleType>
+							<xsd:restriction base="xsd:string">
+								<xsd:enumeration value="HAVAL"/>
+								<xsd:enumeration value="MD5"/>
+								<xsd:enumeration value="SHA-1"/>
+								<xsd:enumeration value="SHA-256"/>
+								<xsd:enumeration value="SHA-384"/>
+								<xsd:enumeration value="SHA-512"/>
+								<xsd:enumeration value="TIGER"/>
+								<xsd:enumeration value="WHIRLPOOL"/>
+							</xsd:restriction>
+						</xsd:simpleType>
+					</xsd:attribute>
 					<xsd:attribute name="OWNERID" type="xsd:string" use="optional"/>
 					<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
 					<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional"/>
@@ -582,23 +572,11 @@ Robin Wendler (Harvard University).
 		<xsd:sequence>
 			<xsd:element name="mptr" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>mptr: METS Pointer.  
-						The mptr element allows a div to be associated with a separate METS document 
-						containing the content corresponding with that div, rather than pointing to an 
-						internal file or file group.  A typical instance of this would be the case of a METS 
-						document for a journal run, with a div elements for each individual journal issue.  
-						The div elements for the issues might point to separate METS documents for each 
-						issue, rather than having files and file groups for every issue encoded in one 
-						document.  The mptr element may have the following attributes:
-						1. ID: an XML ID for this element;
-						2. LOCTYPE: the type of locator 	contained in the FLocat element; and
-						3. OTHERLOCTYPE: a string to indicate an alternative LOCTYPE if
-						the LOCTYPE attribute itself has a value of "OTHER."
+					<xsd:documentation> 
+						7. xlink:title: "
+						8. xlink:show: "
 						4. xlink:href: see XLink standard (http://www.w3.org/TR/xlink)
-						5. xlink:role: ""
-						6. xlink:arcrole: "" 
-						7. xlink:title: ""
-						8. xlink:show: ""
+						5. xlink:role: "
 						9. xlink:actuate: ""
 						NOTE: mptr is an empty element.  The location of the resource
 						pointed to MUST be stored in the xlink:href element.
@@ -699,23 +677,7 @@ Robin Wendler (Harvard University).
 	</xsd:complexType>
 	<xsd:complexType name="areaType">
 		<xsd:annotation>
-			<xsd:documentation>areaType: Complex Type for Area linking.
-				The area element provides for more sophisticated linking between a div 
-				element and content files representing that div, be they text, image, 
-				audio, or video files.  An area element can link a div to a point 
-				within a file, to a one-dimension segment of a file (e.g., text segment, 
-				image line, audio/video clip), or a two-dimensional section of a file 
-				(e.g, subsection of an image, or a subsection of the  video display 
-				of a video file.  The area element has no content, and the following 
-				attributes: 
-				1. ID: an XML ID; 
-				2. FILEID: an IDREF to the file element being pointed to by the div; 
-				3. SHAPE: a text string defining the shape of a two-dimensional 
-				area being referenced in a link file; 
-				4. COORDS: a text string representing a set of visual coordinates 
-				within an image (still image or video frame).  The COORDS and 
-				SHAPE attributes should be used as in HTML 4; 
-				5. BEGIN: a beginning location in a referenced file; 
+			<xsd:documentation>nced file; 
 				6. END: an ending location in a referenced file; 
 				7. BETYPE: the syntax used in specifying the BEGIN and END 
 				attributes (byte offset, IDREF value, SMPTE time code, SMIL
@@ -793,25 +755,7 @@ Robin Wendler (Harvard University).
 		<xsd:sequence>
 			<xsd:element name="smLink" maxOccurs="unbounded">
 				<xsd:annotation>
-					<xsd:documentation>smLink: structural map Link
-					An element linking two elements in the structural map, used
-					to indicate that a hyperlink exists between the two METS
-					components represented by the two structural map nodes.
-					You would use smLink, for example, to record the existence
-					of hypertext links between web pages, if you wish to record
-					those links' existence inside of METS.  The smLink element
-					uses six attributes:
-					1. xlink:arcrole - the role of the link, as per the xlink specification;
-					2. xlink:title - a title for the link (if needed);
-					3. xlink:show - see the xlink specification;
-					4. xlink:actuate - see the xlink specification;
-					5. to: the XML ID attribute for the element in the structMap you
-					are linking to; and
-					6. from: the XML id attribute for the element in the structMap
-					you are linking from.
-					Note that while we use the xlink 'to' and 'from' notions, we are
-					not using the actual xlink schema definitions, as we wish to
-					make these XML IDREF attributes, and not simple strings.
+					<xsd:documentation>attributes, and not simple strings.
 				</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
@@ -827,21 +771,42 @@ Robin Wendler (Harvard University).
 	</xsd:complexType>
 	<xsd:complexType name="behaviorSecType">
 		<xsd:annotation>
-			<xsd:documentation>behaviorSecType: Complex Type for Behaviors. 
-			 A behavior section can be used to associate executable behaviors with content in the METS object.  
-			 A behavior section has an interface definition element that represents an abstract definition of the set 
-			 of behaviors represented by a particular behavior section.  A behavior section also has an behavior 
-			 mechanism which is a module of executable code that implements and runs the behaviors defined 
-			 abstractly by the interface definition.  An behavior section may have the following attributes: 	
+			<xsd:documentation>behaviorSecType: Behaviors Section.
+			Behaviors are executable code which can be associated with parts of a METS
+			object.  The behaviorSec element is used to group individual behaviors within
+			a hierarchical structure.  Such grouping can be useful to organize families
+			of behaviors together or to indicate other relationships between particular
+			behaviors.  The behaviorSec element has three attributes:
+			1. ID: an XML ID attribute for a particular behaviorSec;
+			2. CREATED: a dateTime of creation for the behaviorSec; and
+			3. LABEL: a text description of the behaviorSec.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="behaviorSec" type="behaviorSecType" minOccurs="0" maxOccurs="unbounded"/>
+			<xsd:element name="behavior" type="behaviorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional"/>
+		<xsd:attribute name="LABEL" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="behaviorType">
+		<xsd:annotation>
+			<xsd:documentation>behaviorType: Complex Type for Behaviors. 
+			 A behavior can be used to associate executable behaviors with content in the METS object.  
+			 A behavior element has an interface definition element that represents an abstract definition of the set 
+			 of behaviors represented by a particular behavior.  A behavior element also has an behavior 
+			 mechanism which is a module of executable code that implements and runs the behavior defined 
+			 abstractly by the interface definition.  A behavior may have the following attributes: 	
 			 1. ID: an XML ID for the element   
 			 2. STRUCTID:  IDREFS to structMap sections or divs within a structMap in the METS document. 
 			 The content that the STRUCTID attribute points to is considered "input" to the behavior mechanism 
-			 (executable) defined for the behaviorSec.  
+			 (executable) defined for the behavior.  
 			 3. BTYPE: a behavior type identifier for a given set of related behaviors. 	
-			 4. CREATED: date this behavior section of the METS object was created.  
-			 5. LABEL: a description of the type of behaviors this section represents.  
-			 6. GROUPID: an identifier that establishes a correspondence between this behavior section and other behavior 
-			 sections.  Typically, this will be used to facilitate versioning of behavior sections. </xsd:documentation>
+			 4. CREATED: date this behavior was created.  
+			 5. LABEL: a description of the behavior.  
+			 6. GROUPID: an identifier that establishes a correspondence between this behavior 				and other behaviors.  Typically, this will be used to facilitate versioning of behaviors. 
+			7. ADMID: IDREFS to administrative metadata sections pertaining to this behavior.</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
 			<xsd:element name="interfaceDef" type="objectType" minOccurs="0">
@@ -876,20 +841,15 @@ Robin Wendler (Harvard University).
 		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional"/>
 		<xsd:attribute name="LABEL" type="xsd:string" use="optional"/>
 		<xsd:attribute name="GROUPID" type="xsd:string" use="optional"/>
+		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
 	</xsd:complexType>
 	<xsd:complexType name="objectType">
 		<xsd:annotation>
-			<xsd:documentation>objectType: An element of type objectType may have the following attributes:   
-			1. ID: an XML ID for the element  
-			2. LABEL: a description of the object that is being linked to.
-			3. LOCTYPE: the type of locator contained in the FLocat element; and  
-			4. OTHERLOCTYPE: a string to indicate an alternative LOCTYPE if  the LOCTYPE attribute itself has 
-			a value of "OTHER."     
+			<xsd:documentation>  	    
+			8. xlink:title: " 	    
+			9. xlink:show: "     
 			5. xlink:href: see XLink standard (http://www.w3.org/TR/xlink) 	    
-			6. xlink:role: "" 	    
-			7. xlink:arcrole: ""  	    
-			8. xlink:title: "" 	    
-			9. xlink:show: "" 	    
+			6. xlink:role: " 	    
 			10. xlink:actuate: "" 	    
 			NOTE: objectType is an empty element.  The location of the resource pointed to MUST be stored in the xlink:href element.     </xsd:documentation>
 		</xsd:annotation>
@@ -900,39 +860,17 @@ Robin Wendler (Harvard University).
 	</xsd:complexType>
 	<xsd:complexType name="mdSecType">
 		<xsd:annotation>
-			<xsd:documentation>mdSec (metadata section) Complex Type
-			A generic framework for pointing to/including metadata within a METS document,
-			a la Warwick Framework.  An mdSec element may have the following attributes:
-			1. ID: an XML ID for this element;
-			2. GROUPID: an identifier that may be used to indicate that different metadata sections
-			may be considered as part of a single group.  Two metadata sections with the same
-			GROUPID value are to be considered part of the same group.  This facility might
-			be used, for example, to group changed versions of the same metadata if previous
-			versions are maintained in a file for tracking purposes;
-			3. ADMID: a set of IDREFS to administrative metadata elements which apply
-			to the current descriptive or administrative metadata.  Typically used to
-			reference preservation metadata which applies to the current metadata;
-			4. CREATED: the date and time of creation for the metadata; and
-			5. STATUS: a string indicating the status of this metadata (e.g., superceded,
-			current, etc.).
+			<xsd:documentation>ent, etc.).
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:all>
 			<xsd:element name="mdRef" minOccurs="0">
 				<xsd:annotation>
-					<xsd:documentation>mdRef: metadata reference.  
-						The mdRef element is a generic element used throughout the METS schema 
-						to provide a pointer to metadata which resides outside the METS document.  
-						It has the following attributes: 
-						1. ID: an XML ID; 
-						2. LOCTYPE: the type of locator contained in the body of the element; 
-						3. OTHERLOCTYPE: a string indicating an alternative LOCTYPE when the LOCTYPE
-						attribute value is set to "OTHER.";
+					<xsd:documentation> 
+						7. xlink:title: "
+						8. xlink:show: ";
 						4. xlink:href: see XLink standard (http://www.w3.org/TR/xlink)
-						5. xlink:role: ""
-						6. xlink:arcrole: "" 
-						7. xlink:title: ""
-						8. xlink:show: ""
+						5. xlink:role: "
 						9. xlink:actuate: ""
 						10. MIMETYPE: the MIME type for the metadata being pointed at; 
 						11. MDType: the type of metadata being pointed at (e.g., MARC, EAD, etc.); 
@@ -1003,6 +941,7 @@ Robin Wendler (Harvard University).
 			<xsd:simpleType>
 				<xsd:restriction base="xsd:string">
 					<xsd:enumeration value="MARC"/>
+					<xsd:enumeration value="MODS"/>
 					<xsd:enumeration value="EAD"/>
 					<xsd:enumeration value="DC"/>
 					<xsd:enumeration value="NISOIMG"/>
