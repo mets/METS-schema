@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- METS: Metadata Encoding and Transmission Standard -->
 <!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University.-->
-<!-- February 8, 2002 -->
-<!-- Version 1.0 (zeta) -->
+<!-- June 5, 2002 -->
+<!-- Version 1.1 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -63,13 +63,19 @@
 	7. Change attribute name DMD for div element to DMDID for consistency's sake.
 	8. Added new behaviorSec for support of referencing executable code from METS object
  -->
- <!-- February 8, 2002: Zeta bug fix to final -->
- <!-- 2/8/2002 Zeta changes:
+<!-- February 8, 2002: Zeta bug fix to final -->
+<!-- 2/8/2002 Zeta changes:
  
  	1. Eliminated redundant VRA in metadata type enumeration.
  	2. Changed mdWrap content model, adding xmlData element to eliminate
  		ambiguous content model
  -->
+<!-- June 3, 2002: Version 1.1 -->
+<!-- 6/3/2002 v1.1 changes:
+ 
+  	1. Add new structLink section for recording hyperlinks between media represented by structMap nodes.
+	2. Allow a <par> element to
+	contain a <seq> -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/TR/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.loc.gov/METS/" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/TR/xlink" schemaLocation="xlink.xsd"/>
 	<xsd:element name="mets">
@@ -242,6 +248,15 @@
 					Any given 'div' can point to another METS document via the 'mptr'
 					element, or to a single file, to a group of files, or to segments of individual 
 					files or groups of files through the 'fptr' and subsidiary elements.
+					</xsd:documentation>
+				</xsd:annotation>
+			</xsd:element>
+			<xsd:element name="structLink" type="structLinkType" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>structLink: Structural Map Linking.
+						The Structural Map Linking section allows for the specification 
+						of hyperlinks between different components of a METS 
+						structure delineated in a structural map.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
@@ -540,35 +555,30 @@
 								<xsd:documentation>par: Parallel  files.  
 									The par element should used to link a div to a set of content files when 
 									those files should be played/displayed in unison to deliver the content to the 
-									user.  Individual area subelements within the par element provide the links 
-									to the files or portions thereof.  Par has the following attributes:
+									user.  A par element has two possible subsidiary elements,
+									which should be used in different cases.  In cases where
+									each bytestream to be played in parallel can fit in a single
+									file, you should use subsidiary area elements within the
+									par element to point to those files.  However, in some cases,
+									bytestreams which should be played in parallel are too
+									large to fit in a single file (high quality multi-track audio,
+									or video).  In those cases, you should use subsidiary
+									seq elements, where each seq contains the files comprising
+									a particular bytestream in the order they should be played
+									back.
+									Par has the following attributes:
 									1. ID: an XML ID for this element.
 								</xsd:documentation>
 							</xsd:annotation>
 							<xsd:complexType>
-								<xsd:sequence>
+								<xsd:choice>
 									<xsd:element name="area" type="areaType" maxOccurs="unbounded"/>
-								</xsd:sequence>
+									<xsd:element name="seq" type="seqType" maxOccurs="unbounded"/>
+								</xsd:choice>
 								<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
 							</xsd:complexType>
 						</xsd:element>
-						<xsd:element name="seq" minOccurs="0">
-							<xsd:annotation>
-								<xsd:documentation>seq: Sequence of files.  
-									The seq element should be used to link a div to a set of content files 
-									when those files should be played/displayed sequentially to deliver content to a user.  
-									Individual area subelements within the seq element provide the links 
-									to the files or portions thereof.  Seq has the following attributes:
-									1. ID: an XML ID for this element.
-								</xsd:documentation>
-							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:sequence>
-									<xsd:element name="area" type="areaType" maxOccurs="unbounded"/>
-								</xsd:sequence>
-								<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
-							</xsd:complexType>
-						</xsd:element>
+						<xsd:element name="seq" type="seqType" minOccurs="0"/>
 						<xsd:element name="area" type="areaType" minOccurs="0">
 							<xsd:annotation>
 								<xsd:documentation>
@@ -596,6 +606,22 @@
 		<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional"/>
 		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
 		<xsd:attribute name="TYPE" type="xsd:string" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="seqType">
+		<xsd:annotation>
+			<xsd:documentation>seq: Sequence of files.  
+					The seq element should be used to link a div to a set of content files 
+					when those files should be played/displayed sequentially to deliver 
+					content to a user.  
+					Individual area subelements within the seq element provide the links 
+					to the files or portions thereof.  Seq has the following attributes:
+					1. ID: an XML ID for this element.
+				</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="area" type="areaType" maxOccurs="unbounded"/>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID" use="optional"/>
 	</xsd:complexType>
 	<xsd:complexType name="areaType">
 		<xsd:annotation>
@@ -678,6 +704,52 @@
 			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional"/>
+	</xsd:complexType>
+	<xsd:complexType name="structLinkType">
+		<xsd:annotation>
+			<xsd:documentation>structLink: Structural Map Linking.
+				The Structural Map Linking section allows for the specification 
+				of hyperlinks between different components of a METS 
+				structure delineated in a structural map.  structLink contains
+				a single, repeatable element, smLink.  Each smLink element
+				indicates a hyperlink between two nodes in the structMap. 
+				The nodes in smLink are identified using their XML ID attributes.
+			</xsd:documentation>
+		</xsd:annotation>
+		<xsd:sequence>
+			<xsd:element name="smLink" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>smLink: structural map Link
+					An element linking two elements in the structural map, used
+					to indicate that a hyperlink exists between the two METS
+					components represented by the two structural map nodes.
+					You would use smLink, for example, to record the existence
+					of hypertext links between web pages, if you wish to record
+					those links' existence inside of METS.  The smLink element
+					uses six attributes:
+					1. xlink:arcrole - the role of the link, as per the xlink specification;
+					2. xlink:title - a title for the link (if needed);
+					3. xlink:show - see the xlink specification;
+					4. xlink:actuate - see the xlink specification;
+					5. to: the XML ID attribute for the element in the structMap you
+					are linking to; and
+					6. from: the XML id attribute for the element in the structMap
+					you are linking from.
+					Note that while we use the xlink 'to' and 'from' notions, we are
+					not using the actual xlink schema definitions, as we wish to
+					make these XML IDREF attributes, and not simple strings.
+				</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute ref="xlink:arcrole" use="optional"/>
+					<xsd:attribute ref="xlink:title" use="optional"/>
+					<xsd:attribute ref="xlink:show" use="optional"/>
+					<xsd:attribute ref="xlink:actuate" use="optional"/>
+					<xsd:attribute name="to" type="xsd:IDREF"/>
+					<xsd:attribute name="from" type="xsd:IDREF"/>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="behaviorSecType">
 		<xsd:annotation>
