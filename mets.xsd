@@ -4,8 +4,8 @@
 <!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
 with the assistance of Michael Alexander (British Library), Rick Beaubien (University of California), Morgan Cundiff (Library of Congress), Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen),  Richard Gartner (Bodleian Library at Oxford), Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University).
 -->
-<!-- May 1, 2004 -->
-<!-- Version 1.4 -->
+<!-- April 12, 2005 -->
+<!-- Version 1.5 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -115,8 +115,19 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 6. ID Attribute added to smLink.
 7. "LOM" added as metadata type.
  -->
+ <!-- April 12, 2005: Version 1.5 -->
+ <!-- 04/12/2005 v1.5 changes:
+ 
+ 1. Made file element recursive to deal with PREMIS Onion Layer model and
+ support XFDU-ish unpacking specification.
+ 2. Add <stream> element beneath <file> to allow linking of metadata to
+ subfile structures.
+ 3. Modify structLink TO and FROM attributes to put them in XLink namespace.
+ 4. Make processContents "lax" for all xsd:any elements.
+ -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+	
 	<xsd:element name="mets">
 		<xsd:annotation>
 			<xsd:documentation>METS: Metadata Encoding and Transmission Standard.
@@ -429,173 +440,8 @@ OTHER: some other form of agent (e.g., a software agent)
 		</xsd:annotation>
 		<xsd:choice>
 			<xsd:element name="fileGrp" type="fileGrpType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation>file: File element.
-							The file element provides access to content files for a METS object.  A file element may contain one or more FLocat elements, which provide pointers to a content file, and/or an FContent element, which wraps an encoded version of the file. Note that ALL FLocat and FContent elements underneath a single file element should identify/contain identical copies of a single file.
-						</xsd:documentation>
-				</xsd:annotation>
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
-							<xsd:annotation>
-								<xsd:documentation>FLocat: File Location.  
-										The FLocat element provides a pointer to the location of a content file.    It uses the XLink syntax to provide linking information indicating the actual location of the content file, along with a few additional attributes	specifying additional linking information.
-										NOTE: FLocat is an empty element.  The location of the resource pointed to MUST be stored in the xlink:href element.
-									</xsd:documentation>
-							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:attribute name="ID" type="xsd:ID" use="optional">
-									<xsd:annotation>
-										<xsd:documentation>ID: an optional XML ID value
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-								<xsd:attributeGroup ref="LOCATION"/>
-								<xsd:attribute name="USE" type="xsd:string" use="optional">
-									<xsd:annotation>
-										<xsd:documentation>USE: an optional string indicating the intended use of the referenced file.
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-								<xsd:attributeGroup ref="xlink:simpleLink"/>
-							</xsd:complexType>
-						</xsd:element>
-						<xsd:element name="FContent" minOccurs="0">
-							<xsd:annotation>
-								<xsd:documentation>FContent: file content.  
-										The FContent element is used to deliver a content file for a METS  document within the METS file itself.  The content file must be either Base 64 encoded, and contained within the subsidiary binData wrapper element, or consist of XML information and be contained within the subsidiary xmlData wrapper element.
-									</xsd:documentation>
-							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:choice>
-									<xsd:element name="binData" type="xsd:base64Binary" minOccurs="0">
-										<xsd:annotation>
-											<xsd:documentation>binData:	A wrapper element used to contain a Base64 encoded file.
-											</xsd:documentation>
-										</xsd:annotation>
-									</xsd:element>
-									<xsd:element name="xmlData" minOccurs="0">
-										<xsd:annotation>
-											<xsd:documentation>xmlData: A wrapper element used to contain  an XML encoded file.
-											</xsd:documentation>
-										</xsd:annotation>
-										<xsd:complexType>
-											<xsd:sequence>
-												<xsd:any namespace="##any" maxOccurs="unbounded"/>
-											</xsd:sequence>
-										</xsd:complexType>
-									</xsd:element>
-								</xsd:choice>
-								<xsd:attribute name="ID" type="xsd:ID" use="optional">
-									<xsd:annotation>
-										<xsd:documentation>ID: an optional XML ID value
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-								<xsd:attribute name="USE" type="xsd:string" use="optional">
-									<xsd:annotation>
-										<xsd:documentation>USE: an optional string indicating the intended  use of the embedded file.  Examples might include &quot;master&quot;, &quot;reference&quot;, and &quot;thumbnail&quot; for image files.
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-							</xsd:complexType>
-						</xsd:element>
-					</xsd:sequence>
-					<xsd:attribute name="ID" type="xsd:ID" use="required">
-						<xsd:annotation>
-							<xsd:documentation>ID: an XML ID value.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="SEQ" type="xsd:int" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>SEQ: an optional integer indicating the sequence of this  file relative to the others in its file group.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="SIZE" type="xsd:long" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>SIZE: an optional long integer specifying the size of the file in bytes.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>CREATED: an optional dateTime providing the date of creation for the file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>CHECKSUM: an optional string attribute providing a checksum value for the included file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="CHECKSUMTYPE" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>CHECKSUMTYPE: an optional attribute specifying the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
-								 HAVAL
-								 MD5
-								 SHA-1
-								 SHA-256
-								 SHA-384
-								 SHA-512
-								 TIGER
-								 WHIRLPOOL
-							</xsd:documentation>
-						</xsd:annotation>
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="HAVAL"/>
-								<xsd:enumeration value="MD5"/>
-								<xsd:enumeration value="SHA-1"/>
-								<xsd:enumeration value="SHA-256"/>
-								<xsd:enumeration value="SHA-384"/>
-								<xsd:enumeration value="SHA-512"/>
-								<xsd:enumeration value="TIGER"/>
-								<xsd:enumeration value="WHIRLPOOL"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-					</xsd:attribute>
-					<xsd:attribute name="OWNERID" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>OWNERID: an optional string attribute which may be      used to provide a unique identifier (including a URI) assigned to the file which may differ from the URI used to retrieve the file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>ADMID: an optional attribute used to list the XML ID attribute values for administrative metadata sections in the METS document that provide information regarding this file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>DMDID: an optional attribute used to list the XML ID     attribute values for descriptive metadata sections in the METS document that provide information regarding this file.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="GROUPID" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>GROUPID: an optional string attribute which may be used to record an identifier that establishes a correspondence between this file and files in other file groups.  For example, a master image in one file group	would share the same GROUPID value with a reference copy in a second file group and a thumbnail image in a third file group.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute name="USE" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>USE: an optional string attribute indicating the intended use of this file (e.g., &quot;master&quot;, &quot;reference&quot;, &quot;thumbnail&quot; for image files).
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-				</xsd:complexType>
-			</xsd:element>
+			<!-- file element originally here -->
+			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded" type="fileType" />
 		</xsd:choice>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
@@ -802,6 +648,11 @@ NOTE: mptr is an empty element.  The location of the resource	pointed to MUST be
 				</xsd:documentation>
 			</xsd:annotation>
 	    </xsd:attribute>
+		<xsd:attribute ref="xlink:label">
+			<xsd:annotation>
+				<xsd:documentation>xlink:label - an xlink label to be referred to by an smLink element</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
 	</xsd:complexType>
 	<xsd:complexType name="seqType">
 		<xsd:annotation>
@@ -996,17 +847,17 @@ TCF: a Time code Character Format value
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="to" type="xsd:IDREF">
+					<xsd:attribute ref="xlink:to">
 						<xsd:annotation>
 							<xsd:documentation>
-								to: the XML ID attribute for the element in the structMap you are linking to.
+								xlink:to - the value of the label for the element in the structMap you are linking to.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="from" type="xsd:IDREF">
+					<xsd:attribute ref="xlink:from">
 						<xsd:annotation>
 							<xsd:documentation>
-								from: the XML ID attribute for the element in the structMap you are linking from.
+								xlink:from - the value of the label for the element in the structMap you are linking from.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -1195,7 +1046,7 @@ TCF: a Time code Character Format value
 							</xsd:annotation>
 							<xsd:complexType>
 								<xsd:sequence>
-									<xsd:any namespace="##any" maxOccurs="unbounded"/>
+									<xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
 								</xsd:sequence>
 							</xsd:complexType>
 						</xsd:element>
@@ -1253,7 +1104,244 @@ TCF: a Time code Character Format value
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
-    <xsd:simpleType name="URIs">
+	<xsd:complexType name="fileType">
+		<xsd:annotation>
+			<xsd:documentation>file: File element.
+				The file element provides access to content files for a METS object.  A file element may contain one or more FLocat elements, which provide pointers to a content file, and/or an FContent element, which wraps an encoded version of the file. Note that ALL FLocat and FContent elements underneath a single file element should identify/contain identical copies of a single file.
+			</xsd:documentation>
+		</xsd:annotation>
+		
+		<xsd:sequence>
+			<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>FLocat: File Location.  
+						The FLocat element provides a pointer to the location of a content file.    It uses the XLink syntax to provide linking information indicating the actual location of the content file, along with a few additional attributes	specifying additional linking information.
+						NOTE: FLocat is an empty element.  The location of the resource pointed to MUST be stored in the xlink:href element.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:attribute name="ID" type="xsd:ID" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>ID: an optional XML ID value
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attributeGroup ref="LOCATION"/>
+					<xsd:attribute name="USE" type="xsd:string" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>USE: an optional string indicating the intended use of the referenced file.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attributeGroup ref="xlink:simpleLink"/>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="FContent" minOccurs="0">
+				<xsd:annotation>
+					<xsd:documentation>FContent: file content.  
+						The FContent element is used to deliver a content file for a METS  document within the METS file itself.  The content file must be either Base 64 encoded, and contained within the subsidiary binData wrapper element, or consist of XML information and be contained within the subsidiary xmlData wrapper element.
+					</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:choice>
+						<xsd:element name="binData" type="xsd:base64Binary" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>binData:	A wrapper element used to contain a Base64 encoded file.
+								</xsd:documentation>
+							</xsd:annotation>
+						</xsd:element>
+						<xsd:element name="xmlData" minOccurs="0">
+							<xsd:annotation>
+								<xsd:documentation>xmlData: A wrapper element used to contain  an XML encoded file.
+								</xsd:documentation>
+							</xsd:annotation>
+							<xsd:complexType>
+								<xsd:sequence>
+									<xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+								</xsd:sequence>
+							</xsd:complexType>
+						</xsd:element>
+					</xsd:choice>
+					<xsd:attribute name="ID" type="xsd:ID" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>ID: an optional XML ID value
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="USE" type="xsd:string" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>USE: an optional string indicating the intended  use of the embedded file.  Examples might include &quot;master&quot;, &quot;reference&quot;, and &quot;thumbnail&quot; for image files.
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+				</xsd:complexType>
+			</xsd:element>			
+			<xsd:element name="stream" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation>stream: component byte stream
+					A file may be composed of one or more subsidiary streams.  An MPEG4 file, for example, might contain separate audio and video streams, each of which has its own technical metadata associated with it.</xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:restriction base="xsd:anyType">
+							<xsd:attribute name="streamType" type="xsd:string" use="optional"></xsd:attribute>
+							<xsd:attribute name="OWNERID" type="xsd:string" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>OWNERID: an optional string attribute which may be      used to provide a unique identifier (including a URI) assigned to the file which may differ from the URI used to retrieve the file.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>ADMID: an optional attribute used to list the XML ID attribute values for administrative metadata sections in the METS document that provide information regarding this file.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>DMDID: an optional attribute used to list the XML ID attribute values for descriptive metadata sections in the METS document that provide information regarding this file.
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>							
+						</xsd:restriction>
+					</xsd:complexContent>
+				</xsd:complexType>				
+			</xsd:element>
+			<xsd:element name="transformFile" minOccurs="0" maxOccurs="unbounded">
+				<xsd:annotation>
+					<xsd:documentation></xsd:documentation>
+				</xsd:annotation>
+				<xsd:complexType>
+					<xsd:complexContent>
+						<xsd:restriction base="xsd:anyType">
+							<xsd:attribute name="TRANSFORMTYPE" use="required">
+								<xsd:annotation>
+									<xsd:documentation>TRANSFORMTYPE: a type of transformation needed to render content of a file accessible (including unpacking a file into subsidiary files/streams). </xsd:documentation>
+								</xsd:annotation>
+								<xsd:simpleType>
+									<xsd:restriction base="xsd:string">
+										<xsd:enumeration value="decompression"></xsd:enumeration>
+										<xsd:enumeration value="decryption"></xsd:enumeration>
+									</xsd:restriction>
+								</xsd:simpleType>
+							</xsd:attribute>
+							<xsd:attribute name="TRANSFORMALGORITHM" type="xsd:string" use="required">
+								<xsd:annotation>
+									<xsd:documentation>TRANSFORMALGORITHM: a string describing the specific decompression or decryption routine used to access the contents of this file.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="TRANSFORMKEY" type="xsd:string" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>TRANSFORMKEY: a key to be used with the transform algorithm for accessing the file's contents.</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="TRANSFORMBEHAVIOR" type="xsd:IDREF" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>TRANSFORMBEHAVIOR: an IDREF to a behavior element for this transformation</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
+							<xsd:attribute name="TRANSFORMORDER" type="xsd:positiveInteger" use="required"></xsd:attribute>
+						</xsd:restriction>
+					</xsd:complexContent>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="file" type="fileType" minOccurs="0" maxOccurs="unbounded"></xsd:element>
+		</xsd:sequence>
+		<xsd:attribute name="ID" type="xsd:ID" use="required">
+			<xsd:annotation>
+				<xsd:documentation>ID: an XML ID value.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SEQ" type="xsd:int" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>SEQ: an optional integer indicating the sequence of this  file relative to the others in its file group.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SIZE" type="xsd:long" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>SIZE: an optional long integer specifying the size of the file in bytes.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>CREATED: an optional dateTime providing the date of creation for the file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>CHECKSUM: an optional string attribute providing a checksum value for the included file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="CHECKSUMTYPE" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>CHECKSUMTYPE: an optional attribute specifying the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
+					HAVAL
+					MD5
+					SHA-1
+					SHA-256
+					SHA-384
+					SHA-512
+					TIGER
+					WHIRLPOOL
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="HAVAL"/>
+					<xsd:enumeration value="MD5"/>
+					<xsd:enumeration value="SHA-1"/>
+					<xsd:enumeration value="SHA-256"/>
+					<xsd:enumeration value="SHA-384"/>
+					<xsd:enumeration value="SHA-512"/>
+					<xsd:enumeration value="TIGER"/>
+					<xsd:enumeration value="WHIRLPOOL"/>
+				</xsd:restriction>
+			</xsd:simpleType>
+		</xsd:attribute>
+		<xsd:attribute name="OWNERID" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>OWNERID: an optional string attribute which may be      used to provide a unique identifier (including a URI) assigned to the file which may differ from the URI used to retrieve the file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>ADMID: an optional attribute used to list the XML ID attribute values for administrative metadata sections in the METS document that provide information regarding this file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>DMDID: an optional attribute used to list the XML ID     attribute values for descriptive metadata sections in the METS document that provide information regarding this file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="GROUPID" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>GROUPID: an optional string attribute which may be used to record an identifier that establishes a correspondence between this file and files in other file groups.  For example, a master image in one file group	would share the same GROUPID value with a reference copy in a second file group and a thumbnail image in a third file group.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="USE" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>USE: an optional string attribute indicating the intended use of this file (e.g., &quot;master&quot;, &quot;reference&quot;, &quot;thumbnail&quot; for image files).
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+
+	</xsd:complexType>
+	<xsd:simpleType name="URIs">
 	    <xsd:list itemType="xsd:anyURI"/>
     </xsd:simpleType>
 	<xsd:attributeGroup name="METADATA">
@@ -1286,6 +1374,7 @@ OTHER: metadata in a format not specified above.
 					<xsd:enumeration value="DDI"/>
 					<xsd:enumeration value="FGDC"/>
 				    <xsd:enumeration value="LOM"/>
+					<xsd:enumeration value="PREMIS"/>
 					<xsd:enumeration value="OTHER"/>
 				</xsd:restriction>
 			</xsd:simpleType>
