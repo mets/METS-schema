@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- METS: Metadata Encoding and Transmission Standard -->
-<!-- Copyright © 2001, 2002, 2003, 2004 Digital Library Federation -->
+<!-- Copyright © 2001, 2002, 2003, 2004, 2005, 2006 Digital Library Federation -->
 <!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
 with the assistance of Michael Alexander (British Library), Rick Beaubien (University of California), Morgan Cundiff (Library of Congress), Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen),  Richard Gartner (Bodleian Library at Oxford), Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University).
 -->
-<!-- April 12, 2005 -->
-<!-- Version 1.5 -->
+<!-- October 2006 -->
+<!-- Version 1.6 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -125,8 +125,15 @@ mptr and area elements for mapping MPEG21 DII Identifier values
  3. Modify structLink TO and FROM attributes to put them in XLink namespace.
  4. Make processContents "lax" for all xsd:any elements.
  -->
+ <!-- October 18, 2006: Version 1.6 -->
+ <!-- 10/18/2006 v1.6 changes:
+ 	
+ 1. add ID to stream and transformFile
+ 2. add ADMID to metsHdr
+ 3. make smLink/@xlink:to and smLink/@xlink:from required
+ -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="xlink.xsd"/>
+	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/mets/xlink.xsd"/>
 	
 	<xsd:element name="mets">
 		<xsd:annotation>
@@ -268,6 +275,12 @@ OTHER: some other form of agent (e.g., a software agent)
 					<xsd:attribute name="ID" type="xsd:ID" use="optional">
 						<xsd:annotation>
 							<xsd:documentation>ID: an optional XML ID value
+							</xsd:documentation>
+						</xsd:annotation>
+					</xsd:attribute>
+					<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+						<xsd:annotation>
+							<xsd:documentation>ADMID: an optional attribute providing the XML ID values for the administrative metadata sections within this METS document applicable to this METS Document.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -847,14 +860,14 @@ TCF: a Time code Character Format value
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute ref="xlink:to">
+					<xsd:attribute ref="xlink:to" use="required">
 						<xsd:annotation>
 							<xsd:documentation>
 								xlink:to - the value of the label for the element in the structMap you are linking to.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute ref="xlink:from">
+					<xsd:attribute ref="xlink:from" use="required">
 						<xsd:annotation>
 							<xsd:documentation>
 								xlink:from - the value of the label for the element in the structMap you are linking from.
@@ -1184,6 +1197,12 @@ TCF: a Time code Character Format value
 				<xsd:complexType>
 					<xsd:complexContent>
 						<xsd:restriction base="xsd:anyType">
+							<xsd:attribute name="ID" type="xsd:ID" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>ID: an optional XML ID value
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
 							<xsd:attribute name="streamType" type="xsd:string" use="optional"></xsd:attribute>
 							<xsd:attribute name="OWNERID" type="xsd:string" use="optional">
 								<xsd:annotation>
@@ -1214,6 +1233,12 @@ TCF: a Time code Character Format value
 				<xsd:complexType>
 					<xsd:complexContent>
 						<xsd:restriction base="xsd:anyType">
+							<xsd:attribute name="ID" type="xsd:ID" use="optional">
+								<xsd:annotation>
+									<xsd:documentation>ID: an optional XML ID value
+									</xsd:documentation>
+								</xsd:annotation>
+							</xsd:attribute>
 							<xsd:attribute name="TRANSFORMTYPE" use="required">
 								<xsd:annotation>
 									<xsd:documentation>TRANSFORMTYPE: a type of transformation needed to render content of a file accessible (including unpacking a file into subsidiary files/streams). </xsd:documentation>
