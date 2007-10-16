@@ -4,8 +4,8 @@
 <!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
 with the assistance of Michael Alexander (British Library), Rick Beaubien (University of California), Morgan Cundiff (Library of Congress), Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen),  Richard Gartner (Bodleian Library at Oxford), Nancy Hoebelheirich (Stanford University), Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts Institute of Technology), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University).
 -->
-<!-- October 2006 -->
-<!-- Version 1.6 -->
+<!-- October 2007 -->
+<!-- Version 1.7 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -132,8 +132,16 @@ mptr and area elements for mapping MPEG21 DII Identifier values
  2. add ADMID to metsHdr
  3. make smLink/@xlink:to and smLink/@xlink:from required
  -->
+<!-- October 16, 2007: Version 1.7 -->
+<!-- 10/16/2007 v 1.7 changes:
+	
+1. create parType complex type to allow a seq to contain a par
+2. create FILECORE attribute group with MIMETYPE, SIZE, CHECKSUM, CHECKSUMTYPE;
+     change fileType, mdWrapType and mdRefType use the attribute group, so mdType and mdRef end
+     up with new SIZE, CHECKSUM, and CHECKSUMTYPE attributes (file does not change)
+-->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/mets/xlink.xsd"/>
+	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
 	
 	<xsd:element name="mets">
 		<xsd:annotation>
@@ -516,6 +524,7 @@ OTHER: some other form of agent (e.g., a software agent)
 		</xsd:attribute>
 	</xsd:complexType>
 	<xsd:complexType name="divType">
+		
 		<xsd:annotation>
 			<xsd:documentation>Div Complex Type
 					The METS standard represents a document structurally as a series of nested div elements, that is, as a hierarchy (e.g., a book, which is composed of chapters, which are composed of subchapters, which are composed of text).  Every div node in the structural map hierarchy may be connected (via subsidiary mptr or fptr 	elements) to content files which represent that div's portion of the whole document.
@@ -557,24 +566,12 @@ NOTE: mptr is an empty element.  The location of the resource	pointed to MUST be
 				</xsd:annotation>
 				<xsd:complexType>
 					<xsd:choice>
-						<xsd:element name="par" minOccurs="0">
+						<xsd:element name="par" type="parType" minOccurs="0">
 							<xsd:annotation>
 								<xsd:documentation>par: Parallel  files.  
 									The par element should used to link a div to a set of content files when those files should be played/displayed in unison to deliver the content to the user (e.g., displaying a text transcript simultaneously with playing an audio file).  A par element has two possible subsidiary elements, which should be used in different cases.  In cases where each bytestream to be played in parallel can fit in a single file, you should use subsidiary &lt;area&gt; elements within the par element to point to those files.  However, in some cases, bytestreams which should be played in parallel are too large to fit in a single file (high quality multi-track audio, or video).  In those cases, you should use subsidiary	&lt;seq&gt; elements, where each &lt;seq&gt; contains the files comprising	a particular bytestream in the order they should be played back.  So, for example, in the case where you had an audio recording which had to be split into three different, sequential files, and a text transcription	of the recording in a single file, you would use a par element containing two seq elements.  The first seq element would contain three area elements, one for each audio file; the second seq element would contain a single area element, for the text transcription file.
 								</xsd:documentation>
 							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:choice>
-									<xsd:element name="area" type="areaType" maxOccurs="unbounded"/>
-									<xsd:element name="seq" type="seqType" maxOccurs="unbounded"/>
-								</xsd:choice>
-								<xsd:attribute name="ID" type="xsd:ID" use="optional">
-									<xsd:annotation>
-										<xsd:documentation>ID: an optional XML ID value.
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-							</xsd:complexType>
 						</xsd:element>
 						<xsd:element name="seq" type="seqType" minOccurs="0">
 							<xsd:annotation>
@@ -667,15 +664,28 @@ NOTE: mptr is an empty element.  The location of the resource	pointed to MUST be
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
+	<xsd:complexType name="parType">
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="area" type="areaType" minOccurs="0"/>
+			<xsd:element name="seq" type="seqType" minOccurs="0"/>
+		</xsd:choice>
+		<xsd:attribute name="ID" type="xsd:ID" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>ID: an optional XML ID value.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:complexType>
 	<xsd:complexType name="seqType">
 		<xsd:annotation>
 			<xsd:documentation>seq: Sequence of files.  
 					The seq element should be used to link a div to a set of content files when those files should be played/displayed sequentially to deliver content to a user.  Individual &lt;area&gt; subelements within the seq element provide the links to the files or portions thereof.
 				</xsd:documentation>
 		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="area" type="areaType" maxOccurs="unbounded"/>
-		</xsd:sequence>
+		<xsd:choice maxOccurs="unbounded">
+			<xsd:element name="area" type="areaType" minOccurs="0"/>
+			<xsd:element name="par" type="parType" minOccurs="0"/>
+		</xsd:choice>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
 				<xsd:documentation>ID: an optional XML ID value.
@@ -1018,12 +1028,7 @@ TCF: a Time code Character Format value
 					<xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attributeGroup ref="xlink:simpleLink"/>
 					<xsd:attributeGroup ref="METADATA"/>
-					<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the metadata being pointed at
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
+					<xsd:attributeGroup ref="FILECORE"/>
 					<xsd:attribute name="LABEL" type="xsd:string" use="optional">
 						<xsd:annotation>
 							<xsd:documentation>LABEL: an optional string attribute providing a label to display to the viewer of the METS document identifying the metadata 
@@ -1070,13 +1075,8 @@ TCF: a Time code Character Format value
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the metadata contained in the element
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
 					<xsd:attributeGroup ref="METADATA"/>
+					<xsd:attributeGroup ref="FILECORE"/>
 					<xsd:attribute name="LABEL" type="xsd:string" use="optional">
 						<xsd:annotation>
 							<xsd:documentation>LABEL: an optional string attribute providing a label to display to the viewer of the METS document identifying the metadata.
@@ -1278,21 +1278,9 @@ TCF: a Time code Character Format value
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the file.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
 		<xsd:attribute name="SEQ" type="xsd:int" use="optional">
 			<xsd:annotation>
 				<xsd:documentation>SEQ: an optional integer indicating the sequence of this  file relative to the others in its file group.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="SIZE" type="xsd:long" use="optional">
-			<xsd:annotation>
-				<xsd:documentation>SIZE: an optional long integer specifying the size of the file in bytes.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -1302,38 +1290,7 @@ TCF: a Time code Character Format value
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation>CHECKSUM: an optional string attribute providing a checksum value for the included file.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="CHECKSUMTYPE" use="optional">
-			<xsd:annotation>
-				<xsd:documentation>CHECKSUMTYPE: an optional attribute specifying the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
-					HAVAL
-					MD5
-					SHA-1
-					SHA-256
-					SHA-384
-					SHA-512
-					TIGER
-					WHIRLPOOL
-				</xsd:documentation>
-			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="HAVAL"/>
-					<xsd:enumeration value="MD5"/>
-					<xsd:enumeration value="SHA-1"/>
-					<xsd:enumeration value="SHA-256"/>
-					<xsd:enumeration value="SHA-384"/>
-					<xsd:enumeration value="SHA-512"/>
-					<xsd:enumeration value="TIGER"/>
-					<xsd:enumeration value="WHIRLPOOL"/>
-				</xsd:restriction>
-			</xsd:simpleType>
-		</xsd:attribute>
+		<xsd:attributeGroup ref="FILECORE"></xsd:attributeGroup>
 		<xsd:attribute name="OWNERID" type="xsd:string" use="optional">
 			<xsd:annotation>
 				<xsd:documentation>OWNERID: an optional string attribute which may be      used to provide a unique identifier (including a URI) assigned to the file which may differ from the URI used to retrieve the file.
@@ -1443,6 +1400,52 @@ OTHER: a form of locator not specified above.
 						string attribute used to indicate an alternative LOCTYPE if the LOCTYPE attribute itself has a value of &quot;OTHER&quot;;
 				</xsd:documentation>
 			</xsd:annotation>
+		</xsd:attribute>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="FILECORE">
+		<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>MIMETYPE: an optional string attribute providing the MIME type for the file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="SIZE" type="xsd:long" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>SIZE: an optional long integer specifying the size of the file in bytes.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="CHECKSUM" type="xsd:string" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>CHECKSUM: an optional string attribute providing a checksum value for the included file.
+				</xsd:documentation>
+			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="CHECKSUMTYPE" use="optional">
+			<xsd:annotation>
+				<xsd:documentation>CHECKSUMTYPE: an optional attribute specifying the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
+					HAVAL
+					MD5
+					SHA-1
+					SHA-256
+					SHA-384
+					SHA-512
+					TIGER
+					WHIRLPOOL
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="HAVAL"/>
+					<xsd:enumeration value="MD5"/>
+					<xsd:enumeration value="SHA-1"/>
+					<xsd:enumeration value="SHA-256"/>
+					<xsd:enumeration value="SHA-384"/>
+					<xsd:enumeration value="SHA-512"/>
+					<xsd:enumeration value="TIGER"/>
+					<xsd:enumeration value="WHIRLPOOL"/>
+				</xsd:restriction>
+			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
 </xsd:schema>
