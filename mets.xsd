@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+amdSec<?xml version="1.0" encoding="UTF-8"?>
 <!-- METS: Metadata Encoding and Transmission Standard -->
 <!-- 
 This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/). 
@@ -185,8 +185,21 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 	1.	Added 'LIDO' as potential metadata scheme to MDTYPE enumeration
 		LIDO = Lightweight Information Describing Objects 
 		http://network.icom.museum/cidoc/working-groups/data-harvesting-and-interchange/lido-technical/specification/
-	2.	Added xsd:anyAttribute to select METS elements:
-		This will allow arbitrary new attributes to be added to these elements to support.
+	2.	Added xsd:anyAttribute with namespace ##other and processContents lax to these primary METS container elements:
+			mets
+				metsHdr
+				dmdSec
+				amdSec
+					techMD
+					rightsMD
+					sourceMD
+					digiprovMD
+				fileSec
+					fileGrp
+				structMap
+				structLink
+				behaviorSec
+		This will allow arbitrary new attributes to be added to these elements to support local needs.
 	3.	Added LANG attribute to elements with attributes or content intended as human-readable text
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
@@ -385,6 +398,7 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="dmdSec" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
@@ -435,6 +449,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="structMap" type="structMapType" maxOccurs="unbounded">
@@ -493,6 +508,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 			</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="amdSecType">
 		<xsd:annotation>
@@ -536,6 +552,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="fileGrpType">
 		<xsd:annotation>
@@ -577,6 +594,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="structMapType">
 		<xsd:annotation>
@@ -611,6 +629,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="divType">
 		
@@ -1063,6 +1082,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="behaviorSecType">
 		<xsd:annotation>
@@ -1098,6 +1118,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
 	<xsd:complexType name="behaviorType">
 		<xsd:annotation>
