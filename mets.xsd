@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- METS: Metadata Encoding and Transmission Standard -->
-<!-- Copyright © 2001, 2002, 2003, 2004, 2005, 2006, 2008, 2009, 2010, 2012 Digital Library Federation -->
-<!-- Prepared for the Digital Library Federation by Jerome McDonough, New York University,
-with the assistance of Michael Alexander (British Library), Joachim Bauer (Content Conversion Specialists, Germany), Rick Beaubien (University of California), Terry Catapano (Columbia University), Morgan Cundiff (Library of Congress), Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen/British Library),  Richard Gartner (Bodleian Library at Oxford/King's College, London), Thomas Habing (University of Illinois at Urbana-Champaign), Nancy Hoebelheinrich (Stanford University/Knowledge Motifs LLC), Arwen Hutt (U.C. San Diego), Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), Clay Redding (Library of Congress), Jenn Riley (Indiana University), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German National Library), Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
+<!-- 
+This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/). 
+The Digital Library Federation, as creator of this document, has waived all rights to it worldwide under copyright law, including 
+all related and neighboring rights, to the extent allowed by law. For the full text see http://creativecommons.org/publicdomain/zero/1.0/legalcode.
+-->
+<!-- 
+Prepared for the Digital Library Federation by Jerome McDonough, New York University,
+with the assistance of Michael Alexander (British Library), Joachim Bauer (Content Conversion Specialists, Germany), 
+Rick Beaubien (University of California), Terry Catapano (Columbia University), Morgan Cundiff (Library of Congress), 
+Susan Dahl (University of Alberta), Markus Enders (State and University Library, Göttingen/British Library),  
+Richard Gartner (Bodleian Library at Oxford/King's College, London), Thomas Habing (University of Illinois at Urbana-Champaign), 
+Nancy Hoebelheinrich (Stanford University/Knowledge Motifs LLC), Arwen Hutt (U.C. San Diego), 
+Mark Kornbluh (Michigan State University), Cecilia Preston (Preston & Lynch), Merrilee Proffitt (Research Libraries Group), 
+Clay Redding (Library of Congress), Jenn Riley (Indiana University), Richard Rinehart (Berkeley Art Museum/Pacific Film Archive), 
+Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German National Library), 
+Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), 
+Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 -->
 <!-- March, 2012 -->
 <!-- Version 1.9.1 -->
@@ -161,10 +175,19 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 	4. Added BEGIN, END and BETYPE attributes to the <file> and <stream> elements for specifying the location of a nested file or a stream within it's parent file.
 -->
 <!-- March 2012: Version 1.9.1 -->
-<!-- Version 1.9.1 Changes::
+<!-- Version 1.9.1 Changes:
 	1.  Added 'EAC-CPF' as potential metadata scheme to MDTYPE enumeration
 		EAC-CPF = Encoded Archival Context - Corporate Bodies, Persons, and Families 
 		http://eac.staatsbibliothek-berlin.de/eac-cpf-schema.html
+-->
+<!-- July 2013: Version 1.10 -->
+<!-- Version 1.10 Changes:
+	1.	Added 'LIDO' as potential metadata scheme to MDTYPE enumeration
+		LIDO = Lightweight Information Describing Objects 
+		http://network.icom.museum/cidoc/working-groups/data-harvesting-and-interchange/lido-technical/specification/
+	2.	Added xsd:anyAttribute to select METS elements:
+		This will allow arbitrary new attributes to be added to these elements to support.
+	3.	Added LANG attribute to elements with attributes or content intended as human-readable text
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
@@ -1273,6 +1296,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax" /> 
 	</xsd:complexType>
 	<xsd:complexType name="fileType">
 		<xsd:annotation>
@@ -1560,6 +1584,7 @@ TEXTMD: textMD Technical metadata for text
 METSRIGHTS: Rights Declaration Schema
 ISO 19115:2003 NAP: North American Profile of ISO 19115:2003 descriptive metadata
 EAC-CPF: Encoded Archival Context - Corporate Bodies, Persons, and Families
+LIDO: Lightweight Information Describing Objects
 OTHER: metadata in a format not specified above
 				</xsd:documentation>
 			</xsd:annotation>
@@ -1584,7 +1609,8 @@ OTHER: metadata in a format not specified above
 					<xsd:enumeration value="TEXTMD"/>
 					<xsd:enumeration value="METSRIGHTS"/>
 					<xsd:enumeration value="ISO 19115:2003 NAP"/>
-					<xsd:enumeration value="EAC-CPF"></xsd:enumeration>
+					<xsd:enumeration value="EAC-CPF"/>
+					<xsd:enumeration value="LIDO"/>
 					<xsd:enumeration value="OTHER"/>
 				</xsd:restriction>
 			</xsd:simpleType>
