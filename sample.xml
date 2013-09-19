@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mets xmlns="http://www.loc.gov/METS/"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.loc.gov/METS/ file:/C:/Users/thabing/Documents/GitHub/METS-schema/mets.xsd"
+    xmlns:my="http://example.org/test"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    my:test="test" >
+    <metsHdr my:test="test">
+        <agent ROLE="CREATOR" >
+            <name></name>
+            <note></note>
+        </agent>
+        <altRecordID></altRecordID>
+        <metsDocumentID></metsDocumentID>
+    </metsHdr>
+    <dmdSec ID="ID1" my:test="test">
+        <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC" MIMETYPE="" />
+        <mdWrap MDTYPE="DC"  MIMETYPE="">
+            <xmlData><my:test/></xmlData>
+        </mdWrap>
+    </dmdSec>
+    <amdSec my:test="test">
+        <techMD ID="ID2" my:test="test">
+            <mdRef LOCTYPE="URL" xlink:type="simple" MDTYPE="DC"/>
+            <mdWrap  MDTYPE="OTHER" MIMETYPE="application/rdf+xml" OTHERMDTYPE="RDF+DC+" >
+                <xmlData  >
+                    <my:root/>
+                </xmlData>
+            </mdWrap>
+        </techMD>
+        <rightsMD ID="ID3" my:test="test">
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC" />
+            <mdWrap MDTYPE="DC" >
+                <xmlData ><my:test/></xmlData>
+            </mdWrap>
+        </rightsMD>
+        <sourceMD ID="ID4" my:test="test">
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC"/>
+            <mdWrap MDTYPE="DC">
+                <xmlData><my:test/></xmlData>
+            </mdWrap>
+        </sourceMD>
+        <digiprovMD ID="ID5" my:test="test">
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC"/>
+            <mdWrap MDTYPE="DC">
+                <xmlData><my:test/></xmlData>
+            </mdWrap>
+        </digiprovMD>
+    </amdSec>
+    <fileSec my:test="test">
+        <fileGrp my:test="test">
+            <fileGrp my:test="test">
+                <file ID="FID1" ></file>
+            </fileGrp>
+        </fileGrp>
+    </fileSec>
+    <structMap my:test="test">
+        <div >
+            <mptr LOCTYPE="URL"  xlink:type="simple"/>
+            <fptr>
+                <par>
+                    <area FILEID="FID1"/>
+                </par>
+            </fptr>
+            <div></div>
+        </div>
+    </structMap>
+    <structLink my:test="test">
+        <smLink  xlink:to="" xlink:from=""/>
+    </structLink>
+    <behaviorSec my:test="test">
+        <behaviorSec my:test="test"></behaviorSec>
+        <behavior>
+            <interfaceDef  LOCTYPE="URL" xlink:type="simple"/>
+            <mechanism LOCTYPE="URL"  xlink:type="simple"/>
+        </behavior>
+    </behaviorSec>
+</mets>
