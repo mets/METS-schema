@@ -1,4 +1,4 @@
-amdSec<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- METS: Metadata Encoding and Transmission Standard -->
 <!-- 
 This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/). 
@@ -18,8 +18,8 @@ Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German 
 Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), 
 Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 -->
-<!-- March, 2012 -->
-<!-- Version 1.9.1 -->
+<!-- September, 2013 -->
+<!-- Version 1.10 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -200,7 +200,6 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 				structLink
 				behaviorSec
 		This will allow arbitrary new attributes to be added to these elements to support local needs.
-	3.	Added LANG attribute to elements with attributes or content intended as human-readable text
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
