@@ -14,35 +14,35 @@
         <metsDocumentID></metsDocumentID>
     </metsHdr>
     <dmdSec ID="ID1" my:test="test">
-        <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC" MIMETYPE="" />
-        <mdWrap MDTYPE="DC"  MIMETYPE="">
+        <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="LIDO"  />
+        <mdWrap MDTYPE="LIDO"  >
             <xmlData><my:test/></xmlData>
         </mdWrap>
     </dmdSec>
     <amdSec my:test="test">
         <techMD ID="ID2" my:test="test">
-            <mdRef LOCTYPE="URL" xlink:type="simple" MDTYPE="DC"/>
-            <mdWrap  MDTYPE="OTHER" MIMETYPE="application/rdf+xml" OTHERMDTYPE="RDF+DC+" >
+            <mdRef LOCTYPE="URL" xlink:type="simple" MDTYPE="LIDO"/>
+            <mdWrap  MDTYPE="LIDO" MIMETYPE="application/rdf+xml"  >
                 <xmlData  >
                     <my:root/>
                 </xmlData>
             </mdWrap>
         </techMD>
         <rightsMD ID="ID3" my:test="test">
-            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC" />
-            <mdWrap MDTYPE="DC" >
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="LIDO" />
+            <mdWrap MDTYPE="LIDO" >
                 <xmlData ><my:test/></xmlData>
             </mdWrap>
         </rightsMD>
         <sourceMD ID="ID4" my:test="test">
-            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC"/>
-            <mdWrap MDTYPE="DC">
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="LIDO"/>
+            <mdWrap MDTYPE="LIDO">
                 <xmlData><my:test/></xmlData>
             </mdWrap>
         </sourceMD>
         <digiprovMD ID="ID5" my:test="test">
-            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="DC"/>
-            <mdWrap MDTYPE="DC">
+            <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="LIDO"/>
+            <mdWrap MDTYPE="LIDO">
                 <xmlData><my:test/></xmlData>
             </mdWrap>
         </digiprovMD>
