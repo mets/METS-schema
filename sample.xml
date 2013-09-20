@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mets xmlns="http://www.loc.gov/METS/"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.loc.gov/METS/ file:/C:/Users/thabing/Documents/GitHub/METS-schema/mets.xsd"
+    xsi:schemaLocation="http://www.loc.gov/METS/ mets.xsd"
     xmlns:my="http://example.org/test"
     xmlns:xlink="http://www.w3.org/1999/xlink"
     my:test="test" 
