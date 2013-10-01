@@ -4,9 +4,8 @@
     xsi:schemaLocation="http://www.loc.gov/METS/ mets.xsd"
     xmlns:my="http://example.org/test"
     xmlns:xlink="http://www.w3.org/1999/xlink"
-    my:test="test" 
-     PROFILE="xxx">
-    <metsHdr my:test="test" CREATEDATE="2003?" LASTMODDATE="2012-06?">
+    my:test="test" >
+    <metsHdr my:test="test">
         <agent ROLE="CREATOR" >
             <name></name>
             <note></note>
@@ -14,47 +13,6 @@
         <altRecordID></altRecordID>
         <metsDocumentID></metsDocumentID>
     </metsHdr>
-    <!-- TEST EDTF DATES -->
-    <!--year-->
-    <dmdSec ID="D1" CREATED="2004"></dmdSec>
-    <!--year, questionable-->
-    <dmdSec ID="D2" CREATED="2004?"></dmdSec>
-    <!--year, approximate-->
-    <dmdSec ID="D3" CREATED="2004~"></dmdSec>
-    <!--Some year between 2000 and 2099-->
-    <dmdSec ID="D4" CREATED="20??"></dmdSec>
-    <!--year and month-->
-    <dmdSec ID="D5" CREATED="2004-06"></dmdSec>
-    <!--year and month, questionable-->
-    <dmdSec ID="D6" CREATED="2004-06?"></dmdSec>
-    <!--year and month, approximate-->
-    <dmdSec ID="D7" CREATED="2004-06~"></dmdSec>
-    <!--Some month in 2004-->
-    <dmdSec ID="D8" CREATED="2004-??"></dmdSec>
-    <!--year,  month, day-->
-    <dmdSec ID="D9" CREATED="20040611"></dmdSec>
-    <!--year,  month, day; questionable-->
-    <dmdSec ID="D10" CREATED="20040611?"></dmdSec>
-    <!--year,  month, day; approximate-->
-    <dmdSec ID="D11" CREATED="20040611~"></dmdSec>
-    <!--Some  day in the month 06/2004-->
-    <dmdSec ID="D12" CREATED="200406??"></dmdSec>
-    <!--date and time-->
-    <dmdSec ID="D13" CREATED="20040611T121212"></dmdSec>
-    <!--range, years-->
-    <dmdSec ID="D14" CREATED="2004/2006"></dmdSec>
-    <!--range, year-month/year-month-->
-    <dmdSec ID="D15" CREATED="2004-06/2006-08"></dmdSec>
-    <!--range, unknown start-->
-    <dmdSec ID="D16" CREATED="UNKNOWN/2006"></dmdSec>
-    <!--range, unknown end-->
-    <dmdSec ID="D17" CREATED="2004/UNKNOWN"></dmdSec>
-    <!--range, open end-->
-    <dmdSec ID="D18" CREATED="2004/OPEN"></dmdSec>
-    <!--xs:date-->
-    <dmdSec ID="D19" CREATED="2004-06-04"></dmdSec>
-    <!--xs:dateTime-->
-    <dmdSec ID="D20" CREATED="2004-06-04T12:12:12"></dmdSec>
     <dmdSec ID="ID1" my:test="test">
         <mdRef LOCTYPE="URL"  xlink:type="simple" MDTYPE="LIDO"  />
         <mdWrap MDTYPE="LIDO"  >

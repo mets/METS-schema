@@ -200,7 +200,6 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 				structLink
 				behaviorSec
 		This will allow arbitrary new attributes to be added to these elements to support local needs.
-	3. Modify the CREATEDATE, LASTMODDATE, VERSDATE, and CREATED attributes to support EDTF dates, see http://www.loc.gov/standards/premis/draft-schemas-2-0/edtf/
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
@@ -380,13 +379,13 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="CREATEDATE" type="edtfSimpleType" use="optional">
+					<xsd:attribute name="CREATEDATE" type="xsd:dateTime" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">CREATEDATE (dateTime/O): Records the date/time the METS document was created.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="LASTMODDATE" type="edtfSimpleType" use="optional">
+					<xsd:attribute name="LASTMODDATE" type="xsd:dateTime" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">LASTMODDATE (dateTime/O): Is used to indicate the date/time the METS document was last modified.
 							</xsd:documentation>
@@ -576,7 +575,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="VERSDATE" type="edtfSimpleType" use="optional">
+		<xsd:attribute name="VERSDATE" type="xsd:dateTime" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">VERSDATE (dateTime/O): An optional dateTime attribute specifying the date this version/fileGrp of the digital object was created.
 				</xsd:documentation>
@@ -1106,7 +1105,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="edtfSimpleType" use="optional">
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the &lt;behaviorSec&gt;
 				</xsd:documentation>
@@ -1159,7 +1158,7 @@ TCF.
 				<xsd:documentation xml:lang="en">BTYPE (string/O): The behavior type provides a means of categorizing the related behavior.</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="edtfSimpleType" use="optional">
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CREATED (dateTime/O): The dateTime of creation for the behavior. 
 				</xsd:documentation>
@@ -1305,7 +1304,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="edtfSimpleType" use="optional">
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the metadata.
 				</xsd:documentation>
@@ -1693,7 +1692,7 @@ OTHER: metadata in a format not specified above
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="edtfSimpleType" use="optional">
+		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the associated file or wrapped content.
 				</xsd:documentation>
@@ -1738,82 +1737,4 @@ OTHER: metadata in a format not specified above
 			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
-	
-	<!-- 	
-	****************************************************************************************************
-	
-	date/time Definition:  edtfSimpleType 
-	Extended Date/Time Format
-	
-	COPIED FROM THE PREMIS Version 2.1 XML Schema
-	
-	****************************************************************************************************
-	
-	edtfSimpleType  is the type used throughout the schema for dates. 
-	
-	It is the union of three simple types: xsDate, xsd:dateTime -  and edtfRegularExpressions, as folloiws:
-	-->
-	<xsd:simpleType name="edtfSimpleType">
-		<xsd:union memberTypes="xsd:date xsd:dateTime edtfRegularExpressions"/>
-	</xsd:simpleType>
-	<!-- 
-	"xsd:union" (above) means that any string conforming to any one of the types in the union will validate.  xsd:date and xsd:dateTime are built-in W3C schema types.  edtfRegularExpressions is a set of  regular expressions which are described below. So any string that conforms to one of the two built-in types or any of the  regular expressions will validate. 
-
-
-	******** edftRegularExpressions
-	-->
-	<xsd:simpleType name="edtfRegularExpressions">
-		<xsd:restriction base="xsd:string">
-			<xsd:pattern value="\d{2}(\d{2}|\?\?|\d(\d|\?))(-(\d{2}|\?\?))?~?\??"/>
-			<xsd:pattern value="\d{6}(\d{2}|\?\?)~?\??"/>
-			<xsd:pattern value="\d{8}T\d{6}"/>
-			<xsd:pattern value="((\d{4}(-\d{2})?)|UNKNOWN)/((\d{4}(-\d{2})?)|UNKNOWN|OPEN)"/>
-			
-			<!-- *****************************  
-			THE FOLLOWING PATTERN ADDED DECEMBER 20, 2010, JUST PRIOR TO RELEASE OF THIS VERSION. SEE EXPLANATION BELOW .
-			********************************** -->
-			<xsd:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}((Z|(\+|-)\d{2}:\d{2}))?/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}((Z|(\+|-)\d{2}:\d{2}))?"></xsd:pattern>
-			<!-- 
-				
-			The first  pattern: 	
-			<xsd:pattern value="\d{2}(\d{2}|\?\?|\d(\d|\?))(-(\d{2}|\?\?))?~?\??"/>,  
-
-			is for year (yyyy) or year-month (yyyy-mm).   The last or last two digits of year may be '?'  meaning "one year in that range but not sure which year", for example 19?? means some year from 1990 to 1999.  Similarly month may be '??' so that 2004-?? "means some month in 2004".  And the entire string may end with '?' or '~' for "uncertain" or "approximate".
-			Hyphen must separate year and month.
-
-			The second pattern:
-			<xsd:pattern value="\d{6}(\d{2}|\?\?)~?\??"/>,
-			
-			is for  yearMonthDay - yyyymmdd,  where 'dd' may be '??'  so '200412??' means "some day during the month of 12/2004". 
-			The whole  string may be followed by '?' or '~'  to mean "questionable" or "approximate".     hyphens are  not allowed for this pattern. 
-
-			The Third patten:
-			<xsd:pattern value="\d{8}T\d{6}"/>,
-			
-			is for  date and time with  T separator:'yyyymmddThhmmss'.  Hyphens in date and colons in time not allowed for this pattern.   
-
-			The following pattern:
-			<xsd:pattern value="((\d{4}(-\d{2})?)|UNKNOWN)/((\d{4}(-\d{2})?)|UNKNOWN|OPEN)"/>
-			
-			is for  a date range.  in years:  'yyyy/yyyy'; or year/month: yyyy-mm/yyyy-mm.    Beginning or end of range value may be 'UNKNOWN'. End of range value may be 'OPEN'.
-			hyphens mandatory when month is present. 
-
-			*****************************************************************************************************************************************************
-			The following comment added 12/20/2011. The above edtf comments are (essentially) unchanged from the previous version.
-			
-			This version has not attempted to keep pace with the development of the edtf spec, which (still a draft) has changed considerably
-			since the release of version 2.0 more than 2 and a half years ago.  However, there was one comment during the comment period,
-			requesting that date/time intervals be supported, with time zones. For example:
-			
-			2010-04-19T22:41:44Z/2010-04-19T22:48:50Z
-			Or
-			2010-04-19T22:41:44+02:00/2010-04-19T22:48:50+02:00.
-			
-			The final pattern added ...
-			<xsd:pattern value="\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}((Z|(\+|-)\d{2}:\d{2}))?/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}((Z|(\+|-)\d{2}:\d{2}))?"></xsd:pattern>
-			....  was added to support these.
-			-->
-		</xsd:restriction>
-	</xsd:simpleType>
-	
 </xsd:schema>
