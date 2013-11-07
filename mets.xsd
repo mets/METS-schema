@@ -185,7 +185,7 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 	1.	Added 'LIDO' as potential metadata scheme to MDTYPE enumeration
 		LIDO = Lightweight Information Describing Objects 
 		http://network.icom.museum/cidoc/working-groups/data-harvesting-and-interchange/lido-technical/specification/
-	2.	Added xsd:anyAttribute with namespace ##other and processContents lax to these primary METS container elements:
+	2.	Added xsd:anyAttribute with namespace ##other and processContents lax to these METS elements:
 			mets
 				metsHdr
 				dmdSec
@@ -196,7 +196,9 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 					digiprovMD
 				fileSec
 					fileGrp
+						file
 				structMap
+						fptr
 				structLink
 				behaviorSec
 		This will allow arbitrary new attributes to be added to these elements to support local needs.
@@ -712,6 +714,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				            </xsd:documentation>
 			            </xsd:annotation>
                	    </xsd:attribute>
+					<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="div" type="divType" minOccurs="0" maxOccurs="unbounded"/>
@@ -1347,6 +1350,7 @@ TCF.
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="FContent" minOccurs="0">
