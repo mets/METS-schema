@@ -50,14 +50,16 @@
     <fileSec my:test="test">
         <fileGrp my:test="test">
             <fileGrp my:test="test">
-                <file ID="FID1" ></file>
+                <file my:test="test" ID="FID1" >
+                    <FLocat LOCTYPE="DOI" xlink:href="http://test.org/"/>
+                </file>
             </fileGrp>
         </fileGrp>
     </fileSec>
     <structMap my:test="test">
         <div >
             <mptr LOCTYPE="URL"  xlink:type="simple"/>
-            <fptr>
+            <fptr my:test="test">
                 <par>
                     <area FILEID="FID1"/>
                 </par>

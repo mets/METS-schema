@@ -18,8 +18,8 @@ Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German 
 Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), 
 Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 -->
-<!-- September, 2013 -->
-<!-- Version 1.10 -->
+<!-- January, 2015 -->
+<!-- Version 1.10.1 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -202,6 +202,11 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 				structLink
 				behaviorSec
 		This will allow arbitrary new attributes to be added to these elements to support local needs.
+-->
+<!-- January 2015: Version 1.10.1 -->
+<!-- Version 1.10.1 Changes:
+	1. Fixed bug:  The anyAttribute declaration was inadevertently added to the FLocat element when it should have been on the file element.  This
+	   has been corrected in this version.
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
@@ -1350,7 +1355,6 @@ TCF.
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="xlink:simpleLink"/>
-					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="FContent" minOccurs="0">
@@ -1578,6 +1582,7 @@ TCF.
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>		
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>	
 	
 	<xsd:simpleType name="URIs">
