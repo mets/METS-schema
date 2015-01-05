@@ -205,7 +205,7 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 -->
 <!-- January 2015: Version 1.10.1 -->
 <!-- Version 1.10.1 Changes:
-	1. Fixed bug:  The anyAttribute declaration was inadevertently added to the FLocat element when it should have been on the file element.  This
+	1. Fixed bug:  The anyAttribute declaration was inadvertently added to the FLocat element when it should have been on the file element.  This
 	   has been corrected in this version.
 -->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
