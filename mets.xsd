@@ -18,8 +18,8 @@ Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German 
 Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), 
 Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 -->
-<!-- January, 2015 -->
-<!-- Version 1.10.1 -->
+<!-- May, 2015 -->
+<!-- Version 1.11 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -208,6 +208,15 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 	1. Fixed bug:  The anyAttribute declaration was inadvertently added to the FLocat element when it should have been on the file element.  This
 	   has been corrected in this version.
 -->
+<!-- May 2015: Version 1.11 -->
+<!-- Version 1.11 Changes:
+	2.	Added xsd:anyAttribute with namespace ##other and processContents lax to these additional METS elements:
+			par
+			seq
+			area
+		This will allow arbitrary new attributes to be added to these elements to support local needs.	
+-->
+
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
 	
@@ -794,6 +803,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="seqType">
 		<xsd:annotation>
@@ -811,6 +821,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="areaType">
 		<xsd:annotation>
@@ -951,6 +962,7 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 	    </xsd:attribute>
+		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
 	<xsd:complexType name="structLinkType">
 		<xsd:annotation>

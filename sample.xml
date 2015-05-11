@@ -60,8 +60,11 @@
         <div >
             <mptr LOCTYPE="URL"  xlink:type="simple"/>
             <fptr my:test="test">
-                <par>
-                    <area FILEID="FID1"/>
+                <par my:test="test">
+                    <seq my:test="test">
+                        <area my:test="tst" FILEID="FID1"/>
+                    </seq>
+                    <area my:test="test" FILEID="FID1"/>
                 </par>
             </fptr>
             <div></div>
