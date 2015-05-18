@@ -210,11 +210,11 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 -->
 <!-- May 2015: Version 1.11 -->
 <!-- Version 1.11 Changes:
-	2.	Added xsd:anyAttribute with namespace ##other and processContents lax to these additional METS elements:
+	2.	Added new attributes, ORDER, ORDERLABEL, and LABEL, to these METS elements:
 			par
 			seq
 			area
-		This will allow arbitrary new attributes to be added to these elements to support local needs.	
+		Also added xsd:anyAttribute with namespace ##other and processContents lax to these elements.  This will allow arbitrary new attributes to be added to these elements to support local needs.	
 -->
 
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
@@ -1590,13 +1590,13 @@ TCF.
 	<xsd:attributeGroup name="ORDERLABELS">
 		<xsd:attribute name="ORDER" type="xsd:integer" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ORDER (integer/O): A representation of the div's order among its siblings (e.g., its absolute, numeric sequence). For an example, and clarification of the distinction between ORDER and ORDERLABEL, see the description of the ORDERLABEL attribute.
+				<xsd:documentation xml:lang="en">ORDER (integer/O): A representation of the element's order among its siblings (e.g., its absolute, numeric sequence). For an example, and clarification of the distinction between ORDER and ORDERLABEL, see the description of the ORDERLABEL attribute.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="ORDERLABEL" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ORDERLABEL (string/O): A representation of the div's order among its siblings (e.g., “xii”), or of any non-integer native numbering system. It is presumed that this value will still be machine actionable (e.g., it would support ‘go to page ___’ function), and it should not be used as a replacement/substitute for the LABEL attribute. To understand the differences between ORDER, ORDERLABEL and LABEL, imagine a text with 10 roman numbered pages followed by 10 arabic numbered pages. Page iii would have an ORDER of “3”, an ORDERLABEL of “iii” and a LABEL of “Page iii”, while page 3 would have an ORDER of “13”, an ORDERLABEL of “3” and a LABEL of “Page 3”.
+				<xsd:documentation xml:lang="en">ORDERLABEL (string/O): A representation of the element's order among its siblings (e.g., “xii”), or of any non-integer native numbering system. It is presumed that this value will still be machine actionable (e.g., it would support ‘go to page ___’ function), and it should not be used as a replacement/substitute for the LABEL attribute. To understand the differences between ORDER, ORDERLABEL and LABEL, imagine a text with 10 roman numbered pages followed by 10 arabic numbered pages. Page iii would have an ORDER of “3”, an ORDERLABEL of “iii” and a LABEL of “Page iii”, while page 3 would have an ORDER of “13”, an ORDERLABEL of “3” and a LABEL of “Page 3”.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
