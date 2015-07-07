@@ -63,6 +63,11 @@
                 <par my:test="test" ORDER="1" ORDERLABEL="Page 1" LABEL="Title Page">
                     <seq my:test="test" ORDER="1" ORDERLABEL="Page 1" LABEL="Title Page">
                         <area my:test="tst" FILEID="FID1" ORDER="1" ORDERLABEL="Page 1" LABEL="Title Page"/>
+                        <area FILEID="FID1" ORDER="2" />
+                    </seq>
+                    <seq>
+                        <par ORDER="1"></par>
+                        <par ORDER="2"></par>
                     </seq>
                     <area my:test="test" FILEID="FID1" ORDER="1" ORDERLABEL="Page 1" LABEL="Title Page"/>
                 </par>
