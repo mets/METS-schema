@@ -18,8 +18,8 @@ Mackenzie Smith (Massachusetts Institute of Technology), Tobias Steinke (German 
 Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University), 
 Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 -->
-<!-- May, 2015 -->
-<!-- Version 1.11 -->
+<!-- May, 2018 -->
+<!-- Version 1.12 -->
 <!-- Change History -->
 <!-- April 23, 2001: Alpha Draft completed -->
 <!-- June 7, 2001: Beta completed -->
@@ -216,7 +216,12 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 			area
 	2.	Also added xsd:anyAttribute with namespace ##other and processContents lax to these elements.  This will allow arbitrary new attributes to be added to these elements to support local needs.	
 -->
-
+<!-- May 2018: Version 1.12 -->
+<!-- Version 1.11 Changes:
+	1.	Added xsd:anyAttribute with namespace ##other and processContents lax to these elements:
+			agent/note
+		This will allow arbitrary new attributes to be added to this element to support local needs.  The original use case was to identify the type of the note
+-->
 <xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
 	<xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
 	
@@ -262,12 +267,19 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 											</xsd:documentation>
 										</xsd:annotation>
 									</xsd:element>
-									<xsd:element name="note" type="xsd:string" minOccurs="0" maxOccurs="unbounded">
+									<xsd:element name="note" minOccurs="0" maxOccurs="unbounded" >
 										<xsd:annotation>
 											<xsd:documentation xml:lang="en"> 
 											The &lt;note&gt; element can be used to record any additional information regarding the agent's activities with respect to the METS document.
 											</xsd:documentation>
 										</xsd:annotation>
+										<xsd:complexType>
+											<xsd:simpleContent>
+												<xsd:extension base="xsd:string">
+													<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
+												</xsd:extension>
+											</xsd:simpleContent>
+										</xsd:complexType>
 									</xsd:element>
 								</xsd:sequence>
 								<xsd:attribute name="ID" type="xsd:ID" use="optional">

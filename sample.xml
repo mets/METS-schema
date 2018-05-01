@@ -8,7 +8,7 @@
     <metsHdr my:test="test">
         <agent ROLE="CREATOR" >
             <name></name>
-            <note></note>
+            <note my:noteType="test" my:usage="test"></note>
         </agent>
         <altRecordID></altRecordID>
         <metsDocumentID></metsDocumentID>
