@@ -217,7 +217,7 @@ mptr and area elements for mapping MPEG21 DII Identifier values
 	2.	Also added xsd:anyAttribute with namespace ##other and processContents lax to these elements.  This will allow arbitrary new attributes to be added to these elements to support local needs.	
 -->
 <!-- May 2018: Version 1.12 -->
-<!-- Version 1.11 Changes:
+<!-- Version 1.12 Changes:
 	1.	Added xsd:anyAttribute with namespace ##other and processContents lax to these elements:
 			agent/note
 		This will allow arbitrary new attributes to be added to this element to support local needs.  The original use case was to identify the type of the note
