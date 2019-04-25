@@ -757,13 +757,14 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="LOCATION"/>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attributeGroup ref="simpleLink"/>
 				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
 			            <xsd:annotation>
 			            	<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
 				            </xsd:documentation>
 			            </xsd:annotation>
                	    </xsd:attribute>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="fptr" minOccurs="0" maxOccurs="unbounded">
@@ -850,9 +851,10 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 	    </xsd:attribute>
-		<xsd:attribute ref="xlink:label">
+		<xsd:attribute ref="label">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">xlink:label - an xlink label to be referred to by an smLink element</xsd:documentation>
+				<xsd:documentation xml:lang="en">label - a label to be referred to by an smLink
+					element</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:complexType>
@@ -1056,48 +1058,8 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute ref="xlink:arcrole" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								 xlink:arcrole - the role of the link, as per the xlink specification.  See http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:title" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:title - a title for the link (if needed), as per the xlink specification.  See http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:show" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:show - see the xlink specification at http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:actuate" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:actuate - see the xlink specification at http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:to" use="required">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:to - the value of the label for the element in the structMap you are linking to.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:from" use="required">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:from - the value of the label for the element in the structMap you are linking from.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
+          <xsd:attributeGroup ref="arcLink" />
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="smLinkGrp">
@@ -1120,7 +1082,8 @@ TCF.
 										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>									
-								<xsd:attributeGroup ref="xlink:locatorLink"/>
+								<xsd:attributeGroup ref="locatorLink"/>
+								<xsd:anyAttribute namespace="##other" processContents="lax"/>
 							</xsd:complexType>
 						</xsd:element>
 						<xsd:element name="smArcLink" minOccurs="1" maxOccurs="unbounded">
@@ -1135,7 +1098,7 @@ TCF.
 										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
 									</xsd:annotation>								
 								</xsd:attribute>
-								<xsd:attributeGroup ref="xlink:arcLink"/>
+								<xsd:attributeGroup ref="arcLink"/>
 								<xsd:attribute name="ARCTYPE" type="xsd:string">
 									<xsd:annotation>
 										<xsd:documentation xml:lang="en">ARCTYPE (string/O):The ARCTYPE attribute provides a means of specifying the relationship between the &lt;div&gt; elements participating in the arc link, and hence the purpose or role of the link.  While it can be considered analogous to the xlink:arcrole attribute, its type is a simple string, rather than anyURI.  ARCTYPE has no xlink specified meaning, and the xlink:arcrole attribute should be used instead of or in addition to the ARCTYPE attribute when full xlink compliance is desired with respect to specifying the role or purpose of the arc link. 
@@ -1148,6 +1111,7 @@ TCF.
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>								
+								<xsd:anyAttribute namespace="##other" processContents="lax"/>
 							</xsd:complexType>
 						</xsd:element>
 					</xsd:sequence>
@@ -1163,7 +1127,8 @@ TCF.
 							</xsd:restriction>
 						</xsd:simpleType>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="xlink:extendedLink"/>
+					<xsd:attributeGroup ref="extendedLink"/>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>						
 		</xsd:choice>
@@ -1294,7 +1259,8 @@ TCF.
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attributeGroup ref="LOCATION"/>
-		<xsd:attributeGroup ref="xlink:simpleLink"/>
+		<xsd:attributeGroup ref="simpleLink"/>
+		<xsd:anyAttribute namespace="##other" processContents="lax"/>		
 	</xsd:complexType>
 	<xsd:complexType name="mdSecType">
 		<xsd:annotation>
@@ -1317,7 +1283,7 @@ TCF.
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="LOCATION"/>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attributeGroup ref="simpleLink"/>
 					<xsd:attributeGroup ref="METADATA"/>
 					<xsd:attributeGroup ref="FILECORE"/>
 					<xsd:attribute name="LABEL" type="xsd:string" use="optional">
@@ -1332,6 +1298,7 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="mdWrap" minOccurs="0">
@@ -1416,7 +1383,7 @@ TCF.
 				The file element provides access to content files for a METS object.  A file element may contain one or more FLocat elements, which provide pointers to a content file, and/or an FContent element, which wraps an encoded version of the file. Note that ALL FLocat and FContent elements underneath a single file element should identify/contain identical copies of a single file.
 			</xsd:documentation>
 		</xsd:annotation>
-		
+
 		<xsd:sequence>
 			<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
@@ -1438,7 +1405,8 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attributeGroup ref="simpleLink" />
+					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="FContent" minOccurs="0">
@@ -1464,7 +1432,8 @@ TCF.
 							</xsd:annotation>
 							<xsd:complexType>
 								<xsd:sequence>
-									<xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+									<xsd:any namespace="##any" maxOccurs="unbounded"
+										processContents="lax"/>
 								</xsd:sequence>
 							</xsd:complexType>
 						</xsd:element>
@@ -1851,4 +1820,78 @@ OTHER: metadata in a format not specified above
 			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
+
+	<xsd:attribute name="href" type="xsd:anyURI"/>
+	<xsd:attribute name="role" type="xsd:string"/>
+	<xsd:attribute name="arcrole" type="xsd:string"/>
+	<xsd:attribute name="title" type="xsd:string"/>
+	<xsd:attribute name="show">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="new"/>
+				<xsd:enumeration value="replace"/>
+				<xsd:enumeration value="embed"/>
+				<xsd:enumeration value="other"/>
+				<xsd:enumeration value="none"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+	<xsd:attribute name="actuate">
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:string">
+				<xsd:enumeration value="onLoad"/>
+				<xsd:enumeration value="onRequest"/>
+				<xsd:enumeration value="other"/>
+				<xsd:enumeration value="none"/>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:attribute>
+	<xsd:attribute name="label" type="xsd:string"/>
+	<xsd:attribute name="from" type="xsd:string"/>
+	<xsd:attribute name="to" type="xsd:string"/>
+
+	<xsd:attributeGroup name="simpleLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="simple" form="qualified"/>
+		<xsd:attribute ref="href" use="optional"/>
+		<xsd:attribute ref="role" use="optional"/>
+		<xsd:attribute ref="arcrole" use="optional"/>
+		<xsd:attribute ref="title" use="optional"/>
+		<xsd:attribute ref="show" use="optional"/>
+		<xsd:attribute ref="actuate" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="extendedLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="extended" form="qualified"/>
+		<xsd:attribute ref="role" use="optional"/>
+		<xsd:attribute ref="title" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="locatorLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="locator" form="qualified"/>
+		<xsd:attribute ref="href" use="required"/>
+		<xsd:attribute ref="role" use="optional"/>
+		<xsd:attribute ref="title" use="optional"/>
+		<xsd:attribute ref="label" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="arcLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="arc" form="qualified"/>
+		<xsd:attribute ref="arcrole" use="optional"/>
+		<xsd:attribute ref="title" use="optional"/>
+		<xsd:attribute ref="show" use="optional"/>
+		<xsd:attribute ref="actuate" use="optional"/>
+		<xsd:attribute ref="from" use="optional"/>
+		<xsd:attribute ref="to" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="resourceLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="resource" form="qualified"/>
+		<xsd:attribute ref="role" use="optional"/>
+		<xsd:attribute ref="title" use="optional"/>
+		<xsd:attribute ref="label" use="optional"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="titleLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="title" form="qualified"/>
+	</xsd:attributeGroup>
+	<xsd:attributeGroup name="emptyLink">
+		<xsd:attribute name="type" type="xsd:string" fixed="none" form="qualified"/>
+	</xsd:attributeGroup>
+
+
 </xsd:schema>
