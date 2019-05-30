@@ -5,7 +5,7 @@
 	
   <xsd:annotation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       METS: Metadata Encoding and Transmission Standard
 
       This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/).
@@ -28,7 +28,7 @@
       Version 1.12
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       Change History
 
       April 23, 2001: Alpha Draft completed
@@ -66,7 +66,7 @@
       26. Extend documentation on &lt;par&gt; and &lt;seq&gt; elements.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       October 22, 2001: Gamma completed
 
       10/22/2001 Gamma changes:
@@ -84,7 +84,7 @@
         6. Cleaned up annotations/documentation.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
        December 19, 2001: Epsilon and PROTOFINAL completed
 
        12/19/2001 Epsilon changes:
@@ -100,7 +100,7 @@
        8. Added new behaviorSec for support of referencing executable code from METS object
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
        February 8, 2002: Zeta bug fix to final
 
        2/8/2002 Zeta changes
@@ -110,7 +110,7 @@
          ambiguous content model
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       June 3, 2002: Version 1.1
 
       6/3/2002 v1.1 changes:
@@ -119,7 +119,7 @@
       2. Allow a &lt;par&gt; element to contain a &lt;seq&gt;
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       Dec. 27, 2002: Version 1.2
 
       12/27/2002 v1.2 changes:
@@ -137,7 +137,7 @@
 
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       May 8, 2003: Version 1.3
 
       05/05/2003 v1.3 changes:
@@ -149,7 +149,7 @@
       4.Alter BehaviorSec to make it recursive, and add a new behavior element to wrap mechanism and interfaceDef elements.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       May 1, 2004: Version 1.4
 
       05/01/2003 v1.4 changes:
@@ -165,7 +165,7 @@
       7. "LOM" added as metadata type.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       April 12, 2005: Version 1.5
 
       04/12/2005 v1.5 changes:
@@ -178,7 +178,7 @@
       4. Make processContents "lax" for all xsd:any elements.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       October 18, 2006: Version 1.6
 
       10/18/2006 v1.6 changes:
@@ -188,7 +188,7 @@
       3. make smLink/@xlink:to and smLink/@xlink:from required
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       October 16, 2007/ Jan 20, 2008: Version 1.7
 
       10/16/2007 01/30/2008  v 1.7 changes:
@@ -202,7 +202,7 @@
       3. PREMIS:OBJECT PREMIS:AGENT PREMIS:RIGHTS PREMIS:EVENT added to MDTYPE value enumeration
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       April 2009: Version 1.8
 
       Version 1.8 changes:
@@ -215,7 +215,7 @@
       7. xlink:extendedLink support added to the &lt;structLink&gt; element by means of a new &lt;smLinkGrp&gt; element, and its child &lt;smLocatorLink&gt; and &lt;smArcLink&gt; elements.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       2010: Version 1.9
 
       Version 1.9 Changes:
@@ -225,7 +225,7 @@
       4. Added BEGIN, END and BETYPE attributes to the &lt;file&gt; and &lt;stream&gt; elements for specifying the location of a nested file or a stream within it's parent file.
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
       March 2012: Version 1.9.1
 
       Version 1.9.1 Changes:
@@ -234,7 +234,7 @@
       http://eac.staatsbibliothek-berlin.de/eac-cpf-schema.html
     </xsd:documentation>
 
-    <xsd:documentation>
+    <xsd:documentation xml:lang="en">
        July 2013: Version 1.10
 
        Version 1.10 Changes:
@@ -260,7 +260,7 @@
            This will allow arbitrary new attributes to be added to these elements to support local needs.
       </xsd:documentation>
 
-      <xsd:documentation>
+      <xsd:documentation xml:lang="en">
        January 2015: Version 1.10.1
 
        Version 1.10.1 Changes:
@@ -268,7 +268,7 @@
             has been corrected in this version.
       </xsd:documentation>
 
-      <xsd:documentation>
+      <xsd:documentation xml:lang="en">
        May 2015: Version 1.11
 
        Version 1.11 Changes:
@@ -279,7 +279,7 @@
          2.	Also added xsd:anyAttribute with namespace ##other and processContents lax to these elements.  This will allow arbitrary new attributes to be added to these elements to support local needs.
       </xsd:documentation>
 
-      <xsd:documentation>
+      <xsd:documentation xml:lang="en">
        May 2018: Version 1.12
 
         Version 1.12 Changes:
