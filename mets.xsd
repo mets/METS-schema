@@ -24,8 +24,8 @@
       Taylor Surface (OCLC), Brian Tingle (California Digital Library) and Robin Wendler (Harvard University),
       Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 
-      May, 2018
-      Version 1.12
+      October, 2019
+      Version 1.13
     </xsd:documentation>
 
     <xsd:documentation xml:lang="en">
@@ -288,6 +288,15 @@
         agent/note
 
         This will allow arbitrary new attributes to be added to this element to support local needs.  The original use case was to identify the type of the note.
+      </xsd:documentation>
+      <xsd:documentation xml:lang="en">
+	October 2019: Version 1.13
+
+	Version 1.13 Changes:
+
+	1. Move comments with version history to xsd:documentation elements
+
+	This allows tools that generate documentation from schemas to include the change history in the generated documentation.
       </xsd:documentation>
   </xsd:annotation>
 	<xsd:element name="mets">
