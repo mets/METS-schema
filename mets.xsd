@@ -25,7 +25,7 @@
       Robert Wolfe (Massachusetts Institute of Technology), Patrick Yott (Brown University).
 
       October, 2019
-      Version 1.13
+      Version 1.12.1
     </xsd:documentation>
 
     <xsd:documentation xml:lang="en">
@@ -290,9 +290,9 @@
         This will allow arbitrary new attributes to be added to this element to support local needs.  The original use case was to identify the type of the note.
       </xsd:documentation>
       <xsd:documentation xml:lang="en">
-	October 2019: Version 1.13
+	October 2019: Version 1.12.1
 
-	Version 1.13 Changes:
+	Version 1.12.1 Changes:
 
 	1. Move comments with version history to xsd:documentation elements
 
