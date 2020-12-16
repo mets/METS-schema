@@ -312,7 +312,7 @@
 	<xsd:complexType name="metsType">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">metsType: Complex Type for METS Sections
-			A METS document consists of five possible subsidiary sections: metsHdr (METS document header), dmdSec (descriptive metadata section), amdSec (administrative metadata section), fileGrp (file inventory group) and structMap (structural map)
+			A METS document consists of five possible subsidiary sections: metsHdr (METS document header), mdSec (metadata section), fileGrp (file inventory group) and structMap (structural map)
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
@@ -473,9 +473,9 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+					<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 						<xsd:annotation>
-							<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the METS document itself.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+							<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;metadata&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the METS document itself.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
@@ -500,17 +500,10 @@ OTHER: Use OTHER if none of the preceding values pertain and clarify the type of
 					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
-			<xsd:element name="dmdSec" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						A descriptive metadata section &lt;dmdSec&gt; records descriptive metadata pertaining to the METS object as a whole or one of its components. The &lt;dmdSec&gt; element conforms to same generic datatype as the &lt;techMD&gt;, &lt;rightsMD&gt;, &lt;sourceMD&gt; and &lt;digiprovMD&gt; elements, and supports the same sub-elements and attributes. A descriptive metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;dmdSec&gt; elements; and descriptive metadata can be associated with any METS element that supports a DMDID attribute.  Descriptive metadata can be expressed according to many current description standards (i.e., MARC, MODS, Dublin Core, TEI Header, EAD, VRA, FGDC, DDI) or a locally produced XML schema. 
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="amdSec" type="amdSecType" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="mdSec" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
-						The administrative metadata section &lt;amdSec&gt; contains the administrative metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;amdSec&gt; is separated into four sub-sections that accommodate technical metadata (techMD), intellectual property rights (rightsMD), analog/digital source metadata (sourceMD), and digital provenance metadata (digiprovMD). Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;amdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;amdSec&gt; element. This allows considerable flexibility in the structuring of the administrative metadata. METS does not define a vocabulary or syntax for encoding administrative metadata. Administrative metadata can be expressed within the amdSec sub-elements according to many current community defined standards, or locally produced XML schemas. </xsd:documentation>
+						The metadata section &lt;amdSec&gt; contains the metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;mdSec&gt; is separated into sub-sections that accommodate any kind of metadata such as descriptive, technical, intellectual property rights, analog/digital source metadata, and digital provenance metadata (digiprovMD). Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;mdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;mdSec&gt; element. This allows considerable flexibility in the structuring of the administrative metadata. METS does not define a vocabulary or syntax for encoding metadata. Metadata can be expressed within the mdSec sub-elements according to many current community defined standards or locally produced XML schemas. </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 			<xsd:element name="fileSec" minOccurs="0">
@@ -591,39 +584,18 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 		</xsd:attribute>
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>
-	<xsd:complexType name="amdSecType">
+	<xsd:complexType name="mdSecType">
 		<xsd:annotation>
-			<xsd:documentation xml:lang="en">amdSecType: Complex Type for Administrative Metadata Sections
-			The administrative metadata section consists of four possible subsidiary sections: techMD (technical metadata for text/image/audio/video files), rightsMD (intellectual property rights metadata), sourceMD (analog/digital source metadata), and digiprovMD (digital provenance metadata, that is, the history of migrations/translations performed on a digital library object from it's original digital capture/encoding).
+			<xsd:documentation xml:lang="en">mdSecType: Complex Type for Metadata Sections
+			The metadata section consists of elements that can contain any kind of metdata, included but not limited to technical metadata technical metadata for text/image/audio/video files, intellectual property rights metadata, analog/digital source metadata, and digital provenance metadata, that is, the history of migrations/translations performed on a digital library object from it's original digital capture/encoding.
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="techMD" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
+			<xsd:element name="metadata" type="metadataType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
-						A technical metadata element &lt;techMD&gt; records technical metadata about a component of the METS object, such as a digital content file. The &lt;techMD&gt; element conforms to same generic datatype as the &lt;dmdSec&gt;, &lt;rightsMD&gt;, &lt;sourceMD&gt; and &lt;digiprovMD&gt; elements, and supports the same sub-elements and attributes.  A technical metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;techMD&gt; elements; and technical metadata can be associated with any METS element that supports an ADMID attribute. Technical metadata can be expressed according to many current technical description standards (such as MIX and textMD) or a locally produced XML schema.
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="rightsMD" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						An intellectual property rights metadata element &lt;rightsMD&gt; records information about copyright and licensing pertaining to a component of the METS object. The &lt;rightsMD&gt; element conforms to same generic datatype as the &lt;dmdSec&gt;, &lt;techMD>, &lt;sourceMD&gt; and &lt;digiprovMD&gt; elements, and supports the same sub-elements and attributes. A rights metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;rightsMD&gt; elements; and rights metadata can be associated with any METS element that supports an ADMID attribute. Rights metadata can be expressed according current rights description standards (such as CopyrightMD and rightsDeclarationMD) or a locally produced XML schema.
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="sourceMD" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						A source metadata element &lt;sourceMD&gt; records descriptive and administrative metadata about the source format or media of a component of the METS object such as a digital content file. It is often used for discovery, data administration or preservation of the digital object. The &lt;sourceMD&gt; element conforms to same generic datatype as the &lt;dmdSec&gt;, &lt;techMD&gt;, &lt;rightsMD&gt;,  and &lt;digiprovMD&gt; elements, and supports the same sub-elements and attributes.  A source metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;sourceMD&gt; elements; and source metadata can be associated with any METS element that supports an ADMID attribute. Source metadata can be expressed according to current source description standards (such as PREMIS) or a locally produced XML schema.
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="digiprovMD" type="mdSecType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						A digital provenance metadata element &lt;digiprovMD&gt; can be used to record any preservation-related actions taken on the various files which comprise a digital object (e.g., those subsequent to the initial digitization of the files such as transformation or migrations) or, in the case of born digital materials, the files’ creation. In short, digital provenance should be used to record information that allows both archival/library staff and scholars to understand what modifications have been made to a digital object and/or its constituent parts during its life cycle. This information can then be used to judge how those processes might have altered or corrupted the object’s ability to accurately represent the original item. One might, for example, record master derivative relationships and the process by which those derivations have been created. Or the &lt;digiprovMD&gt; element could contain information regarding the migration/transformation of a file from its original digitization (e.g., OCR, TEI, etc.,)to its current incarnation as a digital object (e.g., JPEG2000). The &lt;digiprovMD&gt; element conforms to same generic datatype as the &lt;dmdSec&gt;,  &lt;techMD&gt;, &lt;rightsMD&gt;, and &lt;sourceMD&gt; elements, and supports the same sub-elements and attributes. A digital provenance metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both.  METS allows multiple &lt;digiprovMD> elements; and digital provenance metadata can be associated with any METS element that supports an ADMID attribute. Digital provenance metadata can be expressed according to current digital provenance description standards (such as PREMIS) or a locally produced XML schema.
-					</xsd:documentation>
+            A metadata element records any kind of metadata about the METS object or a component thereof. The metadata element can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. METS allows multiple &lt;metadata&gt; elements; and metadata can be associated with any METS element that supports an MDID attribute. Metadata can be expressed according to many current technical description standards or a locally produced XML schema.
+          </xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -663,9 +635,9 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREF/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document applicable to all of the files in a particular file group. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+				<xsd:documentation xml:lang="en">MDID (IDREF/O): Contains the ID attribute values of the &lt;metadata&gt; elements within the &lt;amdSec&gt; of the METS document applicable to all of the files in a particular file group. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -805,15 +777,9 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attributeGroup ref="ORDERLABELS"/>		
-		<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
+		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">DMDID (IDREFS/O): Contains the ID attribute values identifying the &lt;dmdSec&gt;, elements in the METS document that contain or link to descriptive metadata pertaining to the structural division represented by the current &lt;div&gt; element.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values identifying the &lt;rightsMD&gt;, &lt;sourceMD&gt;, &lt;techMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain or link to administrative metadata pertaining to the structural division represented by the &lt;div&gt; element. Typically the &lt;div&gt; ADMID attribute would be used to identify the &lt;rightsMD&gt; element or elements that pertain to the &lt;div&gt;, but it could be used anytime there was a need to link a &lt;div&gt; with pertinent administrative metadata. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+				<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values identifying the &lt;metadata&gt; elements within the &lt;mdSec&gt; of the METS document that contain or link to metadata pertaining to the structural division represented by the &lt;div&gt; element. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -995,9 +961,9 @@ TCF.
 				</xsd:restriction>
 			</xsd:simpleType>
 		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values identifying the &lt;rightsMD&gt;, &lt;sourceMD&gt;, &lt;techMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain or link to administrative metadata pertaining to the content represented by the &lt;area&gt; element. Typically the &lt;area&gt; ADMID attribute would be used to identify the &lt;rightsMD&gt; element or elements that pertain to the &lt;area&gt;, but it could be used anytime there was a need to link an &lt;area&gt; with pertinent administrative metadata. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer
+				<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values identifying the &lt;metadata&gt; elements within the &lt;amdSec&gt; of the METS document that contain or link to metadata pertaining to the content represented by the &lt;area&gt; element. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -1010,9 +976,9 @@ TCF.
 		<xsd:attributeGroup ref="ORDERLABELS"/>		
 		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
-	<xsd:complexType name="mdSecType">
+	<xsd:complexType name="metadataType">
 		<xsd:annotation>
-			<xsd:documentation xml:lang="en">mdSecType: Complex Type for Metadata Sections
+			<xsd:documentation xml:lang="en">metadataType: Complex Type for Metadata Sections
 			A generic framework for pointing to/including metadata within a METS document, a la Warwick Framework.
 			</xsd:documentation>
 		</xsd:annotation>
@@ -1093,9 +1059,31 @@ TCF.
 		</xsd:all>
 		<xsd:attribute name="ID" type="xsd:ID" use="required">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ID (ID/R): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. The ID attribute on the &lt;dmdSec&gt;, &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and &lt;digiprovMD&gt; elements (which are all of mdSecType) is required, and its value should be referenced from one or more DMDID attributes (when the ID identifies a &lt;dmdSec&gt; element) or ADMID attributes (when the ID identifies a &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; or &lt;digiprovMD&gt; element) that are associated with other elements in the METS document. The following elements support references to a &lt;dmdSec&gt; via a DMDID attribute: &lt;file&gt;, &lt;stream&gt;, &lt;div&gt;.  The following elements support references to &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and &lt;digiprovMD&gt; elements via an ADMID attribute: &lt;metsHdr&gt;, &lt;dmdSec&gt;, &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt;, &lt;digiprovMD&gt;, &lt;fileGrp&gt;, &lt;file&gt;, &lt;stream&gt;, &lt;div&gt;, &lt;area&gt;, &lt;behavior&gt;. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
+				<xsd:documentation xml:lang="en">ID (ID/R): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. The ID attribute on the &lt;metadata&gt; element is required, and its value should be referenced from one or more MDID attributes that are associated with other elements in the METS document. The following elements support references to a &lt;metadata&gt; element via a MDID attribute: &lt;file&gt;, &lt;fileGrp&gt; &lt;stream&gt;, &lt;div&gt;, &lt;metsHdr&gt;, &lt;metadata&gt;. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
 				</xsd:documentation>
 			</xsd:annotation>
+		</xsd:attribute>
+		<xsd:attribute name="USE">
+			<xsd:annotation>
+				<xsd:documentation xml:lang="en">USE: Specifies the kind of metadata in this section at a high level. USE must contain one of the following values:
+          DESCRIPTIVE
+          TECHNICAL
+          RIGHTS
+          SOURCE
+          DIGIPROV
+
+          <!-- TODO copy documentation from old dmdSec, techMD, etc -->
+				</xsd:documentation>
+			</xsd:annotation>
+			<xsd:simpleType>
+				<xsd:restriction base="xsd:string">
+					<xsd:enumeration value="DESCRIPTIVE"/>
+					<xsd:enumeration value="TECHNICAL"/>
+					<xsd:enumeration value="RIGHTS"/>
+					<xsd:enumeration value="SOURCE"/>
+					<xsd:enumeration value="DIGIPROV"/>
+				</xsd:restriction>
+			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="GROUPID" type="xsd:string" use="optional">
 			<xsd:annotation>
@@ -1103,9 +1091,9 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;digiprovMD&gt;, &lt;techMD&gt;, &lt;sourceMD&gt; and/or &lt;rightsMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the current mdSecType element. Typically used in this context to reference preservation metadata (digiprovMD) which applies to the current metadata. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+				<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;metadata&gt; elements within the &lt;amdSec&gt; of the METS document that contain metadata pertaining to the current metadataType element. Typically used in this context to reference preservation metadata (use="DIGIPROV") which applies to the current metadata. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -1220,15 +1208,9 @@ TCF.
 									</xsd:documentation>
 								</xsd:annotation>
 							</xsd:attribute>
-							<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+							<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 								<xsd:annotation>
-									<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the bytestream. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
-									</xsd:documentation>
-								</xsd:annotation>
-							</xsd:attribute>
-							<xsd:attribute name="DMDID" type="xsd:IDREFS" use="optional">
-								<xsd:annotation>
-									<xsd:documentation xml:lang="en">DMDID (IDREFS/O): Contains the ID attribute values identifying the &lt;dmdSec&gt;, elements in the METS document that contain or link to descriptive metadata pertaining to the content file stream represented by the current &lt;stream&gt; element.  For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+									<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;metadata&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the bytestream. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 									</xsd:documentation>
 								</xsd:annotation>
 							</xsd:attribute>
@@ -1330,9 +1312,9 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
+		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values of the &lt;techMD&gt;, &lt;sourceMD&gt;, &lt;rightsMD&gt; and/or &lt;digiprovMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain administrative metadata pertaining to the file. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
+				<xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;metadata&gt; elements within the &lt;mdSec&gt; of the METS document that contain administrative metadata pertaining to the file. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
