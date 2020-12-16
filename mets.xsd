@@ -360,57 +360,17 @@
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>
-								<xsd:attribute name="ROLE" use="required">
+								<xsd:attribute name="ROLE" use="required" type="xsd:string">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="en">ROLE (string/R): Specifies the function of the agent with respect to the METS record. The allowed values are:
-CREATOR: The person(s) or institution(s) responsible for the METS document.
-EDITOR: The person(s) or institution(s) that prepares the metadata for encoding.
-ARCHIVIST: The person(s) or institution(s) responsible for the document/collection.
-PRESERVATION: The person(s) or institution(s) responsible for preservation functions.
-DISSEMINATOR: The person(s) or institution(s) responsible for dissemination functions.
-CUSTODIAN: The person(s) or institution(s) charged with the oversight of a document/collection.
-IPOWNER: Intellectual Property Owner: The person(s) or institution holding copyright, trade or service marks or other intellectual property rights for the object.
-OTHER: Use OTHER if none of the preceding values pertains and clarify the type and location specifier being used in the OTHERROLE attribute (see below).
-										</xsd:documentation>
-									</xsd:annotation>
-									<xsd:simpleType>
-										<xsd:restriction base="xsd:string">
-											<xsd:enumeration value="CREATOR"/>
-											<xsd:enumeration value="EDITOR"/>
-											<xsd:enumeration value="ARCHIVIST"/>
-											<xsd:enumeration value="PRESERVATION"/>
-											<xsd:enumeration value="DISSEMINATOR"/>
-											<xsd:enumeration value="CUSTODIAN"/>
-											<xsd:enumeration value="IPOWNER"/>
-											<xsd:enumeration value="OTHER"/>
-										</xsd:restriction>
-									</xsd:simpleType>
-								</xsd:attribute>
-								<xsd:attribute name="OTHERROLE" type="xsd:string" use="optional">
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">OTHERROLE (string/O): Denotes a role not contained in the allowed values set if OTHER is indicated in the ROLE attribute.
+                    <xsd:documentation xml:lang="en">ROLE (string/R): Specifies the function of the agent with respect to the METS record. 
+                      TODO: external link to suggested values
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>
-								<xsd:attribute name="TYPE" use="optional">
+								<xsd:attribute name="TYPE" use="optional" type="xsd:string">
 									<xsd:annotation>
-										<xsd:documentation xml:lang="en">TYPE (string/O): is used to specify the type of AGENT. It must be one of the following values:
-INDIVIDUAL: Use if an individual has served as the agent.
-ORGANIZATION: Use if an institution, corporate body, association, non-profit enterprise, government, religious body, etc. has served as the agent.
-OTHER: Use OTHER if none of the preceding values pertain and clarify the type of agent specifier being used in the OTHERTYPE attribute
-										</xsd:documentation>
-									</xsd:annotation>
-									<xsd:simpleType>
-										<xsd:restriction base="xsd:string">
-											<xsd:enumeration value="INDIVIDUAL"/>
-											<xsd:enumeration value="ORGANIZATION"/>
-											<xsd:enumeration value="OTHER"/>
-										</xsd:restriction>
-									</xsd:simpleType>
-								</xsd:attribute>
-								<xsd:attribute name="OTHERTYPE" type="xsd:string" use="optional">
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">OTHERTYPE (string/O): Specifies the type of agent when the value OTHER is indicated in the TYPE attribute.
+                    <xsd:documentation xml:lang="en">TYPE (string/O): is used to specify the type of AGENT.
+                      TODO: external link to suggested values
 										</xsd:documentation>
 									</xsd:annotation>
 								</xsd:attribute>
@@ -1389,69 +1349,16 @@ TCF.
 	</xsd:attributeGroup>
 
 	<xsd:attributeGroup name="METADATA">
-		<xsd:attribute name="MDTYPE" use="required">
+		<xsd:attribute name="MDTYPE" use="required" type="xsd:string">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata. It must have one of the following values:
-MARC: any form of MARC record
-MODS: metadata in the Library of Congress MODS format
-EAD: Encoded Archival Description finding aid
-DC: Dublin Core
-NISOIMG: NISO Technical Metadata for Digital Still Images
-LC-AV: technical metadata specified in the Library of Congress A/V prototyping project
-VRA: Visual Resources Association Core
-TEIHDR: Text Encoding Initiative Header
-DDI: Data Documentation Initiative
-FGDC: Federal Geographic Data Committee metadata
-LOM: Learning Object Model
-PREMIS:  PREservation Metadata: Implementation Strategies
-PREMIS:OBJECT: PREMIS Object entiry
-PREMIS:AGENT: PREMIS Agent entity
-PREMIS:RIGHTS: PREMIS Rights entity
-PREMIS:EVENT: PREMIS Event entity
-TEXTMD: textMD Technical metadata for text
-METSRIGHTS: Rights Declaration Schema
-ISO 19115:2003 NAP: North American Profile of ISO 19115:2003 descriptive metadata
-EAC-CPF: Encoded Archival Context - Corporate Bodies, Persons, and Families
-LIDO: Lightweight Information Describing Objects
-OTHER: metadata in a format not specified above
-				</xsd:documentation>
-			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="MARC"/>
-					<xsd:enumeration value="MODS"/>
-					<xsd:enumeration value="EAD"/>
-					<xsd:enumeration value="DC"/>
-					<xsd:enumeration value="NISOIMG"/>
-					<xsd:enumeration value="LC-AV"/>
-					<xsd:enumeration value="VRA"/>
-					<xsd:enumeration value="TEIHDR"/>
-					<xsd:enumeration value="DDI"/>
-					<xsd:enumeration value="FGDC"/>
-				    <xsd:enumeration value="LOM"/>
-					<xsd:enumeration value="PREMIS"/>
-					<xsd:enumeration value="PREMIS:OBJECT"/>
-					<xsd:enumeration value="PREMIS:AGENT"/>
-					<xsd:enumeration value="PREMIS:RIGHTS"/>
-					<xsd:enumeration value="PREMIS:EVENT"/>
-					<xsd:enumeration value="TEXTMD"/>
-					<xsd:enumeration value="METSRIGHTS"/>
-					<xsd:enumeration value="ISO 19115:2003 NAP"/>
-					<xsd:enumeration value="EAC-CPF"/>
-					<xsd:enumeration value="LIDO"/>
-					<xsd:enumeration value="OTHER"/>
-				</xsd:restriction>
-			</xsd:simpleType>
-		</xsd:attribute>
-		<xsd:attribute name="OTHERMDTYPE" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">OTHERMDTYPE (string/O): Specifies the form of metadata in use when the value OTHER is indicated in the MDTYPE attribute.
+        <xsd:documentation xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata. 
+          TODO: link to suggested values
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 		<xsd:attribute name="MDTYPEVERSION" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE or OTHERMDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version. </xsd:documentation>
+				<xsd:documentation xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version. </xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
