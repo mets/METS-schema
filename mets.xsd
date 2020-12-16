@@ -736,7 +736,6 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attribute ref="href"/>
 				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
 			            <xsd:annotation>
@@ -1031,7 +1030,6 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attribute ref="href"/>
 					<xsd:attributeGroup ref="METADATA"/>
 					<xsd:attributeGroup ref="FILECORE"/>
@@ -1146,7 +1144,6 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attribute name="USE" type="xsd:string" use="optional">
 						<xsd:annotation>
 							<xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file  represented by the &lt;FLocat&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
@@ -1473,38 +1470,6 @@ OTHER: metadata in a format not specified above
 		<xsd:attribute name="MDTYPEVERSION" type="xsd:string" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE or OTHERMDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version. </xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-	</xsd:attributeGroup>
-	<xsd:attributeGroup name="LOCATION">
-		<xsd:attribute name="LOCTYPE" use="required">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">LOCTYPE (string/R): Specifies the locator type used in the xlink:href attribute. Valid values for LOCTYPE are: 
-					ARK
-					URN
-					URL
-					PURL
-					HANDLE
-					DOI
-					OTHER
-				</xsd:documentation>
-			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="ARK"/>
-					<xsd:enumeration value="URN"/>
-					<xsd:enumeration value="URL"/>
-					<xsd:enumeration value="PURL"/>
-					<xsd:enumeration value="HANDLE"/>
-					<xsd:enumeration value="DOI"/>
-					<xsd:enumeration value="OTHER"/>
-				</xsd:restriction>
-			</xsd:simpleType>
-		</xsd:attribute>
-		<xsd:attribute name="OTHERLOCTYPE" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">OTHERLOCTYPE (string/O): Specifies the locator type when the value OTHER is used in the LOCTYPE attribute. Although optional, it is strongly recommended when OTHER is used.
-				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
