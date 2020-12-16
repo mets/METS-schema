@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-  <xsd:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.loc.gov/standards/xlink/xlink.xsd"/>
-	
+<xsd:schema targetNamespace="http://www.loc.gov/METS/" xmlns="http://www.loc.gov/METS/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xsd:annotation>
 
     <xsd:documentation xml:lang="en">
@@ -314,7 +312,7 @@
 	<xsd:complexType name="metsType">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">metsType: Complex Type for METS Sections
-			A METS document consists of seven possible subsidiary sections: metsHdr (METS document header), dmdSec (descriptive metadata section), amdSec (administrative metadata section), fileGrp (file inventory group), structLink (structural map linking), structMap (structural map) and behaviorSec (behaviors section).
+			A METS document consists of five possible subsidiary sections: metsHdr (METS document header), dmdSec (descriptive metadata section), amdSec (administrative metadata section), fileGrp (file inventory group) and structMap (structural map)
 			</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
@@ -553,29 +551,11 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
-			<xsd:element name="structMap" type="structMapType" maxOccurs="unbounded">
+			<xsd:element name="structMap" type="structMapType" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
 						The structural map section &lt;structMap&gt; is the heart of a METS document. It provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant descriptive and administrative metadata.
 					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="structLink" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en"> 
-						The structural link section element &lt;structLink&gt; allows for the specification of hyperlinks between the different components of a METS structure that are delineated in a structural map. This element is a container for a single, repeatable element, &lt;smLink&gt; which indicates a hyperlink between two nodes in the structural map. The &lt;structLink&gt; section in the METS document is identified using its XML ID attributes.
-					</xsd:documentation>
-				</xsd:annotation>
-				<xsd:complexType>
-					<xsd:complexContent>
-						<xsd:extension base="structLinkType"/>
-					</xsd:complexContent>
-				</xsd:complexType>
-			</xsd:element>
-			<xsd:element name="behaviorSec" type="behaviorSecType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						A behavior section element &lt;behaviorSec&gt; associates executable behaviors with content in the METS document by means of a repeatable behavior &lt;behavior&gt; element. This element has an interface definition &lt;interfaceDef&gt; element that represents an abstract definition of the set of behaviors represented by a particular behavior section. A &lt;behavior&gt; element also has a &lt;mechanism&gt; element which is used to point to a module of executable code that implements and runs the behavior defined by the interface definition. The &lt;behaviorSec&gt; element, which is repeatable as well as nestable, can be used to group individual behaviors within the structure of the METS document. Such grouping can be useful for organizing families of behaviors together or to indicate other relationships between particular behaviors.</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
 		</xsd:sequence>
@@ -757,7 +737,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="LOCATION"/>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attribute ref="href"/>
 				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
 			            <xsd:annotation>
 			            	<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
@@ -850,11 +830,6 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 	    </xsd:attribute>
-		<xsd:attribute ref="xlink:label">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">xlink:label - an xlink label to be referred to by an smLink element</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
 	</xsd:complexType>
 	<xsd:complexType name="parType">
 		<xsd:annotation>
@@ -1036,266 +1011,6 @@ TCF.
 		<xsd:attributeGroup ref="ORDERLABELS"/>		
 		<xsd:anyAttribute namespace="##other" processContents="lax"></xsd:anyAttribute>
 	</xsd:complexType>
-	<xsd:complexType name="structLinkType">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">structLinkType: Complex Type for Structural Map Linking
-				The Structural Map Linking section allows for the specification of hyperlinks between different components of a METS structure delineated in a structural map.  structLink contains a single, repeatable element, smLink.  Each smLink element indicates a hyperlink between two nodes in the structMap.  The structMap nodes recorded in smLink are identified using their XML ID attribute	values.
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:choice maxOccurs="unbounded">
-			<xsd:element name="smLink">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en"> 
-						The Structural Map Link element &lt;smLink&gt; identifies a hyperlink between two nodes in the structural map. You would use &lt;smLink&gt;, for instance, to note the existence of hypertext links between web pages, if you wished to record those links within METS. NOTE: &lt;smLink&gt; is an empty element. The location of the &lt;smLink&gt; element to which the &lt;smLink&gt; element is pointing MUST be stored in the xlink:href attribute.
-				</xsd:documentation>
-				</xsd:annotation>
-				<xsd:complexType>
-					<xsd:attribute name="ID" type="xsd:ID" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:arcrole" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								 xlink:arcrole - the role of the link, as per the xlink specification.  See http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:title" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:title - a title for the link (if needed), as per the xlink specification.  See http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:show" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:show - see the xlink specification at http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:actuate" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:actuate - see the xlink specification at http://www.w3.org/TR/xlink/
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:to" use="required">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:to - the value of the label for the element in the structMap you are linking to.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-					<xsd:attribute ref="xlink:from" use="required">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">
-								xlink:from - the value of the label for the element in the structMap you are linking from.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
-				</xsd:complexType>
-			</xsd:element>
-			<xsd:element name="smLinkGrp">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						The structMap link group element &lt;smLinkGrp&gt; provides an implementation of xlink:extendLink, and provides xlink compliant mechanisms for establishing xlink:arcLink type links between 2 or more &lt;div&gt; elements in &lt;structMap&gt; element(s) occurring within the same METS document or different METS documents.  The smLinkGrp could be used as an alternative to the &lt;smLink&gt; element to establish a one-to-one link between &lt;div&gt; elements in the same METS document in a fully xlink compliant manner.  However, it can also be used to establish one-to-many or many-to-many links between &lt;div&gt; elements. For example, if a METS document contains two &lt;structMap&gt; elements, one of which represents a purely logical structure and one of which represents a purely physical structure, the &lt;smLinkGrp&gt; element would provide a means of mapping a &lt;div&gt; representing a logical entity (for example, a newspaper article) with multiple &lt;div&gt; elements in the physical &lt;structMap&gt; representing the physical areas that  together comprise the logical entity (for example, the &lt;div&gt; elements representing the page areas that together comprise the newspaper article).
-					</xsd:documentation>
-				</xsd:annotation>
-				<xsd:complexType>
-					<xsd:sequence>
-						<xsd:element name="smLocatorLink" minOccurs="2" maxOccurs="unbounded" >
-							<xsd:annotation>
-								<xsd:documentation xml:lang="en">
-									The structMap locator link element &lt;smLocatorLink&gt; is of xlink:type &quot;locator&quot;.  It provides a means of identifying a &lt;div&gt; element that will participate in one or more of the links specified by means of &lt;smArcLink&gt; elements within the same &lt;smLinkGrp&gt;. The participating &lt;div&gt; element that is represented by the &lt;smLocatorLink&gt; is identified by means of a URI in the associate xlink:href attribute.  The lowest level of this xlink:href URI value should be a fragment identifier that references the ID value that identifies the relevant &lt;div&gt; element.  For example, &quot;xlink:href=&apos;#div20&apos;&quot; where &quot;div20&quot; is the ID value that identifies the pertinent &lt;div&gt; in the current METS document. Although not required by the xlink specification, an &lt;smLocatorLink&gt; element will typically include an xlink:label attribute in this context, as the &lt;smArcLink&gt; elements will reference these labels to establish the from and to sides of each arc link.
-								</xsd:documentation>
-							</xsd:annotation>
-							<xsd:complexType>
-								<xsd:attribute name="ID" type="xsd:ID">
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>									
-								<xsd:attributeGroup ref="xlink:locatorLink"/>
-							</xsd:complexType>
-						</xsd:element>
-						<xsd:element name="smArcLink" minOccurs="1" maxOccurs="unbounded">
-							<xsd:complexType>
-								<xsd:annotation>
-									<xsd:documentation xml:lang="en">
-										The structMap arc link element &lt;smArcLink&gt; is of xlink:type &quot;arc&quot; It can be used to establish a traversal link between two &lt;div&gt; elements as identified by &lt;smLocatorLink&gt; elements within the same smLinkGrp element. The associated xlink:from and xlink:to attributes identify the from and to sides of the arc link by referencing the xlink:label attribute values on the participating smLocatorLink elements.
-									</xsd:documentation>
-								</xsd:annotation>
-								<xsd:attribute name="ID" type="xsd:ID">									
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.</xsd:documentation>
-									</xsd:annotation>								
-								</xsd:attribute>
-								<xsd:attributeGroup ref="xlink:arcLink"/>
-								<xsd:attribute name="ARCTYPE" type="xsd:string">
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">ARCTYPE (string/O):The ARCTYPE attribute provides a means of specifying the relationship between the &lt;div&gt; elements participating in the arc link, and hence the purpose or role of the link.  While it can be considered analogous to the xlink:arcrole attribute, its type is a simple string, rather than anyURI.  ARCTYPE has no xlink specified meaning, and the xlink:arcrole attribute should be used instead of or in addition to the ARCTYPE attribute when full xlink compliance is desired with respect to specifying the role or purpose of the arc link. 
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>
-								<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
-									<xsd:annotation>
-										<xsd:documentation xml:lang="en">ADMID (IDREFS/O): Contains the ID attribute values identifying the &lt;sourceMD&gt;, &lt;techMD&gt;, &lt;digiprovMD&gt; and/or &lt;rightsMD&gt; elements within the &lt;amdSec&gt; of the METS document that contain or link to administrative metadata pertaining to &lt;smArcLink&gt;. Typically the &lt;smArcLink&gt; ADMID attribute would be used to identify one or more &lt;sourceMD&gt; and/or &lt;techMD&gt; elements that refine or clarify the relationship between the xlink:from and xlink:to sides of the arc. For more information on using METS IDREFS and IDREF type attributes for internal linking, see Chapter 4 of the METS Primer.
-										</xsd:documentation>
-									</xsd:annotation>
-								</xsd:attribute>								
-							</xsd:complexType>
-						</xsd:element>
-					</xsd:sequence>
-					<xsd:attribute name="ID" type="xsd:ID"/>
-					<xsd:attribute name="ARCLINKORDER" default="unordered">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">ARCLINKORDER (enumerated string/O): ARCLINKORDER is used to indicate whether the order of the smArcLink elements aggregated by the smLinkGrp element is significant. If the order is significant, then a value of &quot;ordered&quot; should be supplied.  Value defaults to &quot;unordered&quot; Note that the ARLINKORDER attribute has no xlink specified meaning.</xsd:documentation>
-						</xsd:annotation>
-						<xsd:simpleType>
-							<xsd:restriction base="xsd:string">
-								<xsd:enumeration value="ordered"/>
-								<xsd:enumeration value="unordered"/>
-							</xsd:restriction>
-						</xsd:simpleType>
-					</xsd:attribute>
-					<xsd:attributeGroup ref="xlink:extendedLink"/>
-				</xsd:complexType>
-			</xsd:element>						
-		</xsd:choice>
-		<xsd:attribute name="ID" type="xsd:ID" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:anyAttribute namespace="##other" processContents="lax"/>
-	</xsd:complexType>
-	<xsd:complexType name="behaviorSecType">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">behaviorSecType: Complex Type for Behavior Sections
-			Behaviors are executable code which can be associated with parts of a METS object.  The behaviorSec element is used to group individual behaviors within a hierarchical structure.  Such grouping can be useful to organize families of behaviors together or to indicate other relationships between particular behaviors.
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="behaviorSec" type="behaviorSecType" minOccurs="0" maxOccurs="unbounded"/>
-			<xsd:element name="behavior" type="behaviorType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						A behavior element &lt;behavior&gt; can be used to associate executable behaviors with content in the METS document. This element has an interface definition &lt;interfaceDef&gt; element that represents an abstract definition of a set of behaviors represented by a particular behavior. A &lt;behavior&gt; element also has a behavior mechanism &lt;mechanism&gt; element, a module of executable code that implements and runs the behavior defined abstractly by the interface definition.
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="ID" type="xsd:ID" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the &lt;behaviorSec&gt;
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="LABEL" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">LABEL (string/O): A text description of the behavior section.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:anyAttribute namespace="##other" processContents="lax"/>
-	</xsd:complexType>
-	<xsd:complexType name="behaviorType">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">behaviorType: Complex Type for Behaviors
-			 A behavior can be used to associate executable behaviors with content in the METS object.  A behavior element has an interface definition element that represents an abstract definition  of the set  of behaviors represented by a particular behavior.  A behavior element also has an behavior  mechanism which is a module of executable code that implements and runs the behavior defined abstractly by the interface definition.
-			</xsd:documentation>
-		</xsd:annotation>
-		<xsd:sequence>
-			<xsd:element name="interfaceDef" type="objectType" minOccurs="0">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en">
-						The interface definition &lt;interfaceDef&gt; element contains a pointer to an abstract definition of a single behavior or a set of related behaviors that are associated with the content of a METS object. The interface definition object to which the &lt;interfaceDef&gt; element points using xlink:href could be another digital object, or some other entity, such as a text file which describes the interface or a Web Services Description Language (WSDL) file. Ideally, an interface definition object contains metadata that describes a set of behaviors or methods. It may also contain files that describe the intended usage of the behaviors, and possibly files that represent different expressions of the interface definition.		
-			</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-			<xsd:element name="mechanism" type="objectType">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en"> 
-					A mechanism element &lt;mechanism&gt; contains a pointer to an executable code module that implements a set of behaviors defined by an interface definition. The &lt;mechanism&gt; element will be a pointer to another object (a mechanism object). A mechanism object could be another METS object, or some other entity (e.g., a WSDL file). A mechanism object should contain executable code, pointers to executable code, or specifications for binding to network services (e.g., web services).
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="ID" type="xsd:ID" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. In the case of a &lt;behavior&gt; element that applies to a &lt;transformFile&gt; element, the ID value must be present and would be referenced from the transformFile/@TRANSFORMBEHAVIOR attribute. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="STRUCTID" type="xsd:IDREFS" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">STRUCTID (IDREFS/O): An XML IDREFS attribute used to link a &lt;behavior&gt;  to one or more &lt;div&gt; elements within a &lt;structMap&gt; in the METS document. The content to which the STRUCTID points is considered input to the executable behavior mechanism defined for the behavior.  If the &lt;behavior&gt; applies to one or more &lt;div&gt; elements, then the STRUCTID attribute must be present.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="BTYPE" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">BTYPE (string/O): The behavior type provides a means of categorizing the related behavior.</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">CREATED (dateTime/O): The dateTime of creation for the behavior. 
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="LABEL" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">LABEL (string/O): A text description of the behavior.  
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="GROUPID" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">GROUPID (string/O): An identifier that establishes a correspondence between the given behavior and other behaviors, typically used to facilitate versions of behaviors.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="ADMID" type="xsd:IDREFS" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ADMID (IDREFS/O): An optional attribute listing the XML ID values of administrative metadata sections within the METS document pertaining to this behavior.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-	</xsd:complexType>
-	<xsd:complexType name="objectType">
-		<xsd:annotation>
-			<xsd:documentation xml:lang="en">objectType: complexType for interfaceDef and mechanism elements
-				The mechanism and behavior elements point to external objects--an interface definition object or an executable code object respectively--which together constitute a behavior that can be applied to one or more &lt;div&gt; elements in a &lt;structMap&gt;.
-			</xsd:documentation>
-		</xsd:annotation>		
-		<xsd:attribute name="ID" type="xsd:ID" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attribute name="LABEL" type="xsd:string" use="optional">
-			<xsd:annotation>
-				<xsd:documentation xml:lang="en">LABEL (string/O): A text description of the entity represented.
-				</xsd:documentation>
-			</xsd:annotation>
-		</xsd:attribute>
-		<xsd:attributeGroup ref="LOCATION"/>
-		<xsd:attributeGroup ref="xlink:simpleLink"/>
-	</xsd:complexType>
 	<xsd:complexType name="mdSecType">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">mdSecType: Complex Type for Metadata Sections
@@ -1317,7 +1032,7 @@ TCF.
 						</xsd:annotation>
 					</xsd:attribute>
 					<xsd:attributeGroup ref="LOCATION"/>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attribute ref="href"/>
 					<xsd:attributeGroup ref="METADATA"/>
 					<xsd:attributeGroup ref="FILECORE"/>
 					<xsd:attribute name="LABEL" type="xsd:string" use="optional">
@@ -1438,7 +1153,7 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attributeGroup ref="xlink:simpleLink"/>
+					<xsd:attribute ref="href"/>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="FContent" minOccurs="0">
@@ -1851,4 +1566,5 @@ OTHER: metadata in a format not specified above
 			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
+  <xsd:attribute name="href" type="xsd:anyURI" />
 </xsd:schema>
