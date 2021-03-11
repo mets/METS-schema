@@ -477,15 +477,11 @@
 						<xsd:element name="fileGrp" maxOccurs="unbounded">
 							<xsd:annotation>
 								<xsd:documentation xml:lang="en"> 
-									A sequence of file group elements &lt;fileGrp&gt; can be used group the digital files comprising the content of a METS object either into a flat arrangement or, because each file group element can itself contain one or more  file group elements,  into a nested (hierarchical) arrangement. In the case where the content files are images of different formats and resolutions, for example, one could group the image content files by format and create a separate &lt;fileGrp&gt; for each image format/resolution such as:
+									A sequence of file group elements &lt;fileGrp&gt; can be used to group the digital files comprising the content of a METS object. In the case where the content files are images of different formats and resolutions, for example, one could group the image content files by format and create a separate &lt;fileGrp&gt; for each image format/resolution such as:
 -- one &lt;fileGrp&gt; for the thumbnails of the images
--- one &lt;fileGrp&gt; for the higher resolution JPEGs of the image 
--- one &lt;fileGrp&gt; for the master archival TIFFs of the images 
-For a text resource with a variety of content file types one might group the content files at the highest level by type,  and then use the &lt;fileGrp&gt; element’s nesting capabilities to subdivide a &lt;fileGrp&gt; by format within the type, such as:
--- one &lt;fileGrp&gt; for all of the page images with nested &lt;fileGrp&gt; elements for each image format/resolution (tiff, jpeg, gif)
--- one &lt;fileGrp&gt; for a PDF version of all the pages of the document 
--- one &lt;fileGrp&gt; for  a TEI encoded XML version of the entire document or each of its pages.
-A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;file&gt; elements.					
+-- one &lt;fileGrp&gt; for the higher resolution JPEGs of the image
+-- one &lt;fileGrp&gt; for the master archival TIFFs of the images
+A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
 								</xsd:documentation>
 							</xsd:annotation>
 							<xsd:complexType>
@@ -570,11 +566,10 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 	<xsd:complexType name="fileGrpType">
 		<xsd:annotation>
 			<xsd:documentation xml:lang="en">fileGrpType: Complex Type for File Groups
-				The file group is used to cluster all of the digital files composing a digital library object in a hierarchical arrangement (fileGrp is recursively defined to enable the creation of the hierarchy).  Any file group may contain zero or more file elements.  File elements in turn can contain one or more FLocat elements (a pointer to a file containing content for this object) and/or a FContent element (the contents of the file, in either XML or  Base64 encoding).
+				The file group is used to cluster all of the digital files composing a digital library object. Any file group may contain zero or more file elements.  File elements in turn can contain one or more FLocat elements (a pointer to a file containing content for this object) and/or a FContent element (the contents of the file, in either XML or  Base64 encoding).
 				</xsd:documentation>
 		</xsd:annotation>
-		<xsd:choice>
-			<xsd:element name="fileGrp" type="fileGrpType" minOccurs="0" maxOccurs="unbounded"/>			
+		<xsd:sequence>
 			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded" type="fileType" >
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
@@ -582,7 +577,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
-		</xsd:choice>
+		</xsd:sequence>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
@@ -603,7 +598,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 		</xsd:attribute>
 		<xsd:attribute name="USE" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of files within this file group (e.g., master, reference, thumbnails for image files). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;). 
+				<xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of files within this file group (e.g., master, reference, thumbnails for image files). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -618,8 +613,8 @@ A &lt;fileGrp&gt; may contain zero or more &lt;fileGrp&gt; elements and or &lt;f
 		<xsd:sequence>
 			<xsd:element name="div" type="divType">
 				<xsd:annotation>
-					<xsd:documentation xml:lang="en"> 
-						The structural divisions of the hierarchical organization provided by a &lt;structMap&gt; are represented by division &lt;div&gt; elements, which can be nested to any depth. Each &lt;div&gt; element can represent either an intellectual (logical) division or a physical division. Every &lt;div&gt; node in the structural map hierarchy may be connected (via subsidiary &lt;mptr&gt; or &lt;fptr&gt; elements) to content files which represent that div's portion of the whole document. 
+					<xsd:documentation xml:lang="en">
+						The structural divisions of the hierarchical organization provided by a &lt;structMap&gt; are represented by division &lt;div&gt; elements, which can be nested to any depth. Each &lt;div&gt; element can represent either an intellectual (logical) division or a physical division. Every &lt;div&gt; node in the structural map hierarchy may be connected (via subsidiary &lt;mptr&gt; or &lt;fptr&gt; elements) to content files which represent that div's portion of the whole document.
 					</xsd:documentation>
 				</xsd:annotation>
 			</xsd:element>
