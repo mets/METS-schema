@@ -965,12 +965,6 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="XPTR" type="xsd:string" use="optional">
-						<xsd:annotation>
-							<xsd:documentation xml:lang="en">XPTR (string/O): Locates the point within a file to which the &lt;mdRef&gt; element refers, if applicable.
-							</xsd:documentation>
-						</xsd:annotation>
-					</xsd:attribute>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="mdWrap" minOccurs="0">
