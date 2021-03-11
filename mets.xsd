@@ -500,14 +500,30 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
 					<xsd:anyAttribute namespace="##other" processContents="lax"/>
 				</xsd:complexType>
 			</xsd:element>
-			<xsd:element name="structMap" type="structMapType" minOccurs="0" maxOccurs="unbounded">
-				<xsd:annotation>
-					<xsd:documentation xml:lang="en"> 
-						The structural map section &lt;structMap&gt; is the heart of a METS document. It provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant descriptive and administrative metadata.
-					</xsd:documentation>
-				</xsd:annotation>
-			</xsd:element>
-		</xsd:sequence>
+      <xsd:element name="structSec" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The &lt;structSec&gt; section contains the &lt;structMap&gt; elements that provide hierarchical organizations of the components of the digital object described by the METS document.
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="structMap" type="structMapType" minOccurs="1" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en"> 
+                  The structural map section &lt;structMap&gt; is the heart of a METS document. It provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant descriptive and administrative metadata.
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
 		<xsd:attribute name="ID" type="xsd:ID" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
