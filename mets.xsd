@@ -569,7 +569,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
         </xsd:annotation>
         <xsd:complexType>
           <xsd:sequence>
-            <xsd:element name="md" type="mdType" minOccurs="0" maxOccurs="unbounded">
+            <xsd:element name="md" type="mdType" minOccurs="1" maxOccurs="unbounded">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en"> 
             A &lt;md&gt; element records any kind of metadata about the METS object or a component thereof. The &lt;md&gt; element can either wrap the metadata (mdWrap), reference it in an external location (&lt;mdRef&gt;), or both. METS allows multiple &lt;md&gt; elements; and metadata can be associated with any METS element that supports an MDID attribute. Metadata can be expressed according to many current technical description standards or a locally produced XML schema.
@@ -601,7 +601,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
 				</xsd:documentation>
 		</xsd:annotation>
 		<xsd:sequence>
-			<xsd:element name="file" minOccurs="0" maxOccurs="unbounded" type="fileType" >
+			<xsd:element name="file" minOccurs="1" maxOccurs="unbounded" type="fileType" >
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
 						The file element &lt;file&gt; provides access to the content files for the digital object being described by the METS document. A &lt;file&gt; element may contain one or more &lt;FLocat&gt; elements which provide pointers to a content file and/or a &lt;FContent&gt; element which wraps an encoded version of the file. Embedding files using &lt;FContent&gt; can be a valuable feature for exchanging digital objects between repositories or for archiving versions of digital objects for off-site storage. All &lt;FLocat&gt; and &lt;FContent&gt; elements should identify and/or contain identical copies of a single file. The &lt;file&gt; element is recursive, thus allowing sub-files or component files of a larger file to be listed in the inventory. Alternatively, by using the &lt;stream&gt; element, a smaller component of a file or of a related file can be placed within a &lt;file&gt; element. Finally, by using the &lt;transformFile&gt; element, it is possible to include within a &lt;file&gt; element a different version of a file that has undergone a transformation for some reason, such as format migration.
