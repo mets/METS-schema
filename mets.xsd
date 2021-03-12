@@ -580,7 +580,19 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
           <xsd:attribute name="ID" type="xsd:ID">
             <xsd:annotation>
               <xsd:documentation>ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
-        </xsd:documentation>
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="USE" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">USE (string/O): Specifies the purpose of the metadata contained in this group.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="STATUS" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata (e.g., superseded, current, etc.).
+              </xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
         </xsd:complexType>
@@ -1043,27 +1055,14 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="USE">
+		<xsd:attribute name="USE" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">USE: Specifies the kind of metadata in this section at a high level. USE must contain one of the following values:
-          DESCRIPTIVE
-          TECHNICAL
-          RIGHTS
-          SOURCE
-          DIGIPROV
-
+				<xsd:documentation xml:lang="en">USE: Specifies the purpose of metadata in this section.
+          <!-- TODO: link out to suggested values -->
+          Values could include: DESCRIPTIVE, TECHNICAL, RIGHTS, SOURCE, PROVENANCE; these correspond to dmdSec, techMD, rightsMD, sourceMD, digiprovMD from METS 1.x
           <!-- TODO copy documentation from old dmdSec, techMD, etc -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="DESCRIPTIVE"/>
-					<xsd:enumeration value="TECHNICAL"/>
-					<xsd:enumeration value="RIGHTS"/>
-					<xsd:enumeration value="SOURCE"/>
-					<xsd:enumeration value="DIGIPROV"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="GROUPID" type="xsd:string" use="optional">
 			<xsd:annotation>
