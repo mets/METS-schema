@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<mets:mets xmlns:mets="http://www.loc.gov/METS/v2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/METS/v2 ../v2/mets.xsd">
+<mets:mets xmlns:mets="http://www.loc.gov/METS/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/METS/v2 ../v2/mets.xsd">
   <mets:metsHdr CREATEDATE="2019-04-14T10:27:23"/>
   <mets:mdSec>
     <mets:mdGroup>
