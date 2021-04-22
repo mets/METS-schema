@@ -8,6 +8,10 @@ Sources:
 - Archivematica Sample METS:
   https://github.com/artefactual-labs/am-mets-examples/blob/master/demo-transfer-mets.xml
 
+- DSpace SWORD example METS:
+  https://github.com/DSpace/DSpace/blob/main/dspace-sword/example/mets.xml
+  (as dspace-sword-mets.xml)
+
 
 Changes required were mostly mechanical in both cases:
 
