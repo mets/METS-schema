@@ -11,7 +11,7 @@
     </metsHdr>
 
     <mdSec>
-      <mdGroup>
+      <mdGrp USE="DESCRIPTIVE">
         <md USE="DESCRIPTIVE" ID="sword-mets-dmd-1" GROUPID="sword-mets-dmd-1_group-1">
             <mdWrap LABEL="SWAP Metadata" MDTYPE="EPDCX"
                     MIMETYPE="text/xml">
@@ -129,7 +129,7 @@
                 </xmlData>
             </mdWrap>
         </md>
-      </mdGroup>
+      </mdGrp>
     </mdSec>
 
     <fileSec>
