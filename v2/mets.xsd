@@ -850,25 +850,19 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="SHAPE" use="optional">
+		<xsd:attribute name="SHAPE" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">SHAPE (string/O): An attribute that can be used as in HTML to define the shape of the relevant area within the content file pointed to by the &lt;area&gt; element. Typically this would be used with image content (still image or video frame) when only a portion of an integal image map pertains. If SHAPE is specified then COORDS must also be present. SHAPE should be used in conjunction with COORDS in the manner defined for the shape and coords attributes on an HTML4 &lt;area&gt; element. SHAPE must contain one of the following values: 
+				<xsd:documentation xml:lang="en">SHAPE (string/O): An attribute that can be used as in HTML to define the shape of the relevant area within the content file pointed to by the &lt;area&gt; element. Typically this would be used with image content (still image or video frame) when only a portion of an integal image map pertains. If SHAPE is specified then COORDS must also be present. SHAPE should be used in conjunction with COORDS in the manner defined for the shape and coords attributes on an HTML5 &lt;area&gt; element. Possible values include: 
 RECT 
 CIRCLE
 POLY
+          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="RECT"/>
-					<xsd:enumeration value="CIRCLE"/>
-					<xsd:enumeration value="POLY"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="COORDS" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">COORDS (string/O): Specifies the coordinates in an image map for the shape of the pertinent area as specified in the SHAPE attribute. While technically optional, SHAPE and COORDS must both appear together to define the relevant area of image content. COORDS should be used in conjunction with SHAPE in the manner defined for the COORDs and SHAPE attributes on an HTML4 &lt;area&gt; element. COORDS must be a comma delimited string of integer value pairs representing coordinates (plus radius in the case of CIRCLE) within an image map. Number of coordinates pairs depends on shape: RECT: x1, y1, x2, y2; CIRC: x1, y1; POLY: x1, y1, x2, y2, x3, y3 . . .
+				<xsd:documentation xml:lang="en">COORDS (string/O): Specifies the coordinates in an image map for the shape of the pertinent area as specified in the SHAPE attribute. While technically optional, SHAPE and COORDS must both appear together to define the relevant area of image content. COORDS should be used in conjunction with SHAPE in the manner defined for the COORDs and SHAPE attributes on an HTML5 &lt;area&gt; element. COORDS must be a comma delimited string of integer value pairs representing coordinates (plus radius in the case of CIRCLE) within an image map. Number of coordinates pairs depends on shape: RECT: x1, y1, x2, y2; CIRC: x1, y1; POLY: x1, y1, x2, y2, x3, y3 . . .
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
@@ -884,10 +878,10 @@ POLY
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="BETYPE" use="optional">
+		<xsd:attribute name="BETYPE" type="xsd:string" use="optional">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For example, if BYTE is specified, then the BEGIN and END point values represent the byte offsets into a file. If IDREF is specified, then the BEGIN element specifies the ID value that identifies the element in a structured text file where the relevant section of the file begins; and the END value (if present) would specify the ID value that identifies the element with which the relevant section of the file ends. Must be one of the following values: 
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For example, if BYTE is specified, then the BEGIN and END point values represent the byte offsets into a file. If IDREF is specified, then the BEGIN element specifies the ID value that identifies the element in a structured text file where the relevant section of the file begins; and the END value (if present) would specify the ID value that identifies the element with which the relevant section of the file ends. Possible values include: 
 BYTE
 IDREF
 SMIL
@@ -901,25 +895,9 @@ SMPTE-NDF29.97
 TIME
 TCF
 XPTR
+          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="BYTE"/>
-					<xsd:enumeration value="IDREF"/>
-					<xsd:enumeration value="SMIL"/>
-					<xsd:enumeration value="MIDI"/>
-					<xsd:enumeration value="SMPTE-25"/>
-					<xsd:enumeration value="SMPTE-24"/>
-					<xsd:enumeration value="SMPTE-DF30"/>
-					<xsd:enumeration value="SMPTE-NDF30"/>
-					<xsd:enumeration value="SMPTE-DF29.97"/>
-					<xsd:enumeration value="SMPTE-NDF29.97"/>
-					<xsd:enumeration value="TIME"/>
-					<xsd:enumeration value="TCF"/>
-					<xsd:enumeration value="XPTR"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="EXTENT" type="xsd:string" use="optional">
 			<xsd:annotation>
@@ -927,9 +905,9 @@ XPTR
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="EXTTYPE" use="optional">
+		<xsd:attribute name="EXTTYPE" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">EXTTYPE (string/O): An attribute that specifies the kind of EXTENT values that are being used. For example if BYTE is specified then EXTENT would represent a byte count. If TIME is specified the EXTENT would represent a duration of time. EXTTYPE must be one of the following values: 
+				<xsd:documentation xml:lang="en">EXTTYPE (string/O): An attribute that specifies the kind of EXTENT values that are being used. For example if BYTE is specified then EXTENT would represent a byte count. If TIME is specified the EXTENT would represent a duration of time. Possible values for EXTTYPE include: 
 BYTE
 SMIL
 MIDI
@@ -941,23 +919,9 @@ SMPTE-DF29.97
 SMPTE-NDF29.97
 TIME
 TCF.
+          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="BYTE"/>
-					<xsd:enumeration value="SMIL"/>
-					<xsd:enumeration value="MIDI"/>
-					<xsd:enumeration value="SMPTE-25"/>
-					<xsd:enumeration value="SMPTE-24"/>
-					<xsd:enumeration value="SMPTE-DF30"/>
-					<xsd:enumeration value="SMPTE-NDF30"/>
-					<xsd:enumeration value="SMPTE-DF29.97"/>
-					<xsd:enumeration value="SMPTE-NDF29.97"/>
-					<xsd:enumeration value="TIME"/>
-					<xsd:enumeration value="TCF"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>
 		<xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
 			<xsd:annotation>
@@ -1205,18 +1169,14 @@ TCF.
 									</xsd:documentation>
 								</xsd:annotation>
 							</xsd:attribute>
-							<xsd:attribute name="BETYPE" use="optional">
-								<xsd:annotation>
-									<xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-										BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. Currently BYTE is the only valid value that can be used in conjunction with nested &lt;file&gt; or &lt;stream&gt; elements. 
-									</xsd:documentation>
-								</xsd:annotation>
-								<xsd:simpleType>
-									<xsd:restriction base="xsd:string">
-										<xsd:enumeration value="BYTE"/>
-									</xsd:restriction>
-								</xsd:simpleType>
-							</xsd:attribute>									
+              <xsd:attribute name="BETYPE" use="optional" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
+                    BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For nested &lt;file&gt; or &lt;stream&gt; elements, values could include BYTE or other locally-defined values.
+                    <!-- TODO: link out to suggested values -->
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>		
 						</xsd:restriction>
 					</xsd:complexContent>
 				</xsd:complexType>				
@@ -1235,16 +1195,12 @@ TCF.
 									</xsd:documentation>
 								</xsd:annotation>
 							</xsd:attribute>
-							<xsd:attribute name="TRANSFORMTYPE" use="required">
+							<xsd:attribute name="TRANSFORMTYPE" use="required" type="xsd:string">
 								<xsd:annotation>
-									<xsd:documentation xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams. The controlled value constraints for this XML string include “decompression” and “decryption”. Decompression is defined as the action of reversing data compression, i.e., the process of encoding information using fewer bits than an unencoded representation would use by means of specific encoding schemas. Decryption is defined as the process of restoring data that has been obscured to make it unreadable without special knowledge (encrypted data) to its original form. </xsd:documentation>
+                  <xsd:documentation xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams. Possible values include “decompression”, “decryption”, or other locally-defined values. Decompression is defined as the action of reversing data compression, i.e., the process of encoding information using fewer bits than an unencoded representation would use by means of specific encoding schemas. Decryption is defined as the process of restoring data that has been obscured to make it unreadable without special knowledge (encrypted data) to its original form.
+                    <!-- TODO: link out to suggested values -->
+                  </xsd:documentation>
 								</xsd:annotation>
-								<xsd:simpleType>
-									<xsd:restriction base="xsd:string">
-										<xsd:enumeration value="decompression"></xsd:enumeration>
-										<xsd:enumeration value="decryption"></xsd:enumeration>
-									</xsd:restriction>
-								</xsd:simpleType>
 							</xsd:attribute>
 							<xsd:attribute name="TRANSFORMALGORITHM" type="xsd:string" use="required">
 								<xsd:annotation>
@@ -1321,17 +1277,13 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="BETYPE" use="optional">
+		<xsd:attribute name="BETYPE" use="optional" type="xsd:string">
 			<xsd:annotation>
 				<xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. Currently BYTE is the only valid value that can be used in conjunction with nested &lt;file&gt; or &lt;stream&gt; elements. 
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For nested &lt;file&gt; or &lt;stream&gt; elements, values could include BYTE or other locally-defined values.
+          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="BYTE"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>		
 		<xsd:anyAttribute namespace="##other" processContents="lax"/>
 	</xsd:complexType>	
@@ -1400,9 +1352,9 @@ TCF.
 				</xsd:documentation>
 			</xsd:annotation>
 		</xsd:attribute>
-		<xsd:attribute name="CHECKSUMTYPE" use="optional">
+		<xsd:attribute name="CHECKSUMTYPE" type="xsd:string" use="optional">
 			<xsd:annotation>
-				<xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  CHECKSUMTYPE must contain one of the following values:
+				<xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  Possible values may include:
 					Adler-32
 					CRC32
 					HAVAL
@@ -1414,23 +1366,9 @@ TCF.
 					SHA-512
 					TIGER
 					WHIRLPOOL
+          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
 			</xsd:annotation>
-			<xsd:simpleType>
-				<xsd:restriction base="xsd:string">
-					<xsd:enumeration value="Adler-32"/>
-					<xsd:enumeration value="CRC32"/>
-					<xsd:enumeration value="HAVAL"/>
-					<xsd:enumeration value="MD5"/>
-					<xsd:enumeration value="MNP"/>
-					<xsd:enumeration value="SHA-1"/>
-					<xsd:enumeration value="SHA-256"/>
-					<xsd:enumeration value="SHA-384"/>
-					<xsd:enumeration value="SHA-512"/>
-					<xsd:enumeration value="TIGER"/>
-					<xsd:enumeration value="WHIRLPOOL"/>
-				</xsd:restriction>
-			</xsd:simpleType>
 		</xsd:attribute>
 	</xsd:attributeGroup>
 </xsd:schema>
