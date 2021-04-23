@@ -563,9 +563,9 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
 			</xsd:documentation>
 		</xsd:annotation>
     <xsd:sequence>
-      <xsd:element maxOccurs="unbounded" minOccurs="1" name="mdGroup">
+      <xsd:element maxOccurs="unbounded" minOccurs="1" name="mdGrp">
         <xsd:annotation>
-          <xsd:documentation>The &lt;mdGroup&gt; element allows grouping related kinds of metadata. This could be all metadata of a particular type, all metadata coming from a particular source, all metadata pertaining to a certain file or set of files, or any other relevant grouping.</xsd:documentation>
+          <xsd:documentation>The &lt;mdGrp&gt; element allows grouping related kinds of metadata. This could be all metadata of a particular type, all metadata coming from a particular source, all metadata pertaining to a certain file or set of files, or any other relevant grouping.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
           <xsd:sequence>
