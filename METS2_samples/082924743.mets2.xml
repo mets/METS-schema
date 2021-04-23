@@ -1,80 +1,80 @@
 <?xml version="1.0"?>
-<METS:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:METS="http://www.loc.gov/METS/v2" xmlns:PREMIS="info:lc/xmlns/premis-v2" xmlns:gbs="http://books.google.com/gbs" xmlns:HT="http://www.hathitrust.org/ht_extension" xmlns:HTPREMIS="http://www.hathitrust.org/premis_extension" OBJID="chi.082924743" PROFILE="http://www.hathitrust.org/documents/hathitrust-mets-profile2.1.xml" xsi:schemaLocation="http://www.loc.gov/METS/v2 ../v2/mets.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-0.xsd">
+<METS:mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:METS="http://www.loc.gov/METS/v2" xmlns:PREMIS="info:lc/xmlns/premis-v2" xmlns:gbs="http://books.google.com/gbs" xmlns:HT="http://www.hathitrust.org/ht_extension" xmlns:HTPREMIS="http://www.hathitrust.org/premis_extension" OBJID="chi.082924743" xsi:schemaLocation="http://www.loc.gov/METS/v2 ../v2/mets.xsd info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-0.xsd">
   <METS:metsHdr RECORDSTATUS="NEW" CREATEDATE="2021-01-04T18:31:23Z" ID="HDR1">
     <METS:agent ROLE="CREATOR" TYPE="ORGANIZATION">
       <METS:name>HathiTrust</METS:name>
     </METS:agent>
   </METS:metsHdr>
   <METS:mdSec>
-    <METS:mdGroup>
-      <METS:md ID="DMD1">
+    <METS:mdGrp USE="DESCRIPTIVE">
+      <METS:md ID="DMD1" USE="DESCRIPTIVE">
         <METS:mdRef href="https://catalog.hathitrust.org/Record/HTID/chi.082924743.xml" MDTYPE="MARC"/>
       </METS:md>
-    </METS:mdGroup>
-    <METS:mdGroup ID="AMD1">
-          <METS:md ID="TMD1" USE="TECHNICAL">
-      <METS:mdWrap LABEL="reading order" MDTYPE="Google">
-      <METS:xmlData>
-        <gbs:scanningOrder>left-to-right</gbs:scanningOrder>
-        <gbs:readingOrder>left-to-right</gbs:readingOrder>
-        <gbs:coverTag>follows-reading-order</gbs:coverTag>
-      </METS:xmlData>
-    </METS:mdWrap>
-    </METS:md>
-    <METS:md USE="SOURCE" ID="SMD1">
-      <METS:mdWrap MDTYPE="HT">
-        <METS:xmlData>
-          <HT:sources format="digitized">
-            <HT:contentProvider display="yes" sequence="1">uchicago</HT:contentProvider>
-            <HT:digitizationAgent display="yes">google</HT:digitizationAgent>
-            <HT:responsibleEntity sequence="1">uchicago</HT:responsibleEntity>
-          </HT:sources>
-        </METS:xmlData>
-      </METS:mdWrap>
-    </METS:md>
-    <METS:md USE="PROVENANCE" ID="premis1">
-      <METS:mdWrap MDTYPE="PREMIS" MIMETYPE="text/xml">
-        <METS:xmlData>
-          <PREMIS:premis version="2.0">
-            <PREMIS:object xsi:type="PREMIS:representation">
-              <PREMIS:objectIdentifier>
-                <PREMIS:objectIdentifierType>HathiTrust</PREMIS:objectIdentifierType>
-                <PREMIS:objectIdentifierValue>chi.082924743</PREMIS:objectIdentifierValue>
-              </PREMIS:objectIdentifier>
-              <PREMIS:significantProperties>
-                <PREMIS:significantPropertiesType>file count</PREMIS:significantPropertiesType>
-                <PREMIS:significantPropertiesValue>36</PREMIS:significantPropertiesValue>
-              </PREMIS:significantProperties>
-              <PREMIS:significantProperties>
-                <PREMIS:significantPropertiesType>page count</PREMIS:significantPropertiesType>
-                <PREMIS:significantPropertiesValue>12</PREMIS:significantPropertiesValue>
-              </PREMIS:significantProperties>
-            </PREMIS:object>
-            <!-- other PREMIS events elided for brevity -->
-            <PREMIS:event>
-              <PREMIS:eventIdentifier>
-                <PREMIS:eventIdentifierType>UUID</PREMIS:eventIdentifierType>
-                <PREMIS:eventIdentifierValue>b6c77030-4a55-3b09-905e-3b8f0c3a2071</PREMIS:eventIdentifierValue>
-              </PREMIS:eventIdentifier>
-              <PREMIS:eventType>ingestion</PREMIS:eventType>
-              <PREMIS:eventDateTime>2021-01-04T18:31:24Z</PREMIS:eventDateTime>
-              <PREMIS:eventDetail>Ingestion of object package into repository</PREMIS:eventDetail>
-              <PREMIS:linkingAgentIdentifier>
-                <PREMIS:linkingAgentIdentifierType>HathiTrust Institution ID</PREMIS:linkingAgentIdentifierType>
-                <PREMIS:linkingAgentIdentifierValue>umich</PREMIS:linkingAgentIdentifierValue>
-                <PREMIS:linkingAgentRole>Executor</PREMIS:linkingAgentRole>
-              </PREMIS:linkingAgentIdentifier>
-              <PREMIS:linkingAgentIdentifier>
-                <PREMIS:linkingAgentIdentifierType>tool</PREMIS:linkingAgentIdentifierType>
-                <PREMIS:linkingAgentIdentifierValue>feedd.pl v1.7.10</PREMIS:linkingAgentIdentifierValue>
-                <PREMIS:linkingAgentRole>software</PREMIS:linkingAgentRole>
-              </PREMIS:linkingAgentIdentifier>
-            </PREMIS:event>
-          </PREMIS:premis>
-        </METS:xmlData>
-      </METS:mdWrap>
-    </METS:md>
-    </METS:mdGroup>
+    </METS:mdGrp>
+    <METS:mdGrp ID="AMD1" USE="ADMINISTRATIVE">
+      <METS:md ID="TMD1" USE="TECHNICAL">
+        <METS:mdWrap LABEL="reading order" MDTYPE="Google">
+          <METS:xmlData>
+            <gbs:scanningOrder>left-to-right</gbs:scanningOrder>
+            <gbs:readingOrder>left-to-right</gbs:readingOrder>
+            <gbs:coverTag>follows-reading-order</gbs:coverTag>
+          </METS:xmlData>
+        </METS:mdWrap>
+      </METS:md>
+      <METS:md USE="SOURCE" ID="SMD1">
+        <METS:mdWrap MDTYPE="HT">
+          <METS:xmlData>
+            <HT:sources format="digitized">
+              <HT:contentProvider display="yes" sequence="1">uchicago</HT:contentProvider>
+              <HT:digitizationAgent display="yes">google</HT:digitizationAgent>
+              <HT:responsibleEntity sequence="1">uchicago</HT:responsibleEntity>
+            </HT:sources>
+          </METS:xmlData>
+        </METS:mdWrap>
+      </METS:md>
+      <METS:md USE="PROVENANCE" ID="premis1">
+        <METS:mdWrap MDTYPE="PREMIS" MIMETYPE="text/xml">
+          <METS:xmlData>
+            <PREMIS:premis version="2.0">
+              <PREMIS:object xsi:type="PREMIS:representation">
+                <PREMIS:objectIdentifier>
+                  <PREMIS:objectIdentifierType>HathiTrust</PREMIS:objectIdentifierType>
+                  <PREMIS:objectIdentifierValue>chi.082924743</PREMIS:objectIdentifierValue>
+                </PREMIS:objectIdentifier>
+                <PREMIS:significantProperties>
+                  <PREMIS:significantPropertiesType>file count</PREMIS:significantPropertiesType>
+                  <PREMIS:significantPropertiesValue>36</PREMIS:significantPropertiesValue>
+                </PREMIS:significantProperties>
+                <PREMIS:significantProperties>
+                  <PREMIS:significantPropertiesType>page count</PREMIS:significantPropertiesType>
+                  <PREMIS:significantPropertiesValue>12</PREMIS:significantPropertiesValue>
+                </PREMIS:significantProperties>
+              </PREMIS:object>
+              <!-- other PREMIS events elided for brevity -->
+              <PREMIS:event>
+                <PREMIS:eventIdentifier>
+                  <PREMIS:eventIdentifierType>UUID</PREMIS:eventIdentifierType>
+                  <PREMIS:eventIdentifierValue>b6c77030-4a55-3b09-905e-3b8f0c3a2071</PREMIS:eventIdentifierValue>
+                </PREMIS:eventIdentifier>
+                <PREMIS:eventType>ingestion</PREMIS:eventType>
+                <PREMIS:eventDateTime>2021-01-04T18:31:24Z</PREMIS:eventDateTime>
+                <PREMIS:eventDetail>Ingestion of object package into repository</PREMIS:eventDetail>
+                <PREMIS:linkingAgentIdentifier>
+                  <PREMIS:linkingAgentIdentifierType>HathiTrust Institution ID</PREMIS:linkingAgentIdentifierType>
+                  <PREMIS:linkingAgentIdentifierValue>umich</PREMIS:linkingAgentIdentifierValue>
+                  <PREMIS:linkingAgentRole>Executor</PREMIS:linkingAgentRole>
+                </PREMIS:linkingAgentIdentifier>
+                <PREMIS:linkingAgentIdentifier>
+                  <PREMIS:linkingAgentIdentifierType>tool</PREMIS:linkingAgentIdentifierType>
+                  <PREMIS:linkingAgentIdentifierValue>feedd.pl v1.7.10</PREMIS:linkingAgentIdentifierValue>
+                  <PREMIS:linkingAgentRole>software</PREMIS:linkingAgentRole>
+                </PREMIS:linkingAgentIdentifier>
+              </PREMIS:event>
+            </PREMIS:premis>
+          </METS:xmlData>
+        </METS:mdWrap>
+      </METS:md>
+    </METS:mdGrp>
   </METS:mdSec>
   <METS:fileSec>
     <METS:fileGrp ID="FG1" USE="zip archive">
@@ -84,39 +84,39 @@
     </METS:fileGrp>
     <METS:fileGrp USE="source METS" ID="FG2">
       <METS:file CHECKSUMTYPE="MD5" ID="METS00000001" MIMETYPE="text/xml" CREATED="2021-01-04T18:00:14Z" SEQ="00000001" SIZE="86962" CHECKSUM="5d75ef4478f9d8c3ee1becc417d35730">
-        <METS:FLocat  href="082924743.zip/CHI_082924743.xml"/>
+        <METS:FLocat href="082924743.zip/CHI_082924743.xml"/>
       </METS:file>
     </METS:fileGrp>
     <METS:fileGrp ID="FG3" USE="image">
       <METS:file CHECKSUMTYPE="MD5" ID="IMG00000001" MIMETYPE="image/jp2" SEQ="00000001" CREATED="2021-01-04T18:00:14Z" SIZE="231600" CHECKSUM="3a9ad4927be3501571501e48333711ca">
-        <METS:FLocat  href="082924743.zip/00000001.jp2"/>
+        <METS:FLocat href="082924743.zip/00000001.jp2"/>
       </METS:file>
       <METS:file MIMETYPE="image/tiff" CHECKSUM="ec9eb597cd89f9c1f51b0133dd1d74b7" SIZE="8382" SEQ="00000002" CREATED="2021-01-04T18:00:14Z" CHECKSUMTYPE="MD5" ID="IMG00000002">
-        <METS:FLocat  href="082924743.zip/00000002.tif"/>
+        <METS:FLocat href="082924743.zip/00000002.tif"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="IMG00000003" MIMETYPE="image/tiff" CREATED="2021-01-04T18:00:14Z" SEQ="00000003" CHECKSUM="33931648cd591caddf282e284308c180" SIZE="2556">
         <METS:FLocat href="082924743.zip/00000003.tif"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="IMG00000004" MIMETYPE="image/tiff" CREATED="2021-01-04T18:00:14Z" SEQ="00000004" SIZE="2806" CHECKSUM="084ba0febfda93b0d310cbbc5a91cd7c">
-        <METS:FLocat  href="082924743.zip/00000004.tif"/>
+        <METS:FLocat href="082924743.zip/00000004.tif"/>
       </METS:file>
       <METS:file SEQ="00000005" CREATED="2021-01-04T18:00:14Z" CHECKSUM="b1a7ea86042a8d66a882262e67314728" SIZE="25092" MIMETYPE="image/tiff" ID="IMG00000005" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000005.tif"/>
+        <METS:FLocat href="082924743.zip/00000005.tif"/>
       </METS:file>
       <METS:file SIZE="101004" CHECKSUM="043d83064bbb02fec3913b8620fc4fe9" CREATED="2021-01-04T18:00:14Z" SEQ="00000006" MIMETYPE="image/tiff" ID="IMG00000006" CHECKSUMTYPE="MD5">
         <METS:FLocat href="082924743.zip/00000006.tif"/>
       </METS:file>
       <METS:file ID="IMG00000007" CHECKSUMTYPE="MD5" CREATED="2021-01-04T18:00:14Z" SEQ="00000007" CHECKSUM="f488fd3dd230dcb3cd3e839e69fe185f" SIZE="109676" MIMETYPE="image/tiff">
-        <METS:FLocat  href="082924743.zip/00000007.tif"/>
+        <METS:FLocat href="082924743.zip/00000007.tif"/>
       </METS:file>
       <METS:file ID="IMG00000008" CHECKSUMTYPE="MD5" CREATED="2021-01-04T18:00:14Z" SEQ="00000008" CHECKSUM="56345d34649011a1f60c3b218ae1bd30" SIZE="16114" MIMETYPE="image/tiff">
         <METS:FLocat href="082924743.zip/00000008.tif"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="IMG00000009" MIMETYPE="image/tiff" CREATED="2021-01-04T18:00:14Z" SEQ="00000009" SIZE="2270" CHECKSUM="428b65ec2daa198308469d346c29c71b">
-        <METS:FLocat  href="082924743.zip/00000009.tif"/>
+        <METS:FLocat href="082924743.zip/00000009.tif"/>
       </METS:file>
       <METS:file ID="IMG00000010" CHECKSUMTYPE="MD5" SIZE="2286" CHECKSUM="5488e6671f119f937c31b81f7a668d2f" CREATED="2021-01-04T18:00:14Z" SEQ="00000010" MIMETYPE="image/tiff">
-        <METS:FLocat  href="082924743.zip/00000010.tif"/>
+        <METS:FLocat href="082924743.zip/00000010.tif"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="IMG00000011" MIMETYPE="image/jp2" CREATED="2021-01-04T18:00:14Z" SEQ="00000011" SIZE="13926" CHECKSUM="d48085ccbd784070210ec71447411de1">
         <METS:FLocat href="082924743.zip/00000011.jp2"/>
@@ -130,7 +130,7 @@
         <METS:FLocat href="082924743.zip/00000001.html"/>
       </METS:file>
       <METS:file ID="HTML00000002" CHECKSUMTYPE="MD5" CHECKSUM="44b580cc17e73e6983573dcbcbdc51ef" SIZE="7086" SEQ="00000002" CREATED="2021-01-04T18:00:14Z" MIMETYPE="text/html">
-        <METS:FLocat  href="082924743.zip/00000002.html"/>
+        <METS:FLocat href="082924743.zip/00000002.html"/>
       </METS:file>
       <METS:file ID="HTML00000003" CHECKSUMTYPE="MD5" CHECKSUM="a279e32a25dd70580926cfb2da2aafdf" SIZE="1258" CREATED="2021-01-04T18:00:14Z" SEQ="00000003" MIMETYPE="text/html">
         <METS:FLocat href="082924743.zip/00000003.html"/>
@@ -139,25 +139,25 @@
         <METS:FLocat href="082924743.zip/00000004.html"/>
       </METS:file>
       <METS:file CREATED="2021-01-04T18:00:14Z" SEQ="00000005" CHECKSUM="fd1a2196fb99992750ef5cc9c8738624" SIZE="8934" MIMETYPE="text/html" ID="HTML00000005" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000005.html"/>
+        <METS:FLocat href="082924743.zip/00000005.html"/>
       </METS:file>
       <METS:file CREATED="2021-01-04T18:00:14Z" SEQ="00000006" SIZE="55348" CHECKSUM="bc22dcb7fc66300d2a82f0465a37b7ab" MIMETYPE="text/html" ID="HTML00000006" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000006.html"/>
+        <METS:FLocat href="082924743.zip/00000006.html"/>
       </METS:file>
       <METS:file CREATED="2021-01-04T18:00:14Z" SEQ="00000007" CHECKSUM="aa43e47944501416c7598a2a17dcc87a" SIZE="62209" MIMETYPE="text/html" ID="HTML00000007" CHECKSUMTYPE="MD5">
         <METS:FLocat href="082924743.zip/00000007.html"/>
       </METS:file>
       <METS:file ID="HTML00000008" CHECKSUMTYPE="MD5" SEQ="00000008" CREATED="2021-01-04T18:00:14Z" CHECKSUM="1db11088eaa7ef625a8d4eacc1fc28fd" SIZE="7596" MIMETYPE="text/html">
-        <METS:FLocat  href="082924743.zip/00000008.html"/>
+        <METS:FLocat href="082924743.zip/00000008.html"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="HTML00000009" MIMETYPE="text/html" CHECKSUM="ebe80e845d11b2e3ac8fcdc8ea1aee34" SIZE="902" SEQ="00000009" CREATED="2021-01-04T18:00:14Z">
-        <METS:FLocat  href="082924743.zip/00000009.html"/>
+        <METS:FLocat href="082924743.zip/00000009.html"/>
       </METS:file>
       <METS:file ID="HTML00000010" CHECKSUMTYPE="MD5" SEQ="00000010" CREATED="2021-01-04T18:00:14Z" CHECKSUM="ca670c44071448e2c6c646c767af7cb1" SIZE="903" MIMETYPE="text/html">
         <METS:FLocat href="082924743.zip/00000010.html"/>
       </METS:file>
       <METS:file ID="HTML00000011" CHECKSUMTYPE="MD5" CHECKSUM="4fff0d5574f0e878452dc41c9a74a224" SIZE="1663" SEQ="00000011" CREATED="2021-01-04T18:00:14Z" MIMETYPE="text/html">
-        <METS:FLocat  href="082924743.zip/00000011.html"/>
+        <METS:FLocat href="082924743.zip/00000011.html"/>
       </METS:file>
       <METS:file ID="HTML00000012" CHECKSUMTYPE="MD5" SIZE="3459" CHECKSUM="61479e170baee2ce88cc412e576ccf9c" CREATED="2021-01-04T18:00:14Z" SEQ="00000012" MIMETYPE="text/html">
         <METS:FLocat href="082924743.zip/00000012.html"/>
@@ -165,13 +165,13 @@
     </METS:fileGrp>
     <METS:fileGrp ID="FG5" USE="ocr">
       <METS:file SIZE="34" CHECKSUM="2e491a054046bad99db6df2b68b3a4e5" SEQ="00000001" CREATED="2021-01-04T18:00:14Z" MIMETYPE="text/plain" ID="TXT00000001" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000001.txt"/>
+        <METS:FLocat href="082924743.zip/00000001.txt"/>
       </METS:file>
       <METS:file SIZE="164" CHECKSUM="be6eedd796ef5020e8414b4ffc2f5ae9" CREATED="2021-01-04T18:00:14Z" SEQ="00000002" MIMETYPE="text/plain" ID="TXT00000002" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000002.txt"/>
+        <METS:FLocat href="082924743.zip/00000002.txt"/>
       </METS:file>
       <METS:file SIZE="2" CHECKSUM="b026324c6904b2a9cb4b88d6d61c81d1" SEQ="00000003" CREATED="2021-01-04T18:00:14Z" MIMETYPE="text/plain" ID="TXT00000003" CHECKSUMTYPE="MD5">
-        <METS:FLocat  href="082924743.zip/00000003.txt"/>
+        <METS:FLocat href="082924743.zip/00000003.txt"/>
       </METS:file>
       <METS:file CHECKSUM="d41d8cd98f00b204e9800998ecf8427e" SIZE="0" CREATED="2021-01-04T18:00:14Z" SEQ="00000004" MIMETYPE="text/plain" ID="TXT00000004" CHECKSUMTYPE="MD5">
         <METS:FLocat href="082924743.zip/00000004.txt"/>
@@ -180,7 +180,7 @@
         <METS:FLocat href="082924743.zip/00000005.txt"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="TXT00000006" MIMETYPE="text/plain" SIZE="2955" CHECKSUM="afd49e563af033144ee646c9874e07ab" CREATED="2021-01-04T18:00:14Z" SEQ="00000006">
-        <METS:FLocat  href="082924743.zip/00000006.txt"/>
+        <METS:FLocat href="082924743.zip/00000006.txt"/>
       </METS:file>
       <METS:file ID="TXT00000007" CHECKSUMTYPE="MD5" CREATED="2021-01-04T18:00:14Z" SEQ="00000007" CHECKSUM="96aa5fa7ef2fa45cb63e36275e78c066" SIZE="3421" MIMETYPE="text/plain">
         <METS:FLocat href="082924743.zip/00000007.txt"/>
@@ -189,16 +189,16 @@
         <METS:FLocat href="082924743.zip/00000008.txt"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="TXT00000009" MIMETYPE="text/plain" CREATED="2021-01-04T18:00:14Z" SEQ="00000009" SIZE="0" CHECKSUM="d41d8cd98f00b204e9800998ecf8427e">
-        <METS:FLocat  href="082924743.zip/00000009.txt"/>
+        <METS:FLocat href="082924743.zip/00000009.txt"/>
       </METS:file>
       <METS:file MIMETYPE="text/plain" SIZE="0" CHECKSUM="d41d8cd98f00b204e9800998ecf8427e" CREATED="2021-01-04T18:00:14Z" SEQ="00000010" CHECKSUMTYPE="MD5" ID="TXT00000010">
-        <METS:FLocat  href="082924743.zip/00000010.txt"/>
+        <METS:FLocat href="082924743.zip/00000010.txt"/>
       </METS:file>
       <METS:file MIMETYPE="text/plain" SEQ="00000011" CREATED="2021-01-04T18:00:14Z" SIZE="16" CHECKSUM="0e32b087fcdcfb66187d70acd2d5c797" CHECKSUMTYPE="MD5" ID="TXT00000011">
-        <METS:FLocat  href="082924743.zip/00000011.txt"/>
+        <METS:FLocat href="082924743.zip/00000011.txt"/>
       </METS:file>
       <METS:file CHECKSUMTYPE="MD5" ID="TXT00000012" MIMETYPE="text/plain" SIZE="104" CHECKSUM="4dead0a6a71e98ed4e19468ee4ccad14" CREATED="2021-01-04T18:00:14Z" SEQ="00000012">
-        <METS:FLocat  href="082924743.zip/00000012.txt"/>
+        <METS:FLocat href="082924743.zip/00000012.txt"/>
       </METS:file>
     </METS:fileGrp>
   </METS:fileSec>

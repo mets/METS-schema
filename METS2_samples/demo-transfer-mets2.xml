@@ -2,7 +2,7 @@
 <mets:mets xmlns:mets="http://www.loc.gov/METS/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.loc.gov/METS/v2 ../v2/mets.xsd">
   <mets:metsHdr CREATEDATE="2019-04-14T10:27:23"/>
   <mets:mdSec>
-    <mets:mdGroup>
+    <mets:mdGrp USE="DESCRIPTIVE">
       <mets:md USE="DESCRIPTIVE" ID="dmdSec_1">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -136,8 +136,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_1">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_1" USE="ADMINISTRATIVE">
       <mets:md USE="TECHNICAL" ID="techMD_1">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -326,8 +326,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_2">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_2">
       <mets:md USE="TECHNICAL" ID="techMD_2">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -929,8 +929,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_3">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_3">
       <mets:md USE="TECHNICAL" ID="techMD_3">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -1119,8 +1119,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_4">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_4">
       <mets:md USE="TECHNICAL" ID="techMD_4">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -1794,8 +1794,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_5">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_5">
       <mets:md USE="TECHNICAL" ID="techMD_5">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -1984,8 +1984,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_6">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_6">
       <mets:md USE="TECHNICAL" ID="techMD_6">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -2543,8 +2543,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_7">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_7">
       <mets:md USE="TECHNICAL" ID="techMD_7">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -2861,8 +2861,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_8">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_8">
       <mets:md USE="TECHNICAL" ID="techMD_8">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -3139,8 +3139,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_9">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_9">
       <mets:md USE="TECHNICAL" ID="techMD_9">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -3417,8 +3417,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_10">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_10">
       <mets:md USE="TECHNICAL" ID="techMD_10">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -3695,8 +3695,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_11">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_11">
       <mets:md USE="TECHNICAL" ID="techMD_11">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -3968,8 +3968,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_12">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_12">
       <mets:md USE="TECHNICAL" ID="techMD_12">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -4233,8 +4233,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_13">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_13">
       <mets:md USE="TECHNICAL" ID="techMD_13">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -4498,8 +4498,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_14">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_14">
       <mets:md USE="TECHNICAL" ID="techMD_14">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -4688,8 +4688,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_15">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_15">
       <mets:md USE="TECHNICAL" ID="techMD_15">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -5199,8 +5199,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_16">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_16">
       <mets:md USE="TECHNICAL" ID="techMD_16">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -5604,8 +5604,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_17">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_17">
       <mets:md USE="TECHNICAL" ID="techMD_17">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -5986,8 +5986,8 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
-    <mets:mdGroup ID="amdSec_18">
+    </mets:mdGrp>
+    <mets:mdGrp ID="amdSec_18">
       <mets:md USE="TECHNICAL" ID="techMD_18">
         <mets:mdWrap MDTYPE="PREMIS:OBJECT">
           <mets:xmlData>
@@ -6318,7 +6318,7 @@
           </mets:xmlData>
         </mets:mdWrap>
       </mets:md>
-    </mets:mdGroup>
+    </mets:mdGrp>
   </mets:mdSec>
   <mets:fileSec>
     <mets:fileGrp USE="original">
