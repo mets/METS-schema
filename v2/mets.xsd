@@ -710,7 +710,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 			<xsd:element name="mptr" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
-						Like the &lt;fptr&gt; element, the METS pointer element &lt;mptr&gt; represents digital content that manifests its parent &lt;div&gt; element. Unlike the &lt;fptr&gt;, which either directly or indirectly points to content represented in the &lt;fileSec&gt; of the parent METS document, the &lt;mptr&gt; element points to content represented by an external METS document. Thus, this element allows multiple discrete and separate METS documents to be organized at a higher level by a separate METS document. For example, METS documents representing the individual issues in the series of a journal could be grouped together and organized by a higher level METS document that represents the entire journal series. Each of the &lt;div&gt; elements in the &lt;structMap&gt; of the METS document representing the journal series would point to a METS document representing an issue.  It would do so via a child &lt;mptr&gt; element. Thus the &lt;mptr&gt; element gives METS users considerable flexibility in managing the depth of the &lt;structMap&gt; hierarchy of individual METS documents. The &lt;mptr&gt; element points to an external METS document by means of an href attribute and associated XLink attributes. 								
+						Like the &lt;fptr&gt; element, the METS pointer element &lt;mptr&gt; represents digital content that manifests its parent &lt;div&gt; element. Unlike the &lt;fptr&gt;, which either directly or indirectly points to content represented in the &lt;fileSec&gt; of the parent METS document, the &lt;mptr&gt; element points to content represented by an external METS document. Thus, this element allows multiple discrete and separate METS documents to be organized at a higher level by a separate METS document. For example, METS documents representing the individual issues in the series of a journal could be grouped together and organized by a higher level METS document that represents the entire journal series. Each of the &lt;div&gt; elements in the &lt;structMap&gt; of the METS document representing the journal series would point to a METS document representing an issue.  It would do so via a child &lt;mptr&gt; element. Thus the &lt;mptr&gt; element gives METS users considerable flexibility in managing the depth of the &lt;structMap&gt; hierarchy of individual METS documents. The &lt;mptr&gt; element points to an external METS document.
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
@@ -720,13 +720,13 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="href" type="xsd:anyURI" />
-				    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
-			            <xsd:annotation>
-			            	<xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
-				            </xsd:documentation>
-			            </xsd:annotation>
-               	    </xsd:attribute>
+          <xsd:attributeGroup ref="LOCATION"/>
+          <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="fptr" minOccurs="0" maxOccurs="unbounded">
@@ -962,7 +962,7 @@ TCF.
 			<xsd:element name="mdRef" minOccurs="0">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en">
-						The metadata reference element &lt;mdRef&gt; element is a generic element used throughout the METS schema to provide a pointer to metadata which resides outside the METS document.  NB: &lt;mdRef&gt; is an empty element.  The location of the metadata must be recorded in the href attribute, supplemented by the XPTR attribute as needed.
+						The metadata reference element &lt;mdRef&gt; element is a generic element used throughout the METS schema to provide a pointer to metadata which resides outside the METS document.  NB: &lt;mdRef&gt; is an empty element.
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
@@ -972,7 +972,7 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="href" type="xsd:anyURI" />
+          <xsd:attributeGroup ref="LOCATION"/>
 					<xsd:attributeGroup ref="METADATA"/>
 					<xsd:attributeGroup ref="FILECORE"/>
 					<xsd:attribute name="LABEL" type="xsd:string" use="optional">
@@ -1079,7 +1079,7 @@ TCF.
 			<xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
 				<xsd:annotation>
 					<xsd:documentation xml:lang="en"> 
-						The file location element &lt;FLocat&gt; provides a pointer to the location of a content file. It uses the XLink reference syntax to provide linking information indicating the actual location of the content file, along with other attributes specifying additional linking information. NOTE: &lt;FLocat&gt; is an empty element. The location of the resource pointed to MUST be stored in the href attribute.
+						The file location element &lt;FLocat&gt; provides a pointer to the location of a content file. NOTE: &lt;FLocat&gt; is an empty element.
 					</xsd:documentation>
 				</xsd:annotation>
 				<xsd:complexType>
@@ -1095,7 +1095,7 @@ TCF.
 							</xsd:documentation>
 						</xsd:annotation>
 					</xsd:attribute>
-					<xsd:attribute name="href" type="xsd:anyURI" />
+          <xsd:attributeGroup ref="LOCATION" />
 				</xsd:complexType>
 			</xsd:element>
 			<xsd:element name="FContent" minOccurs="0">
@@ -1341,6 +1341,29 @@ TCF.
 			</xsd:annotation>
 		</xsd:attribute>
 	</xsd:attributeGroup>
+  <xsd:attributeGroup name="LOCATION">
+    <xsd:attribute name="href" type="xsd:anyURI" use="optional">
+			<xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          href (string/O): A URI that identifies the linked resource. If the resource does not have a URI, use OTHERLOCTYPE/LOCATION.
+				</xsd:documentation>
+			</xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LOCTYPE" type="xsd:string" use="optional">
+			<xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          LOCTYPE (string/O): Specifies the locator type for resources that do not have a URI. This attribute should be used with the LOCATION attribute.
+        </xsd:documentation>
+			</xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LOCATION" type="xsd:string" use="optional">
+			<xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          LOCATION (string/O): Specifies the location for resources that do not have a URI. This attribute should be used with the LOCTYPE attribute. The href attribute should be used when the resource has a URI.
+        </xsd:documentation>
+			</xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
 	<xsd:attributeGroup name="FILECORE">
 		<xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
 			<xsd:annotation>
