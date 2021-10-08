@@ -1342,24 +1342,18 @@ TCF.
 		</xsd:attribute>
 	</xsd:attributeGroup>
   <xsd:attributeGroup name="LOCATION">
-    <xsd:attribute name="href" type="xsd:anyURI" use="optional">
+    <xsd:attribute name="LOCREF" type="xsd:string" use="required">
 			<xsd:annotation>
         <xsd:documentation xml:lang="en">
-          href (string/O): A URI that identifies the linked resource. If the resource does not have a URI, use OTHERLOCTYPE/LOCATION.
+          LOCREF (string/R): Specifies the location for resources. This may be a directly-resolvable URL (preferred for interoperability), or it may require the use of an external resolver or be system-specific. The LOCTYPE attribute identifies the type of location.
 				</xsd:documentation>
 			</xsd:annotation>
     </xsd:attribute>
-    <xsd:attribute name="LOCTYPE" type="xsd:string" use="optional">
+    <xsd:attribute name="LOCTYPE" type="xsd:string" use="required">
 			<xsd:annotation>
         <xsd:documentation xml:lang="en">
-          LOCTYPE (string/O): Specifies the locator type for resources that do not have a URI. This attribute should be used with the LOCATION attribute.
-        </xsd:documentation>
-			</xsd:annotation>
-    </xsd:attribute>
-    <xsd:attribute name="LOCATION" type="xsd:string" use="optional">
-			<xsd:annotation>
-        <xsd:documentation xml:lang="en">
-          LOCATION (string/O): Specifies the location for resources that do not have a URI. This attribute should be used with the LOCTYPE attribute. The href attribute should be used when the resource has a URI.
+          LOCTYPE (string/R): Specifies the locator type used in the LOCREF attribute.
+            TODO: link to suggested values
         </xsd:documentation>
 			</xsd:annotation>
     </xsd:attribute>

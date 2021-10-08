@@ -21,15 +21,15 @@ Changes required were mostly mechanical in both cases:
 - wrap all mdGroups in mdSec
 - change dmdSec to md & add USE
 - change techMD, sourceMD, rightsMD, digiprovMD to md & add USE
-- change xlink:href to href
-- remove FLocat LOCTYPE/OTHERLOCTYPE; for case of OTHERLOCTYPE="SYSTEM" leave href as-is and assume hrefs relative to some implied base
+- change xlink:href to LOCREF
+- collapase LOCTYPE/OTHERLOCTYPE into LOCTYPE
 - change ADMID, DMDID to MDID
 - wrap structMap in structSec
 
 For the HathiTrust METS, I cleaned up a couple of strangenesses requiring more
 internal knowledge of what was happening; specifically, I supplied a direct URL
 to the referenced MARC metadata and changed the references to files inside the
-ZIP to include the zip file as part of their relative URLs.
+ZIP to include the zip file as part of their relative paths.
 
 The zip case is perhaps interesting in that it might seem like a good case for
 nested files, but that would lose the ability to group files by use into

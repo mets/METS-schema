@@ -136,15 +136,15 @@
         <fileGrp ID="sword-mets-fgrp-1" USE="CONTENT">
             <file GROUPID="sword-mets-fgid-0" ID="sword-mets-file-1"
                   MIMETYPE="application/pdf">
-                <FLocat href="pdf1.pdf"/>
+                <FLocat LOCTYPE="URL" LOCREF="pdf1.pdf"/>
             </file>
             <file GROUPID="sword-mets-fgid-1" ID="sword-mets-file-2"
                   MIMETYPE="application/pdf">
-                <FLocat href="pdf2.pdf"/>
+                <FLocat LOCTYPE="URL" LOCREF="pdf2.pdf"/>
             </file>
             <file GROUPID="sword-mets-fgid-2" ID="sword-mets-file-3"
                   MIMETYPE="application/pdf">
-                <FLocat href="pdf3.pdf"/>
+                <FLocat LOCTYPE="URL" LOCREF="pdf3.pdf"/>
             </file>
         </fileGrp>
     </fileSec>

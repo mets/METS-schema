@@ -6323,66 +6323,66 @@
   <mets:fileSec>
     <mets:fileGrp USE="original">
       <mets:file GROUPID="Group-9baa0559-5524-4d3b-acae-bb32c4f3a12d" ID="file-9baa0559-5524-4d3b-acae-bb32c4f3a12d" MDID="amdSec_2">
-        <mets:FLocat href="objects/View_from_lookout_over_Queenstown_towards_the_Remarkables_in_spring.jpg" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/View_from_lookout_over_Queenstown_towards_the_Remarkables_in_spring.jpg" />
       </mets:file>
       <mets:file GROUPID="Group-292cef8b-ff7b-4e88-af50-14bee1f5d51f" ID="file-292cef8b-ff7b-4e88-af50-14bee1f5d51f" MDID="amdSec_4">
-        <mets:FLocat href="objects/beihai.tif" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/beihai.tif" />
       </mets:file>
       <mets:file GROUPID="Group-3f331f93-c46d-4503-9b85-7bd132772cf9" ID="file-3f331f93-c46d-4503-9b85-7bd132772cf9" MDID="amdSec_6">
-        <mets:FLocat href="objects/bird.mp3" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/bird.mp3" />
       </mets:file>
       <mets:file GROUPID="Group-add4ea6c-2e07-4768-a879-6d4ce5708729" ID="file-add4ea6c-2e07-4768-a879-6d4ce5708729" MDID="amdSec_15">
-        <mets:FLocat href="objects/ocr-image.png" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/ocr-image.png" />
       </mets:file>
       <mets:file GROUPID="Group-ba2465cb-9851-4f11-9bbd-3ab329cb6b99" ID="file-ba2465cb-9851-4f11-9bbd-3ab329cb6b99" MDID="amdSec_16">
-        <mets:FLocat href="objects/piiTestDataCreditCardNumbers.txt" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/piiTestDataCreditCardNumbers.txt" />
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="submissionDocumentation">
       <mets:file GROUPID="Group-98ec852b-4707-4925-83f6-183a4da4b5d0" ID="file-98ec852b-4707-4925-83f6-183a4da4b5d0" MDID="amdSec_17">
-        <mets:FLocat href="objects/submissionDocumentation/transfer-demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/Agreement-Gift-MBRS-project.pdf" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/submissionDocumentation/transfer-demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/Agreement-Gift-MBRS-project.pdf" />
       </mets:file>
       <mets:file GROUPID="Group-3387f8b7-fe95-4693-9911-a4e344660177" ID="file-3387f8b7-fe95-4693-9911-a4e344660177" MDID="amdSec_18">
-        <mets:FLocat href="objects/submissionDocumentation/transfer-demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/METS.xml" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/submissionDocumentation/transfer-demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/METS.xml" />
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="preservation">
       <mets:file GROUPID="Group-9baa0559-5524-4d3b-acae-bb32c4f3a12d" ID="file-1679439c-6a13-4681-9cdd-9d967598a1bb" MDID="amdSec_1">
-        <mets:FLocat href="objects/View_from_lookout_over_Queenstown_towards_the_Remarkables_in_spring-1679439c-6a13-4681-9cdd-9d967598a1bb.tif" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/View_from_lookout_over_Queenstown_towards_the_Remarkables_in_spring-1679439c-6a13-4681-9cdd-9d967598a1bb.tif" />
       </mets:file>
       <mets:file GROUPID="Group-292cef8b-ff7b-4e88-af50-14bee1f5d51f" ID="file-ff3e10d1-ed1c-4aa5-8509-48e930767230" MDID="amdSec_3">
-        <mets:FLocat href="objects/beihai-ff3e10d1-ed1c-4aa5-8509-48e930767230.tif" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/beihai-ff3e10d1-ed1c-4aa5-8509-48e930767230.tif" />
       </mets:file>
       <mets:file GROUPID="Group-3f331f93-c46d-4503-9b85-7bd132772cf9" ID="file-8b710866-1043-4bcc-a4d7-cf87baf5e962" MDID="amdSec_5">
-        <mets:FLocat href="objects/bird-8b710866-1043-4bcc-a4d7-cf87baf5e962.wav" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/bird-8b710866-1043-4bcc-a4d7-cf87baf5e962.wav" />
       </mets:file>
       <mets:file GROUPID="Group-add4ea6c-2e07-4768-a879-6d4ce5708729" ID="file-a39940ff-4dda-4680-a88f-40bb1fb228c5" MDID="amdSec_14">
-        <mets:FLocat href="objects/ocr-image-a39940ff-4dda-4680-a88f-40bb1fb228c5.tif" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/ocr-image-a39940ff-4dda-4680-a88f-40bb1fb228c5.tif" />
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="text/ocr">
       <mets:file GROUPID="Group-add4ea6c-2e07-4768-a879-6d4ce5708729" ID="file-7092fe7a-f672-4f2b-8dd5-f2faabbda574" MDID="amdSec_7">
-        <mets:FLocat href="objects/metadata/OCRfiles/ocr-image-add4ea6c-2e07-4768-a879-6d4ce5708729.txt" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/OCRfiles/ocr-image-add4ea6c-2e07-4768-a879-6d4ce5708729.txt" />
       </mets:file>
     </mets:fileGrp>
     <mets:fileGrp USE="metadata">
       <mets:file GROUPID="Group-0d755c71-4b0b-4050-b40d-730227508f87" ID="file-0d755c71-4b0b-4050-b40d-730227508f87" MDID="amdSec_8">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.md5" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.md5" />
       </mets:file>
       <mets:file GROUPID="Group-0e0ec890-35c9-458b-8c95-71d85a68c813" ID="file-0e0ec890-35c9-458b-8c95-71d85a68c813" MDID="amdSec_9">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.sha1" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.sha1" />
       </mets:file>
       <mets:file GROUPID="Group-602d7d33-8150-4489-bb4f-80ae55f079fc" ID="file-602d7d33-8150-4489-bb4f-80ae55f079fc" MDID="amdSec_10">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.sha256" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/checksum.sha256" />
       </mets:file>
       <mets:file GROUPID="Group-112db71e-7478-4919-bda7-081353d3c016" ID="file-112db71e-7478-4919-bda7-081353d3c016" MDID="amdSec_11">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/directory_tree.txt" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/directory_tree.txt" />
       </mets:file>
       <mets:file GROUPID="Group-c44ef735-e5ab-4900-9d07-0302ed591a01" ID="file-c44ef735-e5ab-4900-9d07-0302ed591a01" MDID="amdSec_12">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/metadata.csv" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/metadata.csv" />
       </mets:file>
       <mets:file GROUPID="Group-3c40736c-68eb-472c-9a68-fe0325425e42" ID="file-3c40736c-68eb-472c-9a68-fe0325425e42" MDID="amdSec_13">
-        <mets:FLocat href="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/rights.csv" />
+        <mets:FLocat LOCTYPE="SYSTEM" LOCREF="objects/metadata/transfers/demo-transfer-e31af7d2-1378-482f-9b70-042967de52e9/rights.csv" />
       </mets:file>
     </mets:fileGrp>
   </mets:fileSec>
