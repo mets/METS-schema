@@ -1,0 +1,50 @@
+<mets OBJID="01234567-0123-4567-0123-456789abcdef"
+      PROFILE="my-profile"
+      xmlns="http://www.loc.gov/METS/"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+  <metsHdr CREATEDATE="2022-07-06T14:05:00">
+     <agent ROLE="CREATOR">
+        <name>METS Editorial Board</name>
+     </agent>
+  </metsHdr>
+  <dmdSec ID="md-001" CREATED="2022-07-06T14:00:00">
+     <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+            MDTYPE="MODS" MDTYPEVERSION="3.7" LOCTYPE="URL"
+            xlink:type="simple" xlink:href="http://example.org/mods1.xml" />
+  </dmdSec>
+  <amdSec>
+     <techMD ID="md-002" CREATED="2022-07-06T14:01:00">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="f123456789abcdef0123456789abcde0"
+               MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0" LOCTYPE="URL"
+               xlink:type="simple" xlink:href="http://example.org/object1.xml" />
+     </techMD>
+     <techMD ID="md-003" CREATED="2022-07-06T14:02:00">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="e123456789abcdef0123456789abcde1"
+               MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0" LOCTYPE="URL"
+               xlink:type="simple" xlink:href="http://example.org/object2.xml" />
+     </techMD>
+     <digiprovMD ID="md-004" CREATED="2022-07-06T14:03:00">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="d123456789abcdef0123456789abcde2"
+               MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0" LOCTYPE="URL"
+               xlink:type="simple" xlink:href="http://example.org/event1.xml" />
+     </digiprovMD>
+  </amdSec>
+  <fileSec>
+     <fileGrp>
+        <file ID="file-001" ADMID="md-002">
+           <FLocat LOCTYPE="URL" xlink:type="simple"
+                   xlink:href="http://example.org/myfile1.pdf" />
+        </file>
+        <file ID="file-002" ADMID="md-003">
+           <FLocat LOCTYPE="URL" xlink:type="simple"
+                   xlink:href="http://example.org/myfile2.pdf" />
+        </file>
+     </fileGrp>
+  </fileSec>
+  <structMap>
+     <div DMDID="md-001" ADMID="md-004">
+        <fptr FILEID="file-001" />
+        <fptr FILEID="file-002" />
+     </div>
+  </structMap>
+</mets>
