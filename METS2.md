@@ -8,23 +8,24 @@ The METS Editorial Board is working on version 2 of the Metadata Encoding & Tran
 
 ### Motivation
 
-METS 1 has been largely stable for many years. No new elements have been added to the schema since 2010; changes since then have primarily been to allow new values for specific attributes and to allow arbitrary attributes to appear on a variety of elements (via `xsd:anyAttribute`)
+METS 1 has been largely stable for many years. No new elements have been added to the schema since 2010; changes since then have primarily been to allow new values for specific attributes and to allow arbitrary attributes to appear on a variety of elements (via `xsd:anyAttribute`). The most recent update to the METS XML schema was version 1.12.1 in October 2019. The only change in this update was to reformat the version history comments in the schema as XML Schema documentation elements so that automated schema documentation tools would display that information.
 
-Around 2011, the METS Editorial Board started exploring potential future directions for METS, areas where METS has been successful, and areas where METS has not been as successful[^reimagining-mets]. This work did not result in a new version of METS at that time. However, in recent years, the METS Editorial Board has been made aware of a variety of issues and incompatibilities related to the XLink schema used in METS 1[^xlink-issue]. After discussion, it became clear that the best solution to the XLink issues was to move forward with the design of a new major revision of METS that did not need to maintain strict backwards compatibility. This also enabled consideration of a more general overhaul of the METS schema, building on the earlier exploration in [^reimagining-mets].
+Around 2011, the METS Editorial Board started exploring potential future directions for METS, areas where METS has been successful, and areas where METS has not been as successful[^reimagining-mets]. This work did not result in a new version of METS at that time. However, in recent years, the METS Editorial Board has been made aware of a variety of issues and incompatibilities related to the XLink schema used in METS 1[^xlink-issue]. Although METS 1 continues to be in wide use, the METS Editorial Board has not received any recent bug reports or requested changes to METS 1 apart from the issues with XLink.  After discussion, it became clear that the best solution to the XLink issues was to move forward with the design of a new major revision of METS that did not need to maintain strict backwards compatibility. This also enabled consideration of a more general overhaul of the METS schema, building on the earlier exploration in [^reimagining-mets].
 
-The basic idea of this new version of METS (METS 2) is to make METS simpler and more flexible by removing rarely-used features and by improving consistency between its various parts. From the beginning of the design process, it was a goal to maintain the general concepts of METS, to continue to support the major use cases of METS, and to make it easy to adapt and migrate a large majority of existing uses of METS 1 to METS 2.
+Since METS 1 was released in 2001, there have been a variety of other standardization efforts related to describing digital objects, some of which overlap with the functionality of METS. Likewise, other data representations and encodings besides XML have gained popularity, such as linked data and JSON.  Many of these other standardization efforts cover data encodings outside XML. XML is still used widely, however, and we believe a representation of digital objects in XML continues to have value, and these other standards complement rather than replace METS. Some examples include the Portland Common Data Model (PCDM)[^pcdm] and the International Image Interoperability Framework (IIIF)[^iiif]. PCDM is focused on describing digital objects via RDF/linked data, while METS is an XML representation. IIIF is focused primarily on delivering and describing digitized images; METS is often used for this purpose as well, but is considerably more general. Other standards such as BagIt[^bagit]  and the Oxford Common Filesystem Layout (OCFL)[^ocfl] standardize manifests and directory layouts for digital objects; METS complements these standards by providing a way to describe structure and to link content with metadata. Overall, METS remains well suited to description of structure and ordering -- while possible with linked data, it can be significantly more cumbersome to represent and process -- as well as for storing XML metadata about digital objects along with the manifest.
+
+The design process for this new version of METS (METS 2) builds on and reinforces these strengths. The overall idea of METS 2 is to make METS simpler and more flexible by removing rarely-used features and by improving consistency between its various parts. From the beginning of the design process, it was a goal to maintain the general concepts of METS, to continue to support the major use cases of METS, and to make it easy to adapt and migrate a large majority of existing uses of METS 1 to METS 2.
 
 At the same time, the METS Editorial Board recognized that not all systems will migrate from METS 1 to METS 2. The METS 1 schema will continue to be available and will continue to be supported for the foreseeable future. In particular, implementations which rely on elements such as `<structLink>` and `<behaviorSec>` in METS 1 will continue to be supported with METS 1; if there are any bugs found, a new version of METS 1 could be released, but most effort from the Board will be on METS 2 going forwards.
 
-Usage of every element and attribute was checked against registered METS profiles. Known problems and inconsistencies of METS 1 were discussed, and possible solutions were considered in terms of their fit with the overall concepts of METS. The result is a kind of "METS light", improving consistency and ease of implementation without giving up flexibility or  versatility.
+Usage of every element and attribute was checked against registered METS profiles[^profiles]. Known problems and inconsistencies of METS 1 were discussed, and possible solutions were considered in terms of their fit with the overall concepts of METS. The result is a kind of "METS light", improving consistency and ease of implementation without giving up flexibility or  versatility.
+
+Once the METS 2 schema is finalized and published, the METS Editorial Board does not expect to consider further backwards-incompatible changes in the near future. The current work on METS 2 covers all potential changes that have been discussed to date.
 
 ### METS 1 status
 
-The most recent update to the METS XML schema was version 1.12.1 in October 2019. The only change in this update was to reformat the version history comments in the schema as XML Schema documentation elements so that automated schema documentation tools would display that information. Prior to that, version 1.12 in May 2018 made a change to allow any XML attributes on the `<note>` and `<agent>` elements, based on a user request. No new elements have been added to the schema since 2010. Although METS 1 continues to be in wide use, the METS Editorial Board has not received any recent bug reports or requested changes to METS 1, apart from the aforementioned issues with XLink. The METS Editorial Board has concluded that METS 1 is stable, and moved its focus to discussing the evolution of METS.
 
-METS 1 is used in many contexts. It regularly comes to the board's attention that new uses and local profiles are created for describing the transfer and storage of digital objects. In many of these use cases METS is used as the manifest file for the digital objects; the ability to add both descriptive and administrative metadata alongside the digital objects is highly appreciated. 
-
-For METS 1, METS profiles are an important feature that allows implementers to describe a specific way of using METS. The METS profiles have been key in aiding others in how to use METS and served as reusable examples of how to implement METS. At the same time, the board is aware of the fact that not all uses and profiles being created are registered. In many cases METS users do not feel that their use is stable enough to register a profile; instead they want to do more testing and development before submitting a profile. The board still wants to encourage creators to register their METS profiles so others can benefit from their work.
+ No new elements have been added to the schema since 2010. 
 
 ## Changes in METS 2
 
@@ -47,6 +48,14 @@ The details of each change and motivation behind each specific change are discus
 
 METS 2 is still in an early stage of development, but is now ready for discussion and feedback. The draft schema, generated documentation, and instructions for feedback are all available in GitHub at [https://github.com/mets/METS-schema](https://github.com/mets/METS-schema).
 
+### What Isn't Changing
+
+Although the overall file organization is somewhat different in METS 2, many elements in METS 1 remain largely unchanged in METS 2, and much of the functionality works in essentially the same way:
+
+* The `<metsHdr>` section is retained essentially as-is.
+* Metadata is still included with `<mdWrap>` or referenced externally with `<mdRef>`. Likewise, while metadata is now referenced internally using the `MDID` attribute, this works in the same way as the `ADMID` and `DMDID` attributes in METS 1.
+* The `<fileSec>` section is organized into groups and files in the same way as in METS 1.
+* `<structMap>` and its child elements function the same way in METS 2 as they do in METS 1.
 
 ### Remove XLINK as separate schema
 
@@ -54,13 +63,55 @@ When METS 1 was first drafted in 2001, the XLink 1.0 specification was in the pr
 
 The continued inclusion of XLink in METS, and more specifically the reference to an XLink XSD (https://www.loc.gov/standards/xlink/xlink.xsd) can also cause validation problems when using METS alongside other XML schemas that also reference XLink, but reference slightly different XLink XSD schemas published by W3C (http://www.w3.org/1999/xlink.xsd or https://www.w3.org/XML/2008/06/xlink.xsd).[^xlink-issue] This includes the current version of the Standard d'échange de données pour l'archivage (SEDA) schema from FranceArchives[^seda] as well as some versions of Open Geospatial Consortium (OGC) schemas.[^ogc]
 
-METS 2 follows this trend by removing extended XLinks entirely, dropping references to the rarely-used XLink attributes `xlink:role`, `xlink:arcrole`, `xlink:title`, `xlink:show`, and `xlink:actuate`, and instead using a locally-defined LOCREF attribute in favor of the `xlink:href` attribute. The draft METS 2 schema also allows `LOCREF` to be any string, not just a URI as with `xlink:href` in METS 1. In practice the `xlink:href` attribute was used even when the location was not actually a URI -- for example, locally-defined identifiers, or relative paths defined without reference to a base URI. Changing the attribute name and type removes this potential semantic confusion.
+METS 2 follows this trend by removing XLink entirely.  In METS 1, `<structLink>` and its descendent elements could include extended XLinks. This section is removed entirely in METS 2; see below.
+In METS 1, all other XLinks in `<FLocat>`, `<mptr>`, and `<mdRef>` are simple XLinks, which can include the XLink attributes `xlink:role`, `xlink:arcrole`, `xlink:title`, `xlink:show`, and `xlink:actuate`. These attributes are rarely used in METS 1 and not replaced in METS 2. The remaining XLink attribute (and the one primarily used) in METS 1 is `xlink:href`. Instead of the `xlink:href` attribute, METS 2 uses a `LOCREF` attribute defined in the schema itself. The draft METS 2 schema also allows `LOCREF` to be any string, not just a URI as with `xlink:href` in METS 1. In practice the `xlink:href` attribute was used even when the location was not actually a URI -- for example, locally-defined identifiers, or relative paths defined without reference to a base URI. Changing the attribute name and type removes this potential semantic confusion. The `LOCTYPE` attribute carries over from METS 1, and can be used to to indicate whether `LOCREF` is a URI or some other kind of location.
 
-<!-- TODO: Following comments from iPRES paper we should clarify the change
-  from xlink to local attributes here, explain clearly what functionality
-  around extended xlinks is removed, and include plenty of examples -->
+In METS 1, a typical usage might be:
 
-<!-- TODO: add METS 1 / METS 2 examples before/after for FLocat/mptr -->
+```xml
+<FLocat LOCTYPE="URL" xlink:href="https://library.example/files/0001.pdf" />
+```
+
+In METS 2, the `xlink:href` attribute simply changes to `LOCREF`:
+```xml
+<FLocat LOCTYPE="URL" LOCREF="https://library.example/files/0001.pdf" />
+```
+
+In METS 1, a frequent usage (although not standardized) for representing files stored alongside the METS is:
+```xml
+<FLocat LOCTYPE="SYSTEM" xlink:href="0001.pdf"/>
+```
+
+Likewise, this can be represented in the same way as METS 2:
+```xml
+<FLocat LOCTYPE="SYSTEM" LOCREF="0001.pdf"/>
+```
+
+The XLink semantic attributes (`xlink:title`, `xlink:role`, and `xlink:arcrole`) are not widely used in METS 1. Other functionality present in both METS 1 and 2 such as the `USE` and `LABEL` attributes covers a similar purpose. For example, the semantic information conveyed in this METS 1 example:
+
+```xml
+<file ID="FILE001">
+  <FLocat LOCTYPE="URL" xlink:href="http://library.example/files/0001.png" xlink:role="thumbnail" xlink:title="Example image"/>
+</file>
+```
+
+could be represented in METS 2 as
+
+```xml
+<file ID="FILE001" USE="thumbnail">
+  <FLocat LOCTYPE="URL" LOCREF="http://library.example/files/0001.png" />
+</file>
+```
+
+alongside
+
+```xml
+<div LABEL="Example image">
+  <fptr FILEID="FILE001"/>
+</div>
+```
+
+The behavior attributes (`xlink:show` and `xlink:actuate`) do not seem to be used in practice in METS 1, and describe specifics of the way the application should interpret the METS document that are out of the scope of the purpose of METS 2.
 
 ### Removal of value restrictions for attribute values
 
@@ -78,15 +129,15 @@ Elements with attributes from which enumerated value lists will be removed in ME
 * `stream`: `BETYPE`
 * `transformFile`: `TRANSFORMTYPE`
 
-<!-- TODO: Note area@shape came from HTML & the restrictions there -->
+Most of the allowed values in METS 1 for these attributes were specific to the METS standard. The exception is the `SHAPE` attribute; the allowed values originally came from the [`area@shape` attribute in HTML](https://www.w3.org/TR/2011/WD-html5-20110405/the-map-element.html#attr-area-shape). While many applications will continue using those values, the METS 2 schema itself does not enforce them.
 
 Because enumerations will be removed from the METS schema, all attributes starting with `OTHER` are no longer needed and will be omitted from METS 2: `OTHERROLE`, `OTHERTYPE`, `OTHERMDTYPE`, and `OTHERLOCTYPE`.
 
 ### Removal of structLink and behaviorSec
 
-Neither the `structLink` nor `behaviorSec` sections are included in METS 2. In looking at published profiles as well as Google and GitHub searches for these element names, we found that these sections are rarely used in METS 1.
+Neither the `<structLink>` nor `<behaviorSec>` sections are included in METS 2. In looking at published profiles as well as Google and GitHub searches for these element names, we found that these sections are rarely used in METS 1.
 
-As indicated in the METS schema documentation, the `<structLink>` element was added in METS 1.1 for recording hyperlinks between media represented by `<structMap>` nodes. These hyperlinks were represented by extended XLink objects that could be used to record links between `<structMap>` nodes separately from the structMap nodes themselves. The primary documented use case for `<structLink>` was to indicate links between web pages described in a METS object.[^structlink-email] However, in the intervening years the [Web ARChive (WARC)](https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1/) file format has emerged as a standard way of capturing web archives, minimizing the need for METS to handle this use case. Likewise, XLink (especially extended links) did not come into widespread usage. Thus, METS 2 removes support for `<structLink>`, along with the XLink schema.
+As indicated in the METS schema documentation, the `<structLink>` element was added in METS 1.1 for recording hyperlinks between media represented by `<structMap>` nodes. These hyperlinks were represented by extended XLink objects that could be used to record links between `<structMap>` nodes separately from the structMap nodes themselves. The primary documented use case for `<structLink>` was to indicate links between web pages described in a METS object.[^structlink-email] However, in the intervening years the [Web ARChive (WARC)](https://iipc.github.io/warc-specifications/specifications/warc-format/warc-1.1/) file format has emerged as a standard way of capturing web archives, minimizing the need for METS to handle this use case. Likewise, XLink (especially extended links) did not come into widespread usage. Thus, METS 2 removes `<structLink>` and its descendent elements `<smLink>`, `<smLinkGrp>`, `<smArcLink>`, and `<smLocatorLink>`, along with the XLink schema.
 
 The `<behaviorSec>` element was added to the "epsilon" revision late in the design process of METS 1 to support referencing executable code from METS objects. This was primarily to support a use case for early versions of the [Fedora digital repository system](https://duraspace.org/fedora/).[^fedora-email] [^fedora-2-mets] Fedora has since moved away from the use of METS and XML in general, and this section has not been used widely or supported by other METS implementations.
 
@@ -334,580 +385,34 @@ In METS 2, all `<structMap>` elements are collected under a `<structSec>` elemen
 
 ## Examples
 
-First, an example of a METS 1 object with two PDF files and corresponding MODS and PREMIS metadata:
+First, an example of a METS 1 object with two PDF files and corresponding MODS and PREMIS metadata: [simple-mets1.xml](v2/examples/simple-mets1.xml)
 
-```xml
-<mets OBJID="01234567-0123-4567-0123-456789abcdef"
-      PROFILE="my-profile"
-      xmlns="http://www.loc.gov/METS/"
-      xmlns:xlink="http://www.w3.org/1999/xlink">
-  <metsHdr CREATEDATE="2022-07-06T14:05:00">
-     <agent ROLE="CREATOR">
-        <name>METS Editorial Board</name>
-     </agent>
-  </metsHdr>
-  <dmdSec ID="md-001" CREATED="2022-07-06T14:00:00">
-     <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-            MDTYPE="MODS" MDTYPEVERSION="3.7" LOCTYPE="URL"
-            xlink:type="simple" xlink:href="http://example.org/mods1.xml" />
-  </dmdSec>
-  <amdSec>
-     <techMD ID="md-002" CREATED="2022-07-06T14:01:00">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="f123456789abcdef0123456789abcde0"
-               MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0" LOCTYPE="URL"
-               xlink:type="simple" xlink:href="http://example.org/object1.xml" />
-     </techMD>
-     <techMD ID="md-003" CREATED="2022-07-06T14:02:00">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="e123456789abcdef0123456789abcde1"
-               MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0" LOCTYPE="URL"
-               xlink:type="simple" xlink:href="http://example.org/object2.xml" />
-     </techMD>
-     <digiprovMD ID="md-004" CREATED="2022-07-06T14:03:00">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="d123456789abcdef0123456789abcde2"
-               MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0" LOCTYPE="URL"
-               xlink:type="simple" xlink:href="http://example.org/event1.xml" />
-     </digiprovMD>
-  </amdSec>
-  <fileSec>
-     <fileGrp>
-        <file ID="file-001" ADMID="md-002">
-           <FLocat LOCTYPE="URL" xlink:type="simple"
-                   xlink:href="http://example.org/myfile1.pdf" />
-        </file>
-        <file ID="file-002" ADMID="md-003">
-           <FLocat LOCTYPE="URL" xlink:type="simple"
-                   xlink:href="http://example.org/myfile2.pdf" />
-        </file>
-     </fileGrp>
-  </fileSec>
-  <structMap>
-     <div DMDID="md-001" ADMID="md-004">
-        <fptr FILEID="file-001" />
-        <fptr FILEID="file-002" />
-     </div>
-  </structMap>
-</mets>
-```
-
-Here is the same digital object expressed with METS 2; note in particular:
-
+Here is the same digital object expressed with METS 2: [simple-mets2.xml](v2/examples/simple-mets2.xml); note in particular: 
 * the change to `<mdSec>` / `<md>`
 * the use of `LOCREF` instead of `xlink:href`
 * the omission of `<fileGrp>`
 * the use of `<structSec>` to map the `<structMap>`
 
-```xml
-<mets OBJID="01234567-0123-4567-0123-456789abcdef"
-      PROFILE="my-profile"
-      xmlns="http://www.loc.gov/METS/v2">
-  <metsHdr CREATEDATE="2022-07-06T14:05:00">
-    <agent ROLE="CREATOR">
-      <name>METS Editorial Board</name>
-    </agent>
-  </metsHdr>
-  <mdSec>
-    <md USE="DESCRIPTIVE" ID="md-001" CREATED="2022-07-06T14:00:00">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="MODS" MDTYPEVERSION="3.7"
-           LOCTYPE="URL" LOCREF="http://example.org/mods1.xml" />
-    </md>
-    <md USE="TECHNICAL" ID="md-002" CREATED="2022-07-06T14:01:00">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="f123456789abcdef0123456789abcde0"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" LOCREF="http://example.org/object1.xml" />
-    </md>
-    <md USE="TECHNICAL" ID="md-003" CREATED="2022-07-06T14:02:00">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="e123456789abcdef0123456789abcde1"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" LOCREF="http://example.org/object2.xml" />
-    </md>
-    <md USE="PROVENANCE" ID="md-004" CREATED="2022-07-06T14:03:00">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="d123456789abcdef0123456789abcde2"
-           MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" LOCREF="http://example.org/event1.xml" />
-    </md>
-  </mdSec>
-  <fileSec>
-    <file ID="file-001" MDID="md-002">
-      <FLocat LOCTYPE="URL" LOCREF="http://example.org/myfile1.pdf" />
-    </file>
-    <file ID="file-002" MDID="md-003">
-      <FLocat LOCTYPE="URL" LOCREF="http://example.org/myfile2.pdf" />
-    </file>
-  </fileSec>
-  <structSec>
-    <structMap>
-      <div MDID="md-001 md-004">
-        <fptr FILEID="file-001" />
-        <fptr FILEID="file-002" />
-      </div>
-    </structMap>
-  </structSec>
-</mets>
-```
-
-Here is a more complex METS 1 example of a digital object comprising a research data set; note in particular the multiple `<fileGrp>` and `<structMap>`
-elements.
-
-```xml
-<mets OBJID="01234567-0123-4567-0123-456789abcdef"
-    PROFILE="http://www.loc.gov/mets/profiles/my-profile.xml"
-    xmlns="http://www.loc.gov/METS/"
-    xmlns:xlink="http://www.w3.org/1999/xlink">
-  <metsHdr CREATEDATE="2022-07-06T14:05:00">
-    <agent ROLE="CREATOR">
-      <name>METS Editorial Board</name>
-    </agent>
-  </metsHdr>
-  <dmdSec ID="dmd-001">
-    <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-         MDTYPE="DC" MDTYPEVERSION="1.1"
-         LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/mymetadata/dc.xml" />
-  </dmdSec>
-  <amdSec>
-    <techMD ID="tech-001">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech1.xml" />
-    </techMD>
-    <techMD ID="tech-002">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech2.xml" />
-    </techMD>
-    <techMD ID="tech-003">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech3.xml" />
-    </techMD>
-    <techMD ID="tech-004">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech4.xml" />
-    </techMD>
-    <techMD ID="tech-005">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech5.xml" />
-    </techMD>
-    <techMD ID="tech-006">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech6.xml" />
-    </techMD>
-    <techMD ID="tech-007">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech7.xml" />
-    </techMD>
-    <techMD ID="tech-008">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech8.xml" />
-    </techMD>
-    <techMD ID="tech-009">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech9.xml" />
-    </techMD>
-    <techMD ID="tech-010">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/tech10.xml" />
-    </techMD>
-    <digiprovMD ID="event-001">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/creation_event1.xml" />
-    </digiprovMD>
-    <digiprovMD ID="agent-001">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/creation_agent1.xml" />
-    </digiprovMD>
-    <digiprovMD ID="event-002">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/normalization_event1.xml" />
-    </digiprovMD>
-    <digiprovMD ID="agent-002">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/normalization_agent1.xml" />
-    </digiprovMD>
-    <digiprovMD ID="event-003">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/normalization_event2.xml" />
-    </digiprovMD>
-    <digiprovMD ID="agent-003">
-      <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-           MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-           LOCTYPE="URL" xlink:type="simple"
-           xlink:href="http://example.org/mymetadata/normalization_agent2.xml" />
-    </digiprovMD>
-  </amdSec>
-  <fileSec>
-    <fileGrp USE="computer-readable">
-      <file ID="file-001" ADMID="tech-001 event-002 agent-002">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/data/measurements.xyz" />
-      </file>
-      <file ID="file-002" ADMID="tech-002 event-002 agent-002">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/data/measurements.csv" />
-      </file>
-      <file ID="file-003" ADMID="tech-003">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/data/analysis.csv" />
-      </file>
-      <file ID="file-004" ADMID="tech-004">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/data/device.conf" />
-      </file>
-      <file ID="file-005" ADMID="tech-005">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/code/myanalysis.java" />
-      </file>
-    </fileGrp>
-    <fileGrp USE="human-readable">
-      <file ID="file-006" ADMID="tech-006 event-003 agent-003">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/documents/publication.docx" />
-      </file>
-      <file ID="file-007" ADMID="tech-007 event-003 agent-003">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/documents/publication.pdf" />
-      </file>
-      <file ID="file-008" ADMID="tech-008">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/documents/research_plan.txt" />
-      </file>
-      <file ID="file-009" ADMID="tech-009">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/README.txt" />
-      </file>
-      <file ID="file-010" ADMID="tech-010">
-        <FLocat LOCTYPE="URL" xlink:type="simple"
-         xlink:href="http://example.org/myresearch/license.txt" />
-      </file>
-    </fileGrp>
-  </fileSec>
-  <structMap TYPE="LOGICAL">
-    <div TYPE="RESEARCH" DMDID="dmd-001" ADMID="event-001 agent-001">
-      <div TYPE="SOURCE">
-        <fptr FILEID="file-001" />
-        <fptr FILEID="file-002" />
-      </div>
-      <div TYPE="OUTCOME">
-        <fptr FILEID="file-003" />
-      </div>
-      <div TYPE="CONFIGURATION">
-        <fptr FILEID="file-004" />
-      </div>
-      <div TYPE="METHOD">
-        <fptr FILEID="file-005" />
-      </div>
-      <div TYPE="PUBLICATION">
-        <fptr FILEID="file-006" />
-        <fptr FILEID="file-007" />
-      </div>
-      <div TYPE="DOCUMENTATION">
-        <fptr FILEID="file-008" />
-        <fptr FILEID="file-009" />
-      </div>
-      <div TYPE="RIGHTS">
-        <fptr FILEID="file-010" />
-      </div>
-    </div>
-  </structMap>
-  <structMap TYPE="PHYSICAL">
-    <div TYPE="directory" LABEL="myresearch" DMDID="dmd-001"
-        ADMID="event-001 agent-001">
-      <fptr FILEID="file-009" />
-      <fptr FILEID="file-010" />
-      <div TYPE="directory" LABEL="data">
-        <fptr FILEID="file-001" />
-        <fptr FILEID="file-002" />
-        <fptr FILEID="file-003" />
-        <fptr FILEID="file-004" />
-      </div>
-      <div TYPE="directory" LABEL="code">
-        <fptr FILEID="file-005" />
-      </div>
-      <div TYPE="directory" LABEL="documents">
-        <fptr FILEID="file-006" />
-        <fptr FILEID="file-007" />
-        <fptr FILEID="file-008" />
-      </div>
-    </div>
-  </structMap>
-</mets>
-```
-
-Expressed in METS 2, the changes are much the same as for the simpler digital object. Note in this case the `<fileGrp>` elements are preserved, and the multiple `<structMap>` elements are nested under `<structSec>`.
-
-```xml
-<mets OBJID="01234567-0123-4567-0123-456789abcdef"
-    PROFILE="my-profile"
-    xmlns="http://www.loc.gov/METS/v2">
-  <metsHdr CREATEDATE="2022-07-06T14:05:00">
-    <agent ROLE="CREATOR">
-      <name>METS Editorial Board</name>
-    </agent>
-  </metsHdr>
-  <mdSec>
-    <mdGrp USE="DESCRIPTIVE">
-      <md USE="DESCRIPTIVE" ID="dmd-001">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-         MDTYPE="DC" MDTYPEVERSION="1.1"
-         LOCTYPE="URL"
-         LOCREF="http://example.org/mymetadata/dc.xml" />
-      </md>
-    </mdGrp>
-    <mdGrp USE="ADMINISTRATIVE">
-      <md USE="TECHNICAL" ID="tech-001">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech1.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-002">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech2.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-003">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech3.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-004">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech4.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-005">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech5.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-006">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech6.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-007">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech7.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-008">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech8.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-009">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech9.xml" />
-      </md>
-      <md USE="TECHNICAL" ID="tech-010">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/tech10.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="event-001">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/creation_event1.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="agent-001">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/creation_agent1.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="event-002">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/normalization_event1.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="agent-002">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/normalization_agent1.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="event-003">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/normalization_event2.xml" />
-      </md>
-      <md USE="PROVENANCE" ID="agent-003">
-        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
-             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
-             LOCTYPE="URL"
-             LOCREF="http://example.org/mymetadata/normalization_agent2.xml" />
-      </md>
-    </mdGrp>
-  </mdSec>
-  <fileSec>
-    <fileGrp USE="computer-readable">
-      <file ID="file-001" MDID="tech-001 event-002 agent-002">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/data/measurements.xyz" />
-      </file>
-      <file ID="file-002" MDID="tech-002 event-002 agent-002">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/data/measurements.csv" />
-      </file>
-      <file ID="file-003" MDID="tech-003">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/data/analysis.csv" />
-      </file>
-      <file ID="file-004" MDID="tech-004">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/data/device.conf" />
-      </file>
-      <file ID="file-005" MDID="tech-005">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/code/myanalysis.java" />
-      </file>
-    </fileGrp>
-    <fileGrp USE="human-readable">
-      <file ID="file-006" MDID="tech-006 event-003 agent-003">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/documents/publication.docx" />
-      </file>
-      <file ID="file-007" MDID="tech-007 event-003 agent-003">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/documents/publication.pdf" />
-      </file>
-      <file ID="file-008" MDID="tech-008">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/documents/research_plan.txt" />
-      </file>
-      <file ID="file-009" MDID="tech-009">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/README.txt" />
-      </file>
-      <file ID="file-010" MDID="tech-010">
-        <FLocat LOCTYPE="URL"
-         LOCREF="http://example.org/myresearch/license.txt" />
-      </file>
-    </fileGrp>
-  </fileSec>
-  <structSec>
-    <structMap TYPE="LOGICAL">
-      <div TYPE="RESEARCH" MDID="dmd-001 event-001 agent-001">
-        <div TYPE="SOURCE">
-          <fptr FILEID="file-001" />
-          <fptr FILEID="file-002" />
-        </div>
-        <div TYPE="OUTCOME">
-          <fptr FILEID="file-003" />
-        </div>
-        <div TYPE="CONFIGURATION">
-          <fptr FILEID="file-004" />
-        </div>
-        <div TYPE="METHOD">
-          <fptr FILEID="file-005" />
-        </div>
-        <div TYPE="PUBLICATION">
-          <fptr FILEID="file-006" />
-          <fptr FILEID="file-007" />
-        </div>
-        <div TYPE="DOCUMENTATION">
-          <fptr FILEID="file-008" />
-          <fptr FILEID="file-009" />
-        </div>
-        <div TYPE="RIGHTS">
-          <fptr FILEID="file-010" />
-        </div>
-      </div>
-    </structMap>
-    <structMap TYPE="PHYSICAL">
-      <div TYPE="directory" LABEL="myresearch" MDID="dmd-001 event-001 agent-001">
-        <fptr FILEID="file-009" />
-        <fptr FILEID="file-010" />
-        <div TYPE="directory" LABEL="data">
-          <fptr FILEID="file-001" />
-          <fptr FILEID="file-002" />
-          <fptr FILEID="file-003" />
-          <fptr FILEID="file-004" />
-        </div>
-        <div TYPE="directory" LABEL="code">
-          <fptr FILEID="file-005" />
-        </div>
-        <div TYPE="directory" LABEL="documents">
-          <fptr FILEID="file-006" />
-          <fptr FILEID="file-007" />
-          <fptr FILEID="file-008" />
-        </div>
-      </div>
-    </structMap>
-  </structSec>
-</mets>
-```
+Here is a more complex METS 1 example of a digital object comprising a research data set; note in particular the multiple `<fileGrp>` and `<structMap>` elements: [complex-mets1.xml](v2/examples/complex-mets1.xml)
+Expressed in METS 2, the changes are much the same as for the simpler digital object: [complex-mets2.xml](v2/examples/complex-mets2.xml). Note in this case the `<fileGrp>` elements are preserved, and the multiple `<structMap>` elements are nested under `<structSec>`.
 
 ## METS Profiles
 
-For METS 1 one important feature has been the METS Profiles which allows the users to describe their use. It has been possible to register the profile and get it published at loc.gov so others can reuse it. What can be noticed is that there are more profiles around than have been registered. In many cases a registration does not occur due to the creator not feeling ready with the profile and wanting to fine tune and then ends up with never registering it.
+For METS 1 one important feature has been [METS profiles](https://www.loc.gov/standards/mets/mets-profiles.html). These allow implementors to describe a class of METS documents in sufficient detail to provide both document authors and programmers the guidance they require to create and process METS documents conforming with a particular profile. Profiles describe what METS elements are expected to be present and how they will be used in a particular application. Implementors may register the profile for purposes around re-use or interoperability, or may use profiles primarily for internal documentation.
 
-#### Statistics
-Registered profiles, 46.
-Unregistered profiles: While it is difficult to count the true number of unregistered profiles, it seems likely there are more unregistered profiles in use than registered ones. A search in Google with `xsi:schemaLocation="http://www.loc.gov/METS_Profile/v2”` yields around 360 results covering both METS profiles and mentionings of the schema. A search of GitHub for `http://www.loc.gov/METS_Profile/` yields 213 results. These counts include both registered and unregistered profiles.
+### METS Profiles for METS 2
 
-#### METS Profiles for METS 2
-There continues to be value in a standard mechanism for documenting usage in METS; it is helpful both for local system documentation as well as for interchange of METS documents.
+There continues to be value in a standard mechanism for documenting usage in METS; it is helpful both for local system documentation as well as for interchange of METS documents. While the existing METS profile schema is not directly machine-actionable, it is possible for Schematron rules or other automated validation to reference documentation in METS profiles expressed in XML.
 
-While the existing METS profile schema is not directly machine-actionable, there are use cases where Schematron rules for validation reference documentation from METS profiles expressed in XML. (TODO: reference this example Karin provided?)
-
-Thus, we plan to release a new version of the METS profile schema that matches the changes made to METS 2. At a minimum, this includes:
-* removing reliance on the XLink schema
-* updating the `<structural_requirements>` section to align with the major sections in METS 2.
-
-Other work around METS profiles could include:
-
-* A way to format METS profiles in a more readable format. For the profiles there was a transformation available that showed it in a "pretty" way. This transformation was a student work, has not been maintained, and does not working with the current profile schema. (TODO: reference to this transformation?)
-* Additional guidance and examples of integrating METS profiles with Schematron rules for validation.
-* Templates for textual versions of METS profiles: it may be simpler in many cases to produce a plain-text version (i.e. not XML) documentation of a given METS use case. Templates for this may aid in documenting the use of METS when there is no immediate benefit from the XML expression of the profile.
+Thus, we plan to release a new version of the METS profile schema that matches the changes made to METS 2.
 
 ## Conclusion and Future Work
 
-As we work through the process of finalizing METS 2, there are a number of remaining tasks. First and foremost, we seek feedback on the draft METS 2 schema. We welcome feedback (*BY A MECHANISM TBD*). In particular, we are interested in:
-* whether existing uses of METS 1 can be migrated to METS 2, and (assuming uptake in the community) whether that would seem of value
-* whether METS 2 seems more straightforward to implement than METS 1
-* etc... (*TBD what other feedback would be useful*)
+As we work through the process of finalizing METS 2, there are a number of remaining tasks. First and foremost, we seek feedback on the draft METS 2 schema. We welcome feedback to the [METS mailing list](https://listserv.loc.gov/cgi-bin/wa?A0=METS). In particular, we are interested in:
+* whether the proposed changes here make sense
+* if you are a current METS 1 user: whether your use of METS 1 could be migrated to METS 2; if so, what benefits or drawbacks you would see to migrating, assuming uptake in the community
+* if you are not a current METS 1 user: if you would consider implementing METS 2; if implementing METS 2 seems more straightforward for your use case
+* changes you would be interested in seeing in METS 2 that we have not addressed
 
 In addition to gathering feedback, there are several supporting tools and documents we plan to produce:
 
@@ -955,3 +460,10 @@ There is significant supporting documentation for METS 1 that will need to be up
 
 [^fedora-2-mets]: D. Davis, "Rules for Encoding Ingest Packages in METS", Fedora Repository 2 Documentation. June, 2008. https://duraspace.org/archive/fedora/files/documentation/2.2.4/index.html
 
+[^pcdm]: Portland Common Data Model, DuraSpace, 2016. https://pcdm.org/models
+
+[^iiif]: International Image Interoperability Framework. https://iiif.io
+
+[^bagit]: J. Kunze, J. Littman, E. Madden, J. Scancella, C. Adams, "The BagIt File Packaging Format (V1.0)", RFC 8493, 2018. https://www.rfc-editor.org/info/rfc8493
+
+[^ocfl]: A. Hankinson, N. Jefferies, R. Metz, J. Morley, S. Warner, A. Woods, "Oxford Common File Layout Specification 1.0", 2020. https://ocfl.io/1.0/spec/
