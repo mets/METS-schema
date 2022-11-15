@@ -4,7 +4,7 @@
 
 METS, the Metadata Encoding & Transmission Standard, has been used for describing digital objects since 2001. The METS XML schema version 1.x (METS 1) is used both as an interchange and a storage format by numerous systems in the digital preservation space [^coptr] [^profiles]. A METS document can describe the files that make up a digital object, their structural relationship to each other, and include a variety of metadata about the digital object and its component files.
 
-The METS Editorial Board is working on version 2 of the Metadata Encoding & Transmission Standard (METS), work which aims to make METS easier to use and implement. Version 2 simplifies the schema, makes it more consistent, and removes reliance on the outdated XLink standard. It aims to retain a clear path for migration from METS 1 for most use cases. In this document the METS Editorial Board presents details of the each change along with a variety of examples.
+The METS Editorial Board is working on version 2 of the Metadata Encoding & Transmission Standard (METS), work which aims to make METS easier to use and implement. Version 2 simplifies the schema, makes it more consistent, and removes reliance on the outdated XLink standard. It aims to retain a clear path for migration from METS 1 for most use cases. In this document the METS Editorial Board presents details of the each change along with a variety of examples. Work in progress on the draft METS 2 schema is available [on GitHub](https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd).
 
 ### Motivation
 
@@ -28,7 +28,9 @@ In this section we describe the changes that have been made in METS 2.
 
 ### METS 2 schema
 
-The changes in the METS 2 schema all serve to simplify usage by making the schema more consistent and by removing some rarely-used features. As METS 2 is not backwards-compatible with METS 1, there is a new namespace URI for the schema: http://www.loc.gov/METS/v2
+The changes in the METS 2 schema all serve to simplify usage by making the schema more consistent and by removing some rarely-used features. As METS 2 is not backwards-compatible with METS 1, there is a new namespace URI for the schema: `http://www.loc.gov/METS/v2`.
+
+Work in progress on the [draft METS 2 schema](https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd) is in the [mets2 branch](https://github.com/mets/METS-schema/tree/mets2) of the [METS schema repository](https://github.com/mets/METS-schema).
 
 METS 2 reorganizes the major sections of the METS file. It uses a parallel organization for all major sections of the METS file by:
 
@@ -179,7 +181,7 @@ As in METS 1, included or referenced metadata can be in any format, XML or other
   ...
   <mdSec>
     <mdGrp USE="DESCRIPTIVE">
-      <md USE="DESCRIPTIVE">
+      <md>
         ...
       </md>
     </mdGrp>
@@ -424,7 +426,7 @@ We plan to produce a sample XSLT transformation to aid in migration from METS 1 
 
 ### Updated documentation
 
-There is significant supporting documentation for METS 1 that will need to be updated for METS 2. In the near term, we plan to update the [METS overview and tutorial](https://github.com/mets/wiki/wiki/01-Meeting-Agendas-and-Notes); longer-term, we will update the [METS Primer](https://github.com/mets/wiki/wiki/01-Meeting-Agendas-and-Notes).
+There is significant supporting documentation for METS 1 that will need to be updated for METS 2. In the near term, we plan to update the [METS overview and tutorial](https://www.loc.gov/standards/mets/METSOverview.v3_en.html); longer-term, we will update the [METS Primer](https://www.loc.gov/standards/mets/METSPrimer.pdf).
 
 ## References
 
