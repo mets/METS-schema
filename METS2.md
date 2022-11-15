@@ -389,7 +389,10 @@ Here is the same digital object expressed with METS 2: [simple-mets2.xml](v2/exa
 * the use of `<structSec>` to map the `<structMap>`
 
 Here is a more complex METS 1 example of a digital object comprising a research data set; note in particular the multiple `<fileGrp>` and `<structMap>` elements: [complex-mets1.xml](v2/examples/complex-mets1.xml)
-Expressed in METS 2, the changes are much the same as for the simpler digital object: [complex-mets2.xml](v2/examples/complex-mets2.xml). Note in this case the `<fileGrp>` elements are preserved, and the multiple `<structMap>` elements are nested under `<structSec>`.
+
+Expressed in METS 2, the changes are much the same as for the simpler digital object: [complex-mets2.xml](v2/examples/complex-mets2.xml).
+
+Note in this case the `<fileGrp>` elements are preserved, and the multiple `<structMap>` elements are nested under `<structSec>`.
 
 ## METS Profiles
 
