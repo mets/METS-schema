@@ -2,7 +2,7 @@
 <xsd:schema xmlns="http://www.loc.gov/METS/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.loc.gov/METS/v2" elementFormDefault="qualified" attributeFormDefault="unqualified">
   <xsd:annotation>
     <xsd:documentation xml:lang="en">
-      METS: Metadata Encoding and Transmission Standard
+      METS: Metadata Encoding and Transmission Standard, version 2
 
       This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/).
       The METS Editorial Board, as creator of this document, has waived all rights to it worldwide under copyright law, including
@@ -19,10 +19,29 @@
       Tobias Steinke (German National Library)
       Robin Wendler (Harvard University)
 
-      November, 2022
-      Version 2.0 alpha
+      August, 2023
+      Version 2.0 beta
 
       For version 1.x credits, change log, and documentation, see https://www.loc.gov/standards/mets/mets.xsd
+    </xsd:documentation>
+    <xsd:documentation xml:lang="en">
+      This schema is a draft of a new major revision of the METS schema. A white paper describing the new version and the rationale for the differences between the two is available: https://github.com/mets/METS-schema/blob/mets2/METS2.md.
+
+      The latest draft of this schema is available at https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd.
+
+      METS 2 will live alongside METS 1; METS 1 will continue to be supported and maintained.
+    </xsd:documentation>
+    <xsd:documentation xml:lang="en">
+      Change Log
+
+      2.0 alpha - Nov 15, 2022
+      
+      Initial public draft
+
+      2.0 beta - August 17, 2022
+
+      * Add links to recommended schema attributes
+      * Remove transformfile references to behaviorSec; transformfile@TRANSFORMBEHAVIOR 
     </xsd:documentation>
   </xsd:annotation>
   <xsd:element name="mets">
@@ -91,14 +110,14 @@
                 <xsd:attribute name="ROLE" use="required" type="xsd:string">
                   <xsd:annotation>
                     <xsd:documentation xml:lang="en">ROLE (string/R): Specifies the function of the agent with respect to the METS record. 
-                      TODO: external link to suggested values
+                      Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#agentrole
 										</xsd:documentation>
                   </xsd:annotation>
                 </xsd:attribute>
                 <xsd:attribute name="TYPE" use="optional" type="xsd:string">
                   <xsd:annotation>
                     <xsd:documentation xml:lang="en">TYPE (string/O): is used to specify the type of AGENT.
-                      TODO: external link to suggested values
+                      Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#agenttype
 										</xsd:documentation>
                   </xsd:annotation>
                 </xsd:attribute>
@@ -597,7 +616,6 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
 RECT 
 CIRCLE
 POLY
-          <!-- TODO: link out to suggested values -->
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -622,21 +640,9 @@ POLY
     <xsd:attribute name="BETYPE" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For example, if BYTE is specified, then the BEGIN and END point values represent the byte offsets into a file. If IDREF is specified, then the BEGIN element specifies the ID value that identifies the element in a structured text file where the relevant section of the file begins; and the END value (if present) would specify the ID value that identifies the element with which the relevant section of the file ends. Possible values include: 
-BYTE
-IDREF
-SMIL
-MIDI
-SMPTE-25
-SMPTE-24
-SMPTE-DF30
-SMPTE-NDF30
-SMPTE-DF29.97
-SMPTE-NDF29.97
-TIME
-TCF
-XPTR
-          <!-- TODO: link out to suggested values -->
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For example, if BYTE is specified, then the BEGIN and END point values represent the byte offsets into a file. If IDREF is specified, then the BEGIN element specifies the ID value that identifies the element in a structured text file where the relevant section of the file begins; and the END value (if present) would specify the ID value that identifies the element with which the relevant section of the file ends.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areabetype
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -648,19 +654,9 @@ XPTR
     </xsd:attribute>
     <xsd:attribute name="EXTTYPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">EXTTYPE (string/O): An attribute that specifies the kind of EXTENT values that are being used. For example if BYTE is specified then EXTENT would represent a byte count. If TIME is specified the EXTENT would represent a duration of time. Possible values for EXTTYPE include: 
-BYTE
-SMIL
-MIDI
-SMPTE-25
-SMPTE-24
-SMPTE-DF30
-SMPTE-NDF30
-SMPTE-DF29.97
-SMPTE-NDF29.97
-TIME
-TCF.
-          <!-- TODO: link out to suggested values -->
+        <xsd:documentation xml:lang="en">EXTTYPE (string/O): An attribute that specifies the kind of EXTENT values that are being used. For example if BYTE is specified then EXTENT would represent a byte count. If TIME is specified the EXTENT would represent a duration of time.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areaexttype.
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -763,9 +759,7 @@ TCF.
     <xsd:attribute name="USE" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">USE: Specifies the purpose of metadata in this section.
-          <!-- TODO: link out to suggested values -->
-          Values could include: DESCRIPTIVE, TECHNICAL, RIGHTS, SOURCE, PROVENANCE; these correspond to dmdSec, techMD, rightsMD, sourceMD, digiprovMD from METS 1.x
-          <!-- TODO copy documentation from old dmdSec, techMD, etc -->
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#use-md-mdgrp
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -912,8 +906,8 @@ TCF.
               <xsd:attribute name="BETYPE" use="optional" type="xsd:string">
                 <xsd:annotation>
                   <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-                    BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For nested &lt;file&gt; or &lt;stream&gt; elements, values could include BYTE or other locally-defined values.
-                    <!-- TODO: link out to suggested values -->
+                    BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. 
+                    Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filebetype-streambetype
                   </xsd:documentation>
                 </xsd:annotation>
               </xsd:attribute>
@@ -924,7 +918,7 @@ TCF.
       <xsd:element name="transformFile" minOccurs="0" maxOccurs="unbounded">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-						The transform file element &lt;transformFile&gt; provides a means to access any subsidiary files listed below a &lt;file&gt; element by indicating the steps required to "unpack" or transform the subsidiary files. This element is repeatable and might provide a link to a &lt;behavior&gt; in the &lt;behaviorSec&gt; that performs the transformation.</xsd:documentation>
+						The transform file element &lt;transformFile&gt; provides a means to access any subsidiary files listed below a &lt;file&gt; element by indicating the steps required to "unpack" or transform the subsidiary files. This element is repeatable.</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
           <xsd:complexContent>
@@ -937,24 +931,20 @@ TCF.
               </xsd:attribute>
               <xsd:attribute name="TRANSFORMTYPE" use="required" type="xsd:string">
                 <xsd:annotation>
-                  <xsd:documentation xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams. Possible values include “decompression”, “decryption”, or other locally-defined values. Decompression is defined as the action of reversing data compression, i.e., the process of encoding information using fewer bits than an unencoded representation would use by means of specific encoding schemas. Decryption is defined as the process of restoring data that has been obscured to make it unreadable without special knowledge (encrypted data) to its original form.
-                    <!-- TODO: link out to suggested values -->
+                  <xsd:documentation xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams.
+
+                  Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#transformfiletransformtype
                   </xsd:documentation>
                 </xsd:annotation>
               </xsd:attribute>
               <xsd:attribute name="TRANSFORMALGORITHM" type="xsd:string" use="required">
                 <xsd:annotation>
-                  <xsd:documentation xml:lang="en">TRANSFORM-ALGORITHM (string/R): Specifies the decompression or decryption routine used to access the contents of the file. Algorithms for compression can be either loss-less or lossy.</xsd:documentation>
+                  <xsd:documentation xml:lang="en">TRANSFORMALGORITHM (string/R): Specifies the decompression or decryption routine used to access the contents of the file. Algorithms for compression can be either loss-less or lossy.</xsd:documentation>
                 </xsd:annotation>
               </xsd:attribute>
               <xsd:attribute name="TRANSFORMKEY" type="xsd:string" use="optional">
                 <xsd:annotation>
                   <xsd:documentation xml:lang="en">TRANSFORMKEY (string/O): A key to be used with the transform algorithm for accessing the file’s contents.</xsd:documentation>
-                </xsd:annotation>
-              </xsd:attribute>
-              <xsd:attribute name="TRANSFORMBEHAVIOR" type="xsd:IDREF" use="optional">
-                <xsd:annotation>
-                  <xsd:documentation xml:lang="en">TRANSFORMBEHAVIOR (string/O): An IDREF to a behavior element for this transformation.</xsd:documentation>
                 </xsd:annotation>
               </xsd:attribute>
               <xsd:attribute name="TRANSFORMORDER" type="xsd:positiveInteger" use="required">
@@ -1020,8 +1010,8 @@ TCF.
     <xsd:attribute name="BETYPE" use="optional" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
-					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For nested &lt;file&gt; or &lt;stream&gt; elements, values could include BYTE or other locally-defined values.
-          <!-- TODO: link out to suggested values -->
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used.
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filebetype-streambetype
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1054,7 +1044,7 @@ TCF.
     <xsd:attribute name="MDTYPE" use="required" type="xsd:string">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata. 
-          TODO: link to suggested values
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mdtype-mdref-mdwrap
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1076,7 +1066,7 @@ TCF.
       <xsd:annotation>
         <xsd:documentation xml:lang="en">
           LOCTYPE (string/R): Specifies the locator type used in the LOCREF attribute.
-            TODO: link to suggested values
+            Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#loctype-mptr-mdref-flocat
         </xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1108,19 +1098,8 @@ TCF.
     </xsd:attribute>
     <xsd:attribute name="CHECKSUMTYPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.  Possible values may include:
-					Adler-32
-					CRC32
-					HAVAL
-					MD5
-					MNP
-					SHA-1
-					SHA-256
-					SHA-384
-					SHA-512
-					TIGER
-					WHIRLPOOL
-          <!-- TODO: link out to suggested values -->
+        <xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute. 
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-mdref-mdwrap
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
