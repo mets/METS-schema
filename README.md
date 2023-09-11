@@ -17,5 +17,6 @@ Additional resources available for METS 2.x:
 * [METS overview and tutorial](https://github.com/mets/METS-board/blob/mets2/web%20documents/metsoverview.md) updated for METS 2
 * [Generated schema documentation](https://mets.github.io/METS_v2_Docs/mets.html)
 * [Suggested attribute values](https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values)
+* [METS 1 to 2 transformation](https://github.com/mets/METS1to2)
 
 To provide feedback and discuss the draft schema, [join the METS mailing list](https://www.loc.gov/standards/mets/mets-list-enter.html).
