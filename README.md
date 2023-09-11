@@ -6,7 +6,7 @@ Current effort from the METS editorial board is focused on the draft METS 2.x sc
 
 # METS 2.x
 
-This repository also holds [the draft METS 2.x schema](https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd) in the `mets2` branch.
+This repository also holds [the beta METS 2.x schema](https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd) in the `mets2` branch.
 
 There is also a [detailed description of the proposed changes](https://github.com/mets/METS-schema/blob/mets2/METS2.md) along with fully-worked examples of METS 2 documents.
 
