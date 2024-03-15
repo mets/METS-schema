@@ -331,7 +331,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
               </xsd:annotation>
             </xsd:element>
           </xsd:sequence>
-          <xsd:attribute name="ID" type="xsd:ID">
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
             <xsd:annotation>
               <xsd:documentation>ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. For more information on using ID attributes for internal and external linking see Chapter 4 of the METS Primer.
               </xsd:documentation>
