@@ -9,27 +9,6 @@
 <!-- Q: for now I skipped mdRef and binData in this example ; what are the ideas how complete the example should be? -->
 <!-- A: Ok! -->
 
-<!-- TODO
-- mets root x
-- metsHdr x
-- mdSec 
-- * mdGrp DESCRIPTIVE x
-- ** md DESCRIPTIVE in Dublin Core x
-- * mdGrp ADMINISTRATIVE
-- ** md TECHNICAL file 1 x
-- ** md TECHNICAL file 2 x
-- ** md TECHNICAL file 3 x
--
--
-- fileSec
-- * fileGrp (one fileGrp)
-- ** file 1 - PDF Tutorial
-- ** file 2 - PDF Exercise
-- ** file 3 - PDF proceedings
-
-- structSec x
--->
-
 <mets:mets xmlns:mets="http://www.loc.gov/METS/v2"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:premis="http://www.loc.gov/premis/v3"
