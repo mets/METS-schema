@@ -231,6 +231,20 @@
                 </mets:mdWrap>
             </mets:md>
             
+            <!-- technical metadata in PREMIS of complete Tutorial IE  -->
+            <mets:md ID="tech-006" USE="TECHNICAL"> 
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:intellectualEntity">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType authority="identifiers" authorityURI="http://id.loc.gov/vocabulary/identifiers" valueURI="http://id.loc.gov/vocabulary/identifiers/hdl" >hdl</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>https://hdl.handle.net/2142/121056</premis:objectIdentifierValue>
+                            </premis:objectIdentifier> 
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
             <!-- provenance event for creation of Paper DOCX -->
             <mets:md ID="event-001" USE="PROVENANCE" MDID="agent-001">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -452,6 +466,30 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
+            
+            <!-- rights in PREMIS for Tutorial IE -->
+            <mets:md ID="rights-001" USE="RIGHTS">
+                <mets:mdWrap MDTYPE="PREMIS:RIGHTS" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:rights>
+                            <premis:rightsStatement>
+                                <premis:rightsStatementIdentifier>
+                                    <premis:rightsStatementIdentifierType>local</premis:rightsStatementIdentifierType>
+                                    <premis:rightsStatementIdentifierValue>rights-001</premis:rightsStatementIdentifierValue>
+                                </premis:rightsStatementIdentifier>
+                                <premis:rightsBasis>license</premis:rightsBasis>
+                                <premis:licenseInformation>
+                                    <premis:licenseDocumentationIdentifier>
+                                        <premis:licenseDocumentationIdentifierType>uri</premis:licenseDocumentationIdentifierType>
+                                        <premis:licenseDocumentationIdentifierValue>https://creativecommons.org/licenses/by/4.0/</premis:licenseDocumentationIdentifierValue>                                        
+                                    </premis:licenseDocumentationIdentifier>
+                                    <premis:licenseTerms>The text of this paper is published under a CC BY-SA license (https://creativecommons.org/licenses/by/4.0/).</premis:licenseTerms>
+                                </premis:licenseInformation>
+                            </premis:rightsStatement>
+                        </premis:rights>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
         </mets:mdGrp>
     </mets:mdSec>
     
@@ -461,13 +499,13 @@
         <mets:fileGrp USE="original">
             <!-- 1 paper DOCX -->
             <mets:file ID="file-001" MDID="tech-001 event-001">
-                <mets:FLocat LOCTYPE="URL" LOCREF="PAPER DOCX" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/iPRES2023_METS_Tutorial.docx" />
             </mets:file>
             
             
             <!-- 2 presentation PPTX -->
             <mets:file ID="file-002" MDID="tech-002 event-002">
-                <mets:FLocat LOCTYPE="URL" LOCREF="PRESENTATION PPTX" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/1702_1A_Bredenberg.pptx" />
             </mets:file>
             
             <!-- 3 handout PDF -->
@@ -494,7 +532,7 @@
     
     <mets:structSec>
         <mets:structMap>
-            <mets:div LABEL="Understanding and implementing METS, A tutorial focused on METS 2" MDID="dmd-001">                
+            <mets:div LABEL="Understanding and implementing METS, A tutorial focused on METS 2" MDID="dmd-001 tech-006 rights-001">                
                 <mets:div TYPE="Paper" LABEL="UNDERSTANDING AND IMPLEMENTING METS: A tutorial focused on METS 2">
                     <mets:fptr FILEID="file-001"/>
                     <mets:fptr FILEID="file-004"/>
