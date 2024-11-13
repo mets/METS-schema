@@ -349,8 +349,8 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
           </xsd:attribute>
           <xsd:attribute name="STATUS" type="xsd:string" use="optional">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata (e.g., superseded, current, etc.).
-          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-mdref-mdwrap
+              <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#status-md-mdgrp
               </xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
@@ -548,7 +548,9 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
     </xsd:attribute>
     <xsd:attribute name="TYPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">TYPE (string/O): An attribute that specifies the type of structural division that the &lt;div&gt; element represents. Possible &lt;div&gt; TYPE attribute values include: chapter, article, page, track, segment, section etc. METS places no constraints on the possible TYPE values. Suggestions for controlled vocabularies for TYPE may be found on the METS website.
+        <xsd:documentation xml:lang="en">TYPE (string/O): An attribute that specifies the type of structural division that the &lt;div&gt; element represents.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#type-div
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -683,7 +685,7 @@ POLY
   <xsd:complexType name="mdType">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">mdType: Complex Type for Metadata Sections
-			A generic framework for pointing to/including metadata within a METS document, a la Warwick Framework.
+			A generic framework for pointing to/including metadata within a METS document.
 			</xsd:documentation>
     </xsd:annotation>
     <xsd:all>
@@ -788,8 +790,8 @@ POLY
     </xsd:attribute>
     <xsd:attribute name="STATUS" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata (e.g., superseded, current, etc.).
-          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-mdref-mdwrap
+        <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#status-md-mdgrp
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1080,7 +1082,9 @@ POLY
   <xsd:attributeGroup name="FILECORE">
     <xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">MIMETYPE (string/O): The IANA MIME media type for the associated file or wrapped content. Some values for this attribute can be found on the IANA website.
+        <xsd:documentation xml:lang="en">MIMETYPE (string/O): The IANA media type (formerly known as MIME type) for the associated file or wrapped content.
+
+        Registered media/MIME types: https://www.iana.org/assignments/media-types/media-types.xhtml
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
