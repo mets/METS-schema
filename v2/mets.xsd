@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns="http://www.loc.gov/METS/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.loc.gov/METS/v2" elementFormDefault="qualified" attributeFormDefault="unqualified">
+<xsd:schema xmlns="http://www.loc.gov/METS/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.loc.gov/METS/v2" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
   <xsd:annotation>
     <xsd:documentation xml:lang="en">
       METS: Metadata Encoding and Transmission Standard, version 2
@@ -35,7 +37,7 @@
       Change Log
 
       2.0 alpha - August 17, 2022
-     
+
       Initial public draft
 
       2.0 beta - Nov 15, 2022
@@ -70,7 +72,7 @@
       <xsd:element name="metsHdr" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-					The mets header element &lt;metsHdr&gt; captures metadata about the METS document itself, not the digital object the METS document encodes. Although it records a more limited set of metadata, it is very similar in function and purpose to the headers employed in other schema such as the Text Encoding Initiative (TEI) or in the Encoded Archival Description (EAD)
+					The mets header element &lt;metsHdr&gt; captures metadata about the METS document itself, not the digital object the METS document encodes.
 			</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
@@ -144,7 +146,8 @@
                     </xsd:attribute>
                     <xsd:attribute name="TYPE" type="xsd:string" use="optional">
                       <xsd:annotation>
-                        <xsd:documentation xml:lang="en">TYPE (string/O): A description of the identifier type (e.g., OCLC record number, LCCN, etc.).
+                        <xsd:documentation xml:lang="en">TYPE (string/O): A description of the identifier type.
+                        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#altrecordidtype
 												</xsd:documentation>
                       </xsd:annotation>
                     </xsd:attribute>
@@ -170,6 +173,8 @@
                     <xsd:attribute name="TYPE" type="xsd:string" use="optional">
                       <xsd:annotation>
                         <xsd:documentation xml:lang="en">TYPE (string/O): A description of the identifier type.
+
+                        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#metsdocumentidtype
 												</xsd:documentation>
                       </xsd:annotation>
                     </xsd:attribute>
@@ -214,7 +219,7 @@
       <xsd:element name="mdSec" type="mdSecType" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-						The metadata section &lt;mdSec&gt; contains the metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;mdSec&gt; is separated into sub-sections that accommodate any kind of metadata such as descriptive, technical, intellectual property rights, analog/digital source metadata, and digital provenance metadata. Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;mdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;mdSec&gt; element. This allows considerable flexibility in the structuring of the administrative metadata. METS does not define a vocabulary or syntax for encoding metadata. Metadata can be expressed within the mdSec sub-elements according to many current community defined standards or locally produced XML schemas. </xsd:documentation>
+						The metadata section &lt;mdSec&gt; contains the metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;mdSec&gt; is separated into sub-sections that accommodate any kind of metadata such as descriptive, technical, intellectual property rights, analog/digital source metadata, and digital provenance metadata. Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;mdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;mdSec&gt; element. This allows considerable flexibility in the structuring of the metadata. METS does not define a vocabulary or syntax for encoding metadata. Metadata can be expressed within the mdSec sub-elements according to many current community defined standards or locally produced XML schemas. </xsd:documentation>
         </xsd:annotation>
       </xsd:element>
       <xsd:element name="fileSec" minOccurs="0">
@@ -268,7 +273,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
             <xsd:element name="structMap" type="structMapType" maxOccurs="unbounded">
               <xsd:annotation>
                 <xsd:documentation xml:lang="en">
-                  The structural map section &lt;structMap&gt; provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant descriptive and administrative metadata.
+                  The structural map section &lt;structMap&gt; provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant metadata.
                 </xsd:documentation>
               </xsd:annotation>
             </xsd:element>
@@ -302,7 +307,9 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
     </xsd:attribute>
     <xsd:attribute name="TYPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">TYPE (string/O): Specifies the class or type of the object, e.g.: book, journal, stereograph, dataset, video, etc.
+        <xsd:documentation xml:lang="en">TYPE (string/O): Specifies the class or type of the object.
+
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#metstype
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -344,6 +351,8 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
           <xsd:attribute name="USE" type="xsd:string" use="optional">
             <xsd:annotation>
               <xsd:documentation xml:lang="en">USE (string/O): Specifies the purpose of the metadata contained in this group.
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mduse-mdgrpuse
               </xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
@@ -407,7 +416,9 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
     </xsd:attribute>
     <xsd:attribute name="USE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of files within this file group (e.g., master, reference, thumbnails for image files). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of files within this file group. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filegrpuse-fileuse
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -437,6 +448,8 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
     <xsd:attribute name="TYPE" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">TYPE (string/O): Identifies the type of structure represented by the &lt;structMap&gt;. For example, a &lt;structMap&gt; that represented a purely logical or intellectual structure could be assigned a TYPE value of “logical” whereas a &lt;structMap&gt; that represented a purely physical structure could be assigned a TYPE value of “physical”. However, the METS schema neither defines nor requires a common vocabulary for this attribute. A METS profile, however, may well constrain the values for the &lt;structMap&gt; TYPE.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#structmaptype
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -550,7 +563,7 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
       <xsd:annotation>
         <xsd:documentation xml:lang="en">TYPE (string/O): An attribute that specifies the type of structural division that the &lt;div&gt; element represents.
 
-        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#type-div
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#divtype
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -619,16 +632,13 @@ to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes f
     </xsd:attribute>
     <xsd:attribute name="SHAPE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">SHAPE (string/O): An attribute that can be used as in HTML to define the shape of the relevant area within the content file pointed to by the &lt;area&gt; element. Typically this would be used with image content (still image or video frame) when only a portion of an integal image map pertains. If SHAPE is specified then COORDS must also be present. SHAPE should be used in conjunction with COORDS in the manner defined for the shape and coords attributes on an HTML5 &lt;area&gt; element. Possible values include:
-RECT
-CIRCLE
-POLY
+        <xsd:documentation xml:lang="en">SHAPE (string/O): An attribute that can be used as in HTML to define the shape of the relevant area within the content file pointed to by the &lt;area&gt; element. Typically this would be used with image content (still image or video frame) when only a portion of an image pertains. If SHAPE is specified then COORDS must also be present. SHAPE should be used in conjunction with COORDS in the manner defined for the shape and coords attributes on an HTML5 &lt;area&gt; element. Recommended attribute values are those allowed by HTML5; see also https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areashape
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
     <xsd:attribute name="COORDS" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">COORDS (string/O): Specifies the coordinates in an image map for the shape of the pertinent area as specified in the SHAPE attribute. While technically optional, SHAPE and COORDS must both appear together to define the relevant area of image content. COORDS should be used in conjunction with SHAPE in the manner defined for the COORDs and SHAPE attributes on an HTML5 &lt;area&gt; element. COORDS must be a comma delimited string of integer value pairs representing coordinates (plus radius in the case of CIRCLE) within an image map. Number of coordinates pairs depends on shape: RECT: x1, y1, x2, y2; CIRC: x1, y1; POLY: x1, y1, x2, y2, x3, y3 . . .
+        <xsd:documentation xml:lang="en">COORDS (string/O): Specifies the coordinates in an image map for the shape of the pertinent area as specified in the SHAPE attribute. While technically optional, SHAPE and COORDS must both appear together to define the relevant area of image content. COORDS should be used in conjunction with SHAPE in the manner defined for the COORDs and SHAPE attributes on an HTML5 &lt;area&gt; element. COORDS must be a comma delimited string of integer value pairs representing coordinates (plus radius in the case of CIRCLE) within an image. Number of coordinates pairs depends on shape: RECT: x1, y1, x2, y2; CIRC: x1, y1; POLY: x1, y1, x2, y2, x3, y3 . . .
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -716,7 +726,7 @@ POLY
       <xsd:element name="mdWrap" minOccurs="0">
         <xsd:annotation>
           <xsd:documentation xml:lang="en">
-						A metadata wrapper element &lt;mdWrap&gt; provides a wrapper around metadata embedded within a METS document. The element is repeatable. Such metadata can be in one of two forms: 1) XML-encoded metadata, with the XML-encoding identifying itself as belonging to a namespace other than the METS document namespace. 2) Any arbitrary binary or textual form, PROVIDED that the metadata is Base64 encoded and wrapped in a &lt;binData&gt; element within the internal descriptive metadata element.
+						A metadata wrapper element &lt;mdWrap&gt; provides a wrapper around metadata embedded within a METS document. The element is repeatable. Such metadata can be in one of two forms: 1) XML-encoded metadata, with the XML-encoding identifying itself as belonging to a namespace other than the METS document namespace. 2) Any arbitrary binary or textual form, PROVIDED that the metadata is Base64 encoded and wrapped in a &lt;binData&gt; element within the internal metadata element.
 					</xsd:documentation>
         </xsd:annotation>
         <xsd:complexType>
@@ -766,7 +776,7 @@ POLY
     <xsd:attribute name="USE" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">USE: Specifies the purpose of metadata in this section.
-        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#use-md-mdgrp
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mduse-mdgrpuse
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -819,7 +829,9 @@ POLY
           </xsd:attribute>
           <xsd:attribute name="USE" type="xsd:string" use="optional">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file  represented by the &lt;FLocat&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file  represented by the &lt;FLocat&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#flocatuse-fcontentuse
 							</xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
@@ -862,7 +874,9 @@ POLY
           </xsd:attribute>
           <xsd:attribute name="USE" type="xsd:string" use="optional">
             <xsd:annotation>
-              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file represented by the &lt;FContent&gt; element (e.g., service master, archive master). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file represented by the &lt;FContent&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+ 
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#flocatuse-fcontentuse
 							</xsd:documentation>
             </xsd:annotation>
           </xsd:attribute>
@@ -915,6 +929,7 @@ POLY
                 <xsd:annotation>
                   <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
                     BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used.
+
                     Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filebetype-streambetype
                   </xsd:documentation>
                 </xsd:annotation>
@@ -987,7 +1002,7 @@ POLY
     </xsd:attribute>
     <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain administrative metadata pertaining to the file.
+        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the file.
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -999,7 +1014,9 @@ POLY
     </xsd:attribute>
     <xsd:attribute name="USE" type="xsd:string" use="optional">
       <xsd:annotation>
-        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of all copies of the file aggregated by the &lt;file&gt; element (e.g., master, reference, thumbnails for image files). A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of all copies of the file aggregated by the &lt;file&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filegrpuse-fileuse
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
@@ -1109,7 +1126,7 @@ POLY
     <xsd:attribute name="CHECKSUMTYPE" type="xsd:string" use="optional">
       <xsd:annotation>
         <xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.
-          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-mdref-mdwrap
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-file-mdref-mdwrap
 				</xsd:documentation>
       </xsd:annotation>
     </xsd:attribute>
