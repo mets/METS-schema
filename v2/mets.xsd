@@ -27,7 +27,7 @@
       For version 1.x credits, change log, and documentation, see https://www.loc.gov/standards/mets/mets.xsd
     </xsd:documentation>
     <xsd:documentation xml:lang="en">
-      This schema is a major revision of the METS schema. A white paper describing the new version and the rationale for the differences between the two is available: https://github.com/mets/METS-schema/blob/mets2/METS2.md.
+      This schema is a major revision of the METS schema. A white paper describing the new version and the rationale for the differences between the two is available: https://mets.github.io/METS2_whitepaper.html.
 
       The latest version of this schema is available at https://github.com/mets/METS-schema/blob/main/v2/mets.xsd as well as https://www.loc.gov/standards/mets/v2/mets.xsd
 
