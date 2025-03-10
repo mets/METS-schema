@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mets:mets xmlns:mets="http://www.loc.gov/METS/v2"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:premis="http://www.loc.gov/premis/v3"
+ xsi:schemaLocation="https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd" 
+ OBJID="OBJIDexample1" 
+ LABEL="Born digital METS2 example created by the METS Editorial Board">
+    
+    <mets:metsHdr CREATEDATE="2024-01-01T00:00:00" LASTMODDATE="2024-09-16T00:00:00" RECORDSTATUS="EXAMPLE">        
+        <mets:agent ROLE="CREATOR" TYPE="ORGANIZATION">
+            <mets:name>METS Editorial Board</mets:name>
+            <mets:note>This METS file has been created by the METS Editorial Board as a METS2 example for born digital material</mets:note>
+        </mets:agent>
+    </mets:metsHdr>
+    
+    
+    <mets:mdSec>
+        
+        <!-- descriptive Dublin Core metadata -->
+        <mets:mdGrp USE="DESCRIPTIVE">            
+            <mets:md ID="dmd-001" USE="DESCRIPTIVE">
+                <mets:mdWrap MDTYPE="DC">
+                    <mets:xmlData>
+                        <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/"
+                            xmlns:dcterms="http://purl.org/dc/terms/">
+                            <dc:title>Understanding and implementing METS, A tutorial focused on METS 2</dc:title>
+                            <dc:creator>Karin Bredenberg</dc:creator>
+                            <dc:creator>Aaron Elkiss</dc:creator>
+                            <dc:creator>Juha Lehtonen</dc:creator>
+                            <dc:date>2023-09-19</dc:date>
+                            <dc:description>Tutorial</dc:description>
+                            <dcterms:license>Copyright held by the author(s). The text of this paper is published under a CC BY-SA license (https://creativecommons.org/licenses/by/4.0/).</dcterms:license>
+                            
+                            <dc:identifier>https://hdl.handle.net/2142/121056</dc:identifier>
+                            
+                            <dc:subject>Metadata and information strategies and workflows</dc:subject>
+                            <dc:subject>Infrastructure, systems, and tools</dc:subject>
+                            <dc:subject>Case studies, best practices and novel challenges</dc:subject>
+                            <dc:subject>Training and education for a new version</dc:subject>
+                            <dcterms:abstract>This half day tutorial will provide
+                                participants with an introduction to the Metadata
+                                Encoding and Transmission Standard (METS) starting in
+                                METS version 1 and the METS Primer, but focusing
+                                on METS version 2. It will give a basic overview of METS
+                                and explore different models of implementation. The
+                                METS schema is a standard for encoding descriptive,
+                                administrative, and structural metadata regarding
+                                objects within a digital library as well as digital
+                                archives, expressed using the XML schema language of
+                                the World Wide Web Consortium. It is maintained by
+                                the METS Editorial Board, and the METS Maintenance
+                                Activity is managed by the Library of Congress.</dcterms:abstract>
+                            
+                            <dc:type>text</dc:type>
+                            <dcterms:isPartOf>iPRES 2023 Conference Proceedings</dcterms:isPartOf>
+                        </dc:record>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+        </mets:mdGrp>
+        
+        <mets:mdGrp USE="ADMINISTRATIVE">
+            <!-- technical metadata in PREMIS of Paper DOCX  -->            
+            <mets:md ID="tech-001" USE="TECHNICAL"> 
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:file">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType>local</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>file-001</premis:objectIdentifierValue>
+                            </premis:objectIdentifier>
+                            <premis:objectCharacteristics>
+                                <premis:compositionLevel>0</premis:compositionLevel>
+                                <premis:fixity>
+                                    <premis:messageDigestAlgorithm authority="cryptographicHashFunctions" authorityURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions" valueURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5">MD5</premis:messageDigestAlgorithm>
+                                    <premis:messageDigest>dbf121ba5952a3b48528e2d032b00ad3</premis:messageDigest>
+                                </premis:fixity>
+                                <premis:size>51554</premis:size>
+                                <premis:format>
+                                    <premis:formatDesignation>
+                                        <premis:formatName>Microsoft Word for Windows</premis:formatName>
+                                        <premis:formatVersion>2007 onwards</premis:formatVersion>
+                                    </premis:formatDesignation>
+                                    <premis:formatRegistry>
+                                        <premis:formatRegistryName>PRONOM</premis:formatRegistryName>
+                                        <premis:formatRegistryKey>fmt/412</premis:formatRegistryKey>
+                                        <premis:formatRegistryRole authority="http://id.loc.gov/vocabulary/preservation/formatRegistryRole" valueURI="http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe">specification</premis:formatRegistryRole>
+                                    </premis:formatRegistry>
+                                </premis:format>
+                            </premis:objectCharacteristics>
+                            <premis:originalName>iPRES2023_METS_Tutorial.docx</premis:originalName>
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- technical metadata in PREMIS of Presentation PPTX  -->            
+            <mets:md ID="tech-002" USE="TECHNICAL"> 
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:file">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType>local</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>file-002</premis:objectIdentifierValue>
+                            </premis:objectIdentifier>
+                            <premis:objectCharacteristics>
+                                <premis:compositionLevel>0</premis:compositionLevel>
+                                <premis:fixity>
+                                    <premis:messageDigestAlgorithm authority="cryptographicHashFunctions" authorityURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions" valueURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5">MD5</premis:messageDigestAlgorithm>
+                                    <premis:messageDigest>58806238a5c0d08afa2aa4cc59dc7238</premis:messageDigest>
+                                </premis:fixity>
+                                <premis:size>1233701</premis:size>
+                                <premis:format>
+                                    <premis:formatDesignation>
+                                        <premis:formatName>Microsoft Powerpoint for Windows</premis:formatName>
+                                        <premis:formatVersion>2007 onwards</premis:formatVersion>
+                                    </premis:formatDesignation>
+                                    <premis:formatRegistry>
+                                        <premis:formatRegistryName>PRONOM</premis:formatRegistryName>
+                                        <premis:formatRegistryKey>fmt/215</premis:formatRegistryKey>
+                                        <premis:formatRegistryRole authority="http://id.loc.gov/vocabulary/preservation/formatRegistryRole" valueURI="http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe">specification</premis:formatRegistryRole>
+                                    </premis:formatRegistry>
+                                </premis:format>
+                            </premis:objectCharacteristics>
+                            <premis:originalName>1702_1A_Bredenberg.pptx</premis:originalName>
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- technical metadata in PREMIS of Handout PDF -->
+            <mets:md ID="tech-003" USE="TECHNICAL">
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:file">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType>local</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>file-003</premis:objectIdentifierValue>
+                            </premis:objectIdentifier>
+                            <premis:objectCharacteristics>
+                                <premis:compositionLevel>0</premis:compositionLevel>
+                                <premis:fixity>
+                                    <premis:messageDigestAlgorithm authority="cryptographicHashFunctions" authorityURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions" valueURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5">MD5</premis:messageDigestAlgorithm>
+                                    <premis:messageDigest>ace57c041cef79977c87353e96475d58</premis:messageDigest>
+                                </premis:fixity>
+                                <premis:size>253648</premis:size>
+                                <premis:format>
+                                    <premis:formatDesignation>
+                                        <premis:formatName>Acrobat PDF 1.7 - Portable Document Format</premis:formatName>
+                                        <premis:formatVersion>1.7</premis:formatVersion>
+                                    </premis:formatDesignation>
+                                    <premis:formatRegistry>
+                                        <premis:formatRegistryName>PRONOM</premis:formatRegistryName>
+                                        <premis:formatRegistryKey>fmt/276</premis:formatRegistryKey>
+                                        <premis:formatRegistryRole authority="http://id.loc.gov/vocabulary/preservation/formatRegistryRole" valueURI="http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe">specification</premis:formatRegistryRole>
+                                    </premis:formatRegistry>
+                                </premis:format>
+                            </premis:objectCharacteristics>
+                            <premis:originalName>METS Exercise iPRES 2023.pdf</premis:originalName>
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- technical metadata in PREMIS of Paper PDF -->
+            <mets:md ID="tech-004" USE="TECHNICAL">
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:file">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType>local</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>file-004</premis:objectIdentifierValue>
+                            </premis:objectIdentifier>
+                            <premis:objectCharacteristics>
+                                <premis:compositionLevel>0</premis:compositionLevel>
+                                <premis:fixity>
+                                    <premis:messageDigestAlgorithm authority="cryptographicHashFunctions" authorityURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions" valueURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5">MD5</premis:messageDigestAlgorithm>
+                                    <premis:messageDigest>0b17b66e1c8ec8bb3074e9d5d3dd5623</premis:messageDigest>
+                                </premis:fixity>
+                                <premis:size>103555</premis:size>
+                                <premis:format>
+                                    <premis:formatDesignation>
+                                        <premis:formatName>Acrobat PDF 1.4 - Portable Document Format</premis:formatName>
+                                        <premis:formatVersion>1.4</premis:formatVersion>
+                                    </premis:formatDesignation>
+                                    <premis:formatRegistry>
+                                        <premis:formatRegistryName>PRONOM</premis:formatRegistryName>
+                                        <premis:formatRegistryKey>fmt/18</premis:formatRegistryKey>
+                                        <premis:formatRegistryRole authority="http://id.loc.gov/vocabulary/preservation/formatRegistryRole" valueURI="http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe">specification</premis:formatRegistryRole>
+                                    </premis:formatRegistry>
+                                </premis:format>
+                            </premis:objectCharacteristics>
+                            <premis:originalName>iPRES2023_submission_1702.pdf</premis:originalName>
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>  
+            
+            <!-- technical metadata in PREMIS of Presentation PDF  -->
+            <mets:md ID="tech-005" USE="TECHNICAL"> 
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:file">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType>local</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>file-005</premis:objectIdentifierValue>
+                            </premis:objectIdentifier>
+                            <premis:objectCharacteristics>
+                                <premis:compositionLevel>0</premis:compositionLevel>
+                                <premis:fixity>
+                                    <premis:messageDigestAlgorithm authority="cryptographicHashFunctions" authorityURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions" valueURI="http://id.loc.gov/vocabulary/preservation/cryptographicHashFunctions/md5">MD5</premis:messageDigestAlgorithm>
+                                    <premis:messageDigest>0c171c6ecab670343e02cd0f26e85385</premis:messageDigest>
+                                </premis:fixity>
+                                <premis:size>972257</premis:size>
+                                <premis:format>
+                                    <premis:formatDesignation>
+                                        <premis:formatName>Acrobat PDF 1.7 - Portable Document Format</premis:formatName>
+                                        <premis:formatVersion>1.7</premis:formatVersion>
+                                    </premis:formatDesignation>
+                                    <premis:formatRegistry>
+                                        <premis:formatRegistryName>PRONOM</premis:formatRegistryName>
+                                        <premis:formatRegistryKey>fmt/276</premis:formatRegistryKey>
+                                        <premis:formatRegistryRole authority="http://id.loc.gov/vocabulary/preservation/formatRegistryRole" valueURI="http://id.loc.gov/vocabulary/preservation/formatRegistryRole/spe">specification</premis:formatRegistryRole>
+                                    </premis:formatRegistry>
+                                </premis:format>
+                            </premis:objectCharacteristics>
+                            <premis:originalName>METS Tutorial iPRES 2023.pdf</premis:originalName>
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- technical metadata in PREMIS of complete Tutorial IE  -->
+            <mets:md ID="tech-006" USE="TECHNICAL"> 
+                <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:object xsi:type="premis:intellectualEntity">
+                            <premis:objectIdentifier>
+                                <premis:objectIdentifierType authority="identifiers" authorityURI="http://id.loc.gov/vocabulary/identifiers" valueURI="http://id.loc.gov/vocabulary/identifiers/hdl" >hdl</premis:objectIdentifierType>
+                                <premis:objectIdentifierValue>https://hdl.handle.net/2142/121056</premis:objectIdentifierValue>
+                            </premis:objectIdentifier> 
+                        </premis:object>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance event for creation of Paper DOCX -->
+            <mets:md ID="event-001" USE="PROVENANCE" MDID="agent-001">
+                <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:event>
+                            <premis:eventIdentifier>
+                                <premis:eventIdentifierType>local</premis:eventIdentifierType>
+                                <premis:eventIdentifierValue>event-001</premis:eventIdentifierValue>
+                            </premis:eventIdentifier>
+                            <premis:eventType authority="premisEventType" authorityURI="http://id.loc.gov/vocabulary/preservation/eventType" valueURI="http://id.loc.gov/vocabulary/preservation/eventType/cre">creation</premis:eventType>
+                            <premis:eventDateTime>2021-12-01T15:05</premis:eventDateTime>
+                            <premis:eventDetailInformation>
+                                <premis:eventDetail>Object created with Microsoft Office Word</premis:eventDetail>
+                            </premis:eventDetailInformation>
+                            <premis:linkingAgentIdentifier>
+                                <premis:linkingAgentIdentifierType>local</premis:linkingAgentIdentifierType>
+                                <premis:linkingAgentIdentifierValue>agent-001</premis:linkingAgentIdentifierValue>
+                                <premis:linkingAgentRole authority="premisEventRelatedAgentRole" authorityURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole" valueURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe">executing program</premis:linkingAgentRole>
+                            </premis:linkingAgentIdentifier>
+                        </premis:event>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance agent for creation of Paper DOCX -->
+            <mets:md ID="agent-001" USE="PROVENANCE" MDID="event-001">
+                <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:agent>
+                            <premis:agentIdentifier>
+                                <premis:agentIdentifierType>local</premis:agentIdentifierType>
+                                <premis:agentIdentifierValue>agent-001</premis:agentIdentifierValue>
+                            </premis:agentIdentifier>
+                            <premis:agentName>Microsoft Office Word</premis:agentName>
+                            <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
+                            <premis:linkingEventIdentifier>
+                                <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
+                                <premis:linkingEventIdentifierValue>event-001</premis:linkingEventIdentifierValue>
+                            </premis:linkingEventIdentifier>
+                        </premis:agent>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance event for creation of Presentation PPTX -->
+            <mets:md ID="event-002" USE="PROVENANCE" MDID="agent-002">
+                <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:event>
+                            <premis:eventIdentifier>
+                                <premis:eventIdentifierType>local</premis:eventIdentifierType>
+                                <premis:eventIdentifierValue>event-002</premis:eventIdentifierValue>
+                            </premis:eventIdentifier>
+                            <premis:eventType authority="premisEventType" authorityURI="http://id.loc.gov/vocabulary/preservation/eventType" valueURI="http://id.loc.gov/vocabulary/preservation/eventType/cre">creation</premis:eventType>
+                            <premis:eventDateTime>2023-09-15T23:02</premis:eventDateTime>
+                            <premis:eventDetailInformation>
+                                <premis:eventDetail>Object created with Microsoft Office Powerpoint</premis:eventDetail>
+                            </premis:eventDetailInformation>
+                            <premis:linkingAgentIdentifier>
+                                <premis:linkingAgentIdentifierType>local</premis:linkingAgentIdentifierType>
+                                <premis:linkingAgentIdentifierValue>agent-002</premis:linkingAgentIdentifierValue>
+                                <premis:linkingAgentRole authority="premisEventRelatedAgentRole" authorityURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole" valueURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe">executing program</premis:linkingAgentRole>
+                            </premis:linkingAgentIdentifier>
+                        </premis:event>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance agent for creation of Presentation PPTX -->
+            <mets:md ID="agent-002" USE="PROVENANCE" MDID="event-002">
+                <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:agent>
+                            <premis:agentIdentifier>
+                                <premis:agentIdentifierType>local</premis:agentIdentifierType>
+                                <premis:agentIdentifierValue>agent-002</premis:agentIdentifierValue>
+                            </premis:agentIdentifier>
+                            <premis:agentName>Microsoft Office Powerpoint</premis:agentName>
+                            <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
+                            <premis:linkingEventIdentifier>
+                                <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
+                                <premis:linkingEventIdentifierValue>event-002</premis:linkingEventIdentifierValue>
+                            </premis:linkingEventIdentifier>
+                        </premis:agent>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>           
+            
+            
+            
+            <!-- provenance event for creation of Handout PDF -->
+            <mets:md ID="event-003" USE="PROVENANCE" MDID="agent-003">
+                <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:event>
+                            <premis:eventIdentifier>
+                                <premis:eventIdentifierType>local</premis:eventIdentifierType>
+                                <premis:eventIdentifierValue>event-003</premis:eventIdentifierValue>
+                            </premis:eventIdentifier>
+                            <premis:eventType authority="premisEventType" authorityURI="http://id.loc.gov/vocabulary/preservation/eventType" valueURI="http://id.loc.gov/vocabulary/preservation/eventType/cre">creation</premis:eventType>
+                            <premis:eventDateTime>2023-09-19T16:09:15</premis:eventDateTime>
+                            <premis:eventDetailInformation>
+                                <premis:eventDetail>Object created from Microsoft Word for Windows</premis:eventDetail>
+                            </premis:eventDetailInformation>
+                            <premis:linkingAgentIdentifier>
+                                <premis:linkingAgentIdentifierType>local</premis:linkingAgentIdentifierType>
+                                <premis:linkingAgentIdentifierValue>agent-003</premis:linkingAgentIdentifierValue>
+                                <premis:linkingAgentRole authority="premisEventRelatedAgentRole" authorityURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole" valueURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe">executing program</premis:linkingAgentRole>
+                            </premis:linkingAgentIdentifier>
+                        </premis:event>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance agent for creation of Handout PDF -->
+            <mets:md ID="agent-003" USE="PROVENANCE" MDID="event-003">
+                <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:agent>
+                            <premis:agentIdentifier>
+                                <premis:agentIdentifierType>local</premis:agentIdentifierType>
+                                <premis:agentIdentifierValue>agent-003</premis:agentIdentifierValue>
+                            </premis:agentIdentifier>
+                            <premis:agentName>not available</premis:agentName>
+                            <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
+                            <premis:linkingEventIdentifier>
+                                <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
+                                <premis:linkingEventIdentifierValue>event-003</premis:linkingEventIdentifierValue>
+                            </premis:linkingEventIdentifier>
+                        </premis:agent>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance event for creation/migration of Paper PDF -->
+            <mets:md ID="event-004" USE="PROVENANCE" MDID="agent-004">
+                <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:event>
+                            <premis:eventIdentifier>
+                                <premis:eventIdentifierType>local</premis:eventIdentifierType>
+                                <premis:eventIdentifierValue>event-004</premis:eventIdentifierValue>
+                            </premis:eventIdentifier>
+                            <premis:eventType authority="premisEventType" authorityURI="http://id.loc.gov/vocabulary/preservation/eventType" valueURI="http://id.loc.gov/vocabulary/preservation/eventType/mig">migration</premis:eventType>
+                            <premis:eventDateTime>2023-11-01T19:52:59</premis:eventDateTime>
+                            <premis:eventDetailInformation>
+                                <premis:eventDetail>Object migrated from Microsoft Word for Windows to Acrobat PDF 1.4 - Portable Document Format</premis:eventDetail>
+                            </premis:eventDetailInformation>
+                            <premis:linkingAgentIdentifier>
+                                <premis:linkingAgentIdentifierType>local</premis:linkingAgentIdentifierType>
+                                <premis:linkingAgentIdentifierValue>agent-004</premis:linkingAgentIdentifierValue>
+                                <premis:linkingAgentRole authority="premisEventRelatedAgentRole" authorityURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole" valueURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe">executing program</premis:linkingAgentRole>
+                            </premis:linkingAgentIdentifier>
+                        </premis:event>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance agent for creation of Paper PDF -->
+            <mets:md ID="agent-004" USE="PROVENANCE" MDID="event-004">
+                <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:agent>
+                            <premis:agentIdentifier>
+                                <premis:agentIdentifierType>local</premis:agentIdentifierType>
+                                <premis:agentIdentifierValue>agent-004</premis:agentIdentifierValue>
+                            </premis:agentIdentifier>
+                            <premis:agentName>macOS Version 12.6.8 (Build 21G725) Quartz PDFContext</premis:agentName>
+                            <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
+                            <premis:linkingEventIdentifier>
+                                <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
+                                <premis:linkingEventIdentifierValue>event-004</premis:linkingEventIdentifierValue>
+                            </premis:linkingEventIdentifier>
+                        </premis:agent>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance event for creation/migration of Presentation PDF -->
+            <mets:md ID="event-005" USE="PROVENANCE" MDID="agent-005">
+                <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:event>
+                            <premis:eventIdentifier>
+                                <premis:eventIdentifierType>local</premis:eventIdentifierType>
+                                <premis:eventIdentifierValue>event-005</premis:eventIdentifierValue>
+                            </premis:eventIdentifier>
+                            <premis:eventType authority="premisEventType" authorityURI="http://id.loc.gov/vocabulary/preservation/eventType" valueURI="http://id.loc.gov/vocabulary/preservation/eventType/mig">migration</premis:eventType>
+                            <premis:eventDateTime>2023-09-15T23:09:29</premis:eventDateTime>
+                            <premis:eventDetailInformation>
+                                <premis:eventDetail>Object migrated from Microsoft Powerpoint for Windows to Acrobat PDF 1.7 - Portable Document Format</premis:eventDetail>
+                            </premis:eventDetailInformation>
+                            <premis:linkingAgentIdentifier>
+                                <premis:linkingAgentIdentifierType>local</premis:linkingAgentIdentifierType>
+                                <premis:linkingAgentIdentifierValue>agent-005</premis:linkingAgentIdentifierValue>
+                                <premis:linkingAgentRole authority="premisEventRelatedAgentRole" authorityURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole" valueURI="http://id.loc.gov/vocabulary/preservation/eventRelatedAgentRole/exe">executing program</premis:linkingAgentRole>
+                            </premis:linkingAgentIdentifier>
+                        </premis:event>                        
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- provenance agent for creation/migration of Presentation PDF -->
+            <mets:md ID="agent-005" USE="PROVENANCE" MDID="event-005">
+                <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:agent>
+                            <premis:agentIdentifier>
+                                <premis:agentIdentifierType>local</premis:agentIdentifierType>
+                                <premis:agentIdentifierValue>agent-005</premis:agentIdentifierValue>
+                            </premis:agentIdentifier>
+                            <premis:agentName>Microsoft® PowerPoint® for Microsoft 365</premis:agentName>
+                            <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
+                            <premis:linkingEventIdentifier>
+                                <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
+                                <premis:linkingEventIdentifierValue>event-005</premis:linkingEventIdentifierValue>
+                            </premis:linkingEventIdentifier>
+                        </premis:agent>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+            
+            <!-- rights in PREMIS for Tutorial IE -->
+            <mets:md ID="rights-001" USE="RIGHTS">
+                <mets:mdWrap MDTYPE="PREMIS:RIGHTS" MDTYPEVERSION="3.0">
+                    <mets:xmlData>
+                        <premis:rights>
+                            <premis:rightsStatement>
+                                <premis:rightsStatementIdentifier>
+                                    <premis:rightsStatementIdentifierType>local</premis:rightsStatementIdentifierType>
+                                    <premis:rightsStatementIdentifierValue>rights-001</premis:rightsStatementIdentifierValue>
+                                </premis:rightsStatementIdentifier>
+                                <premis:rightsBasis>license</premis:rightsBasis>
+                                <premis:licenseInformation>
+                                    <premis:licenseDocumentationIdentifier>
+                                        <premis:licenseDocumentationIdentifierType>uri</premis:licenseDocumentationIdentifierType>
+                                        <premis:licenseDocumentationIdentifierValue>https://creativecommons.org/licenses/by/4.0/</premis:licenseDocumentationIdentifierValue>                                        
+                                    </premis:licenseDocumentationIdentifier>
+                                    <premis:licenseTerms>The text of this paper is published under a CC BY-SA license (https://creativecommons.org/licenses/by/4.0/).</premis:licenseTerms>
+                                </premis:licenseInformation>
+                            </premis:rightsStatement>
+                        </premis:rights>
+                    </mets:xmlData>
+                </mets:mdWrap>
+            </mets:md>
+        </mets:mdGrp>
+    </mets:mdSec>
+    
+    
+    <mets:fileSec>
+        
+        <mets:fileGrp USE="original">
+            <!-- 1 paper DOCX -->
+            <mets:file ID="file-001" MDID="tech-001 event-001">
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/iPRES2023_METS_Tutorial.docx" />
+            </mets:file>
+            
+            
+            <!-- 2 presentation PPTX -->
+            <mets:file ID="file-002" MDID="tech-002 event-002">
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/1702_1A_Bredenberg.pptx" />
+            </mets:file>
+            
+            <!-- 3 handout PDF -->
+            <mets:file ID="file-003" MDID="tech-003 event-003">
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/METS%20Exercise%20iPRES%202023.pdf" />
+            </mets:file>
+        </mets:fileGrp>
+        
+        <mets:fileGrp USE="archival">
+            <!-- 4 paper PDF -->
+            <mets:file ID="file-004" MDID="tech-004 event-004">
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://hdl.handle.net/2142/121056" />
+            </mets:file>
+            
+            <!-- 5 presentation PDF -->            
+            <mets:file ID="file-005" MDID="tech-005 event-005">
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/METS%20Tutorial%20iPRES%202023.pdf" />
+            </mets:file>
+            
+        </mets:fileGrp>
+         
+        
+        </mets:fileSec>
+    
+    <mets:structSec>
+        <mets:structMap>
+            <mets:div LABEL="Understanding and implementing METS, A tutorial focused on METS 2" MDID="dmd-001 tech-006 rights-001">                
+                <mets:div TYPE="Paper" LABEL="UNDERSTANDING AND IMPLEMENTING METS: A tutorial focused on METS 2">
+                    <mets:fptr FILEID="file-001"/>
+                    <mets:fptr FILEID="file-004"/>
+                </mets:div>                
+                <mets:div TYPE="Presentation" LABEL="Understanding and Implementing METS">
+                    <mets:fptr FILEID="file-002"/>
+                    <mets:fptr FILEID="file-005"/>                    
+                </mets:div>                
+                <mets:div TYPE="Handout" LABEL="Exercise METS 2">
+                    <mets:fptr FILEID="file-003"/>
+                </mets:div>                
+            </mets:div>
+        </mets:structMap>
+        
+    </mets:structSec>
+</mets:mets>

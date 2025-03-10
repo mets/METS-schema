@@ -1,0 +1,1134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.loc.gov/METS/v2" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="http://www.loc.gov/METS/v2" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xsd:annotation>
+    <xsd:documentation xml:lang="en">
+      METS: Metadata Encoding and Transmission Standard, version 2
+
+      This document is available under the Creative Commons CC0 1.0 Universal Public Domain Dedication (http://creativecommons.org/publicdomain/zero/1.0/).
+      The METS Editorial Board, as creator of this document, has waived all rights to it worldwide under copyright law, including
+      all related and neighboring rights, to the extent allowed by law. For the full text see http://creativecommons.org/publicdomain/zero/1.0/legalcode.
+
+      Prepared by the METS Editorial Board
+
+      Karin Bredenberg (Sydarkivera, Sweden)
+      Bertrand Caron (Bibliothèque nationale de France)
+      Aaron Elkiss (HathiTrust / University of Michigan)
+      Inge Hofsink (KB National Library of the Netherlands)
+      Juha Lehtonen (CSC – IT Center for Science, Finland)
+      Andreas Nef (Docuteam GmbH, Baden, Switzerland)
+      Tobias Steinke (German National Library)
+      Robin Wendler (Harvard University)
+
+      August, 2023
+      Version 2.0 beta
+
+      For version 1.x credits, change log, and documentation, see https://www.loc.gov/standards/mets/mets.xsd
+    </xsd:documentation>
+    <xsd:documentation xml:lang="en">
+      This schema is a major revision of the METS schema. A white paper describing the new version and the rationale for the differences between the two is available: https://github.com/mets/METS-schema/blob/mets2/METS2.md.
+
+      The latest draft of this schema is available at https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd.
+
+      METS 2 will live alongside METS 1; METS 1 will continue to be supported and maintained.
+    </xsd:documentation>
+    <xsd:documentation xml:lang="en">
+      Change Log
+
+      2.0 alpha - August 17, 2022
+
+      Initial public draft
+
+      2.0 beta - Nov 15, 2022
+
+      * Add links to recommended schema attributes
+      * Remove transformfile references to behaviorSec; transformfile@TRANSFORMBEHAVIOR
+
+      2.0 final - Dec 9, 2024
+
+      * Edit documentation elements to clarify usage and remove references to the METS 1 Primer
+    </xsd:documentation>
+  </xsd:annotation>
+  <xsd:element name="mets">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">METS: Metadata Encoding and Transmission Standard.
+				METS is intended to provide a standardized XML format for transmission of complex digital objects between systems.  As such, it can be seen as filling a role similar to that defined for the Submission Information Package (SIP), Archival Information Package (AIP) and Dissemination Information Package (DIP) in the Reference Model for an Open Archival Information System. The root element &lt;mets&gt; establishes the container for the information being stored and/or transmitted by the standard.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexType>
+      <xsd:complexContent>
+        <xsd:extension base="metsType"/>
+      </xsd:complexContent>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="metsType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">metsType: Complex Type for METS Sections
+			A METS document consists of four possible subsidiary sections: metsHdr (METS document header), mdSec (metadata section), fileSec (file section) and structMap (structural map)
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="metsHdr" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+					The mets header element &lt;metsHdr&gt; captures metadata about the METS document itself, not the digital object the METS document encodes.
+			</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="agent" minOccurs="0" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">agent:
+								The agent element &lt;agent&gt; provides for various parties and their roles with respect to the METS document to be documented. 
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="name" type="xsd:string">
+                    <xsd:annotation>
+                      <xsd:documentation xml:lang="en">
+											The element &lt;name&gt; can be used to record the full name of the METS document agent.
+											</xsd:documentation>
+                    </xsd:annotation>
+                  </xsd:element>
+                  <xsd:element name="note" minOccurs="0" maxOccurs="unbounded">
+                    <xsd:annotation>
+                      <xsd:documentation xml:lang="en">
+											The &lt;note&gt; element can be used to record any additional information regarding the agent's activities with respect to the METS document.
+											</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                      <xsd:simpleContent>
+                        <xsd:extension base="xsd:string">
+                          <xsd:anyAttribute namespace="##other" processContents="lax"/>
+                        </xsd:extension>
+                      </xsd:simpleContent>
+                    </xsd:complexType>
+                  </xsd:element>
+                </xsd:sequence>
+                <xsd:attribute name="ID" type="xsd:ID" use="optional">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+										</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="ROLE" use="required" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">ROLE (string/R): Specifies the function of the agent with respect to the METS document.
+                      Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#agentrole
+										</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:attribute>
+                <xsd:attribute name="TYPE" use="optional" type="xsd:string">
+                  <xsd:annotation>
+                    <xsd:documentation xml:lang="en">TYPE (string/O): is used to specify the type of AGENT.
+                      Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#agenttype
+										</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:attribute>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="altRecordID" minOccurs="0" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The alternative record identifier element &lt;altRecordID&gt; allows one to use alternative record identifier values for the digital object represented by the METS document; the primary record identifier is stored in the OBJID attribute in the root &lt;mets&gt; element.
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:simpleContent>
+                  <xsd:extension base="xsd:string">
+                    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+                      <xsd:annotation>
+                        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+												</xsd:documentation>
+                      </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="TYPE" type="xsd:string" use="optional">
+                      <xsd:annotation>
+                        <xsd:documentation xml:lang="en">TYPE (string/O): A description of the identifier type.
+                        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#altrecordidtype
+												</xsd:documentation>
+                      </xsd:annotation>
+                    </xsd:attribute>
+                  </xsd:extension>
+                </xsd:simpleContent>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="metsDocumentID" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The metsDocument identifier element &lt;metsDocumentID&gt; allows a unique identifier to be assigned to the METS document itself.  This may be different from the OBJID attribute value in the root &lt;mets&gt; element, which uniquely identifies the entire digital object represented by the METS document.
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:simpleContent>
+                  <xsd:extension base="xsd:string">
+                    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+                      <xsd:annotation>
+                        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+												</xsd:documentation>
+                      </xsd:annotation>
+                    </xsd:attribute>
+                    <xsd:attribute name="TYPE" type="xsd:string" use="optional">
+                      <xsd:annotation>
+                        <xsd:documentation xml:lang="en">TYPE (string/O): A description of the identifier type.
+
+                        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#metsdocumentidtype
+												</xsd:documentation>
+                      </xsd:annotation>
+                    </xsd:attribute>
+                  </xsd:extension>
+                </xsd:simpleContent>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the METS document itself.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="CREATEDATE" type="xsd:dateTime" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">CREATEDATE (dateTime/O): Records the date/time the METS document was created.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="LASTMODDATE" type="xsd:dateTime" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">LASTMODDATE (dateTime/O): Is used to indicate the date/time the METS document was last modified.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="RECORDSTATUS" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">RECORDSTATUS (string/O): Specifies the status of the METS document. It is used for internal processing purposes.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mdSec" type="mdSecType" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The metadata section &lt;mdSec&gt; contains the metadata pertaining to the digital object, its components and any original source material from which the digital object is derived. The &lt;mdSec&gt; is separated into sub-sections that accommodate any kind of metadata such as descriptive, technical, intellectual property rights, analog/digital source metadata, and digital provenance metadata. Each of these subsections can either wrap the metadata  (mdWrap) or reference it in an external location (mdRef) or both. Multiple instances of the &lt;mdSec&gt; element can occur within a METS document and multiple instances of its subsections can occur in one &lt;mdSec&gt; element. This allows considerable flexibility in the structuring of the metadata. METS does not define a vocabulary or syntax for encoding metadata. Metadata can be expressed within the mdSec sub-elements according to many current community defined standards or locally produced XML schemas. </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+      <xsd:element name="fileSec" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The overall purpose of the content file section element &lt;fileSec&gt; is to provide an inventory of and the location for the content files that comprise the digital object being described in the METS document.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:choice>
+            <xsd:element name="fileGrp" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									A sequence of file group elements &lt;fileGrp&gt; can be used to group the digital files comprising the content of a METS object. In the case where the content files are images of different formats and resolutions, for example, one could group the image content files by format and create a separate &lt;fileGrp&gt; for each image format/resolution such as:
+-- one &lt;fileGrp&gt; for the thumbnails of the images
+-- one &lt;fileGrp&gt; for the higher resolution JPEGs of the image
+-- one &lt;fileGrp&gt; for the master archival TIFFs of the images
+A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:complexContent>
+                  <xsd:extension base="fileGrpType"/>
+                </xsd:complexContent>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="file" maxOccurs="unbounded" type="fileType">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+                  The file element &lt;file&gt; provides access to the content files for the digital object being described by the METS document. A &lt;file&gt; element may contain one or more &lt;FLocat&gt; elements which provide pointers to a content file and/or a &lt;FContent&gt; element which wraps an encoded version of the file. Embedding files using &lt;FContent&gt; can be a valuable feature for exchanging digital objects between repositories or for archiving versions of digital objects for off-site storage. All &lt;FLocat&gt; and &lt;FContent&gt; elements should identify and/or contain identical copies of a single file. The &lt;file&gt; element is recursive, thus allowing sub-files or component files of a larger file to be listed in the inventory. Alternatively, by using the &lt;stream&gt; element, a smaller component of a file or of a related file can be placed within a &lt;file&gt; element. Finally, by using the &lt;transformFile&gt; element, it is possible to include within a &lt;file&gt; element a different version of a file that has undergone a transformation for some reason, such as format migration.
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="structSec" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">The &lt;structSec&gt; section contains the &lt;structMap&gt; elements that provide hierarchical organizations of the components of the digital object described by the METS document.
+          </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="structMap" type="structMapType" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+                  The structural map section &lt;structMap&gt; provides a means for organizing the digital content represented by the &lt;file&gt; elements in the &lt;fileSec&gt; of the METS document into a coherent hierarchical structure. Such a hierarchical structure can be presented to users to facilitate their comprehension and navigation of the digital content. It can further be applied to any purpose requiring an understanding of the structural relationship of the content files or parts of the content files. The organization may be specified to any level of granularity (intellectual and or physical) that is desired. Since the &lt;structMap&gt; element is repeatable, more than one organization can be applied to the digital content represented by the METS document.  The hierarchical structure specified by a &lt;structMap&gt; is encoded as a tree of nested &lt;div&gt; elements. A &lt;div&gt; element may directly point to content via child file pointer &lt;fptr&gt; elements (if the content is represented in the &lt;fileSec&lt;) or child METS pointer &lt;mptr&gt; elements (if the content is represented by an external METS document). The &lt;fptr&gt; element may point to a single whole &lt;file&gt; element that manifests its parent &lt;div&lt;, or to part of a &lt;file&gt; that manifests its &lt;div&lt;. It can also point to multiple files or parts of files that must be played/displayed either in sequence or in parallel to reveal its structural division. In addition to providing a means for organizing content, the &lt;structMap&gt; provides a mechanism for linking content at any hierarchical level with relevant metadata.
+                </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="OBJID" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">OBJID (string/O): Is the primary identifier assigned to the METS object as a whole. Although this attribute is not required, it is strongly recommended. This identifier is used to tag the entire METS object to external systems, in contrast with the ID identifier.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LABEL" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">LABEL (string/O): Is a simple title string used to identify the object/entity being described in the METS document for the user.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">TYPE (string/O): Specifies the class or type of the object.
+
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#metstype
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="PROFILE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">PROFILE (string/O): Indicates the URI of the METS Profile this METS document conforms to.
+			</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="mdSecType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">mdSecType: Complex Type for Metadata Sections
+			The metadata section consists of elements that can contain any kind of metdata, included but not limited to technical metadata technical metadata for text/image/audio/video files, intellectual property rights metadata, analog/digital source metadata, and digital provenance metadata, that is, the history of migrations/translations performed on a digital library object from it's original digital capture/encoding.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice>
+      <xsd:element name="mdGrp" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation>The &lt;mdGrp&gt; element allows grouping related kinds of metadata. This could be all metadata of a particular type, all metadata coming from a particular source, all metadata pertaining to a certain file or set of files, or any other relevant grouping.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="md" type="mdType" maxOccurs="unbounded">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+            A &lt;md&gt; element records any kind of metadata about the METS object or a component thereof. The &lt;md&gt; element can either wrap the metadata (mdWrap), reference it in an external location (&lt;mdRef&gt;), or both. METS allows multiple &lt;md&gt; elements; and metadata can be associated with any METS element that supports an MDID attribute. Metadata can be expressed according to many current technical description standards or a locally produced XML schema.
+          </xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation>ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="USE" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">USE (string/O): Specifies the purpose of the metadata contained in this group.
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mduse-mdgrpuse
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="STATUS" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#status-md-mdgrp
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="md" type="mdType" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+            A &lt;md&gt; element records any kind of metadata about the METS object or a component thereof. The &lt;md&gt; element can either wrap the metadata (mdWrap), reference it in an external location (&lt;mdRef&gt;), or both. METS allows multiple &lt;md&gt; elements; and metadata can be associated with any METS element that supports an MDID attribute. Metadata can be expressed according to many current technical description standards or a locally produced XML schema.
+          </xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:choice>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="fileGrpType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">fileGrpType: Complex Type for File Groups
+				The file group is used to cluster all of the digital files composing a digital library object. Any file group may contain zero or more file elements.  File elements in turn can contain one or more FLocat elements (a pointer to a file containing content for this object) and/or a FContent element (the contents of the file, in either XML or  Base64 encoding).
+				</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="file" maxOccurs="unbounded" type="fileType">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The file element &lt;file&gt; provides access to the content files for the digital object being described by the METS document. A &lt;file&gt; element may contain one or more &lt;FLocat&gt; elements which provide pointers to a content file and/or a &lt;FContent&gt; element which wraps an encoded version of the file. Embedding files using &lt;FContent&gt; can be a valuable feature for exchanging digital objects between repositories or for archiving versions of digital objects for off-site storage. All &lt;FLocat&gt; and &lt;FContent&gt; elements should identify and/or contain identical copies of a single file. The &lt;file&gt; element is recursive, thus allowing sub-files or component files of a larger file to be listed in the inventory. Alternatively, by using the &lt;stream&gt; element, a smaller component of a file or of a related file can be placed within a &lt;file&gt; element. Finally, by using the &lt;transformFile&gt; element, it is possible to include within a &lt;file&gt; element a different version of a file that has undergone a transformation for some reason, such as format migration.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="VERSDATE" type="xsd:dateTime" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">VERSDATE (dateTime/O): An optional dateTime attribute specifying the date this version/fileGrp of the digital object was created.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDID (IDREF/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document applicable to all of the files in a particular file group.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="USE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of files within this file group. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filegrpuse-fileuse
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="structMapType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">structMapType: Complex Type for Structural Maps
+			The structural map (structMap) outlines a hierarchical structure for the original object being encoded, using a series of nested div elements.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="div" type="divType">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The structural divisions of the hierarchical organization provided by a &lt;structMap&gt; are represented by division &lt;div&gt; elements, which can be nested to any depth. Each &lt;div&gt; element can represent either an intellectual (logical) division or a physical division. Every &lt;div&gt; node in the structural map hierarchy may be connected (via subsidiary &lt;mptr&gt; or &lt;fptr&gt; elements) to content files which represent that div's portion of the whole document.
+					</xsd:documentation>
+        </xsd:annotation>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">TYPE (string/O): Identifies the type of structure represented by the &lt;structMap&gt;. For example, a &lt;structMap&gt; that represented a purely logical or intellectual structure could be assigned a TYPE value of “logical” whereas a &lt;structMap&gt; that represented a purely physical structure could be assigned a TYPE value of “physical”. However, the METS schema neither defines nor requires a common vocabulary for this attribute. A METS profile, however, may well constrain the values for the &lt;structMap&gt; TYPE.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#structmaptype
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LABEL" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">LABEL (string/O): Describes the &lt;structMap&gt; to viewers of the METS document. This would be useful primarily where more than one &lt;structMap&gt; is provided for a single object. A descriptive LABEL value, in that case, could clarify to users the purpose of each of the available structMaps.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="divType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">divType: Complex Type for Divisions
+					The METS standard represents a document structurally as a series of nested div elements, that is, as a hierarchy (e.g., a book, which is composed of chapters, which are composed of subchapters, which are composed of text).  Every div node in the structural map hierarchy may be connected (via subsidiary mptr or fptr elements) to content files which represent that div's portion of the whole document.
+
+SPECIAL NOTE REGARDING DIV ATTRIBUTE VALUES:
+to clarify the differences between the ORDER, ORDERLABEL, and LABEL attributes for the &lt;div&gt; element, imagine a text with 10 roman numbered pages followed by 10 arabic numbered pages. Page iii would have an ORDER of "3", an ORDERLABEL of "iii" and a LABEL of "Page iii", while page 3 would have an ORDER of "13", an ORDERLABEL of "3" and a LABEL of "Page 3".
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="mptr" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						Like the &lt;fptr&gt; element, the METS pointer element &lt;mptr&gt; represents digital content that manifests its parent &lt;div&gt; element. Unlike the &lt;fptr&gt;, which either directly or indirectly points to content represented in the &lt;fileSec&gt; of the parent METS document, the &lt;mptr&gt; element points to content represented by an external METS document. Thus, this element allows multiple discrete and separate METS documents to be organized at a higher level by a separate METS document. For example, METS documents representing the individual issues in the series of a journal could be grouped together and organized by a higher level METS document that represents the entire journal series. Each of the &lt;div&gt; elements in the &lt;structMap&gt; of the METS document representing the journal series would point to a METS document representing an issue.  It would do so via a child &lt;mptr&gt; element. Thus the &lt;mptr&gt; element gives METS users considerable flexibility in managing the depth of the &lt;structMap&gt; hierarchy of individual METS documents. The &lt;mptr&gt; element points to an external METS document.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attributeGroup ref="LOCATION"/>
+          <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;mptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="fptr" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The &lt;fptr&gt; or file pointer element represents digital content that manifests its parent &lt;div&gt; element. The content represented by an &lt;fptr&gt; element must consist of integral files or parts of files that are represented by &lt;file&gt; elements in the &lt;fileSec&gt;. Via its FILEID attribute,  an &lt;fptr&gt; may point directly to a single integral &lt;file&gt; element that manifests a structural division. However, an &lt;fptr&gt; element may also govern an &lt;area&gt; element,  a &lt;par&gt;, or  a &lt;seq&gt;  which in turn would point to the relevant file or files. A child &lt;area&gt; element can point to part of a &lt;file&gt; that manifests a division, while the &lt;par&gt; and &lt;seq&gt; elements can point to multiple files or parts of files that together manifest a division. More than one &lt;fptr&gt; element can be associated with a &lt;div&gt; element. Typically sibling &lt;fptr&gt; elements represent alternative versions, or manifestations, of the same content
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:choice>
+            <xsd:element name="par" type="parType" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The &lt;par&gt; or parallel files element aggregates pointers to files, parts of files, and/or sequences of files or parts of files that must be played or displayed simultaneously to manifest a block of digital content represented by an &lt;fptr&gt; element. This might be the case, for example, with multi-media content, where a still image might have an accompanying audio track that comments on the still image. In this case, a &lt;par&gt; element would aggregate two &lt;area&gt; elements, one of which pointed to the image file and one of which pointed to the audio file that must be played in conjunction with the image. The &lt;area&gt; element associated with the image could be further qualified with SHAPE and COORDS attributes if only a portion of the image file was pertinent and the &lt;area&gt; element associated with the audio file could be further qualified with BETYPE, BEGIN, EXTTYPE, and EXTENT attributes if only a portion of the associated audio file should be played in conjunction with the image.
+								</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="seq" type="seqType" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The sequence of files element &lt;seq&gt; aggregates pointers to files,  parts of files and/or parallel sets of files or parts of files  that must be played or displayed sequentially to manifest a block of digital content. This might be the case, for example, if the parent &lt;div&gt; element represented a logical division, such as a diary entry, that spanned multiple pages of a diary and, hence, multiple page image files. In this case, a &lt;seq&gt; element would aggregate multiple, sequentially arranged &lt;area&gt; elements, each of which pointed to one of the image files that must be presented sequentially to manifest the entire diary entry. If the diary entry started in the middle of a page, then the first &lt;area&gt; element (representing the page on which the diary entry starts) might be further qualified, via its SHAPE and COORDS attributes, to specify the specific, pertinent area of the associated image file.
+								</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="area" type="areaType" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The area element &lt;area&gt; typically points to content consisting of just a portion or area of a file represented by a &lt;file&gt; element in the &lt;fileSec&gt;. In some contexts, however, the &lt;area&gt; element can also point to content represented by an integral file. A single &lt;area&gt; element would appear as the direct child of a &lt;fptr&gt; element when only a portion of a &lt;file&gt;, rather than an integral &lt;file&gt;, manifested the digital content represented by the &lt;fptr&gt;. Multiple &lt;area&gt; elements would appear as the direct children of a &lt;par&gt; element or a &lt;seq&gt; element when multiple files or parts of files manifested the digital content represented by an &lt;fptr&gt; element. When used in the context of a &lt;par&gt; or &lt;seq&gt; element an &lt;area&gt; element can point either to an integral file or to a segment of a file as necessary.
+								</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="FILEID" type="xsd:IDREF" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">FILEID (IDREF/O): An optional attribute that provides the XML ID identifying the &lt;file&gt; element that links to and/or contains the digital content represented by the &lt;fptr&gt;. A &lt;fptr&gt; element should only have a FILEID attribute value if it does not have a child &lt;area&gt;, &lt;par&gt; or &lt;seq&gt; element. If it has a child element, then the responsibility for pointing to the relevant content falls to this child element or its descendants.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;fptr&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+				            </xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:anyAttribute namespace="##other" processContents="lax"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="div" type="divType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="ORDERLABELS"/>
+    <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values identifying the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain or link to metadata pertaining to the structural division represented by the &lt;div&gt; element.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="TYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">TYPE (string/O): An attribute that specifies the type of structural division that the &lt;div&gt; element represents.
+
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#divtype
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;div&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+  <xsd:complexType name="parType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">parType: Complex Type for Parallel Files
+				The &lt;par&gt; or parallel files element aggregates pointers to files, parts of files, and/or sequences of files or parts of files that must be played or displayed simultaneously to manifest a block of digital content represented by an &lt;fptr&gt; element.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice maxOccurs="unbounded">
+      <xsd:element name="area" type="areaType" minOccurs="0"/>
+      <xsd:element name="seq" type="seqType" minOccurs="0"/>
+    </xsd:choice>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="ORDERLABELS"/>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="seqType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">seqType: Complex Type for Sequences of Files
+					The seq element should be used to link a div to a set of content files when those files should be played/displayed sequentially to deliver content to a user.  Individual &lt;area&gt; subelements within the seq element provide the links to the files or portions thereof.
+				</xsd:documentation>
+    </xsd:annotation>
+    <xsd:choice maxOccurs="unbounded">
+      <xsd:element name="area" type="areaType" minOccurs="0"/>
+      <xsd:element name="par" type="parType" minOccurs="0"/>
+    </xsd:choice>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="ORDERLABELS"/>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="areaType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">areaType: Complex Type for Area Linking
+				The area element provides for more sophisticated linking between a div element and content files representing that div, be they text, image, audio, or video files.  An area element can link a div to a point within a file, to a one-dimension segment of a file (e.g., text segment, image line, audio/video clip), or a two-dimensional section of a file 	(e.g, subsection of an image, or a subsection of the  video display of a video file.  The area element has no content; all information is recorded within its various attributes.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="ID" type="xsd:ID" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="FILEID" type="xsd:IDREF" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">FILEID (IDREF/R): An attribute which provides the XML ID value that identifies the &lt;file&gt; element in the &lt;fileSec&gt; that then points to and/or contains the digital content represented by the &lt;area&gt; element. It must contain an ID value represented in an ID attribute associated with a &lt;file&gt; element in the &lt;fileSec&gt; element in the same METS document.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="SHAPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">SHAPE (string/O): An attribute that can be used as in HTML to define the shape of the relevant area within the content file pointed to by the &lt;area&gt; element. Typically this would be used with image content (still image or video frame) when only a portion of an image pertains. If SHAPE is specified then COORDS must also be present. SHAPE should be used in conjunction with COORDS in the manner defined for the shape and coords attributes on an HTML5 &lt;area&gt; element. Recommended attribute values are those allowed by HTML5; see also https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areashape
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="COORDS" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">COORDS (string/O): Specifies the coordinates in an image map for the shape of the pertinent area as specified in the SHAPE attribute. While technically optional, SHAPE and COORDS must both appear together to define the relevant area of image content. COORDS should be used in conjunction with SHAPE in the manner defined for the COORDs and SHAPE attributes on an HTML5 &lt;area&gt; element. COORDS must be a comma delimited string of integer value pairs representing coordinates (plus radius in the case of CIRCLE) within an image. Number of coordinates pairs depends on shape: RECT: x1, y1, x2, y2; CIRC: x1, y1; POLY: x1, y1, x2, y2, x3, y3 . . .
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="BEGIN" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">BEGIN (string/O): An attribute that specifies the point in the content file where the relevant section of content begins. It can be used in conjunction with either the END attribute or the EXTENT attribute as a means of defining the relevant portion of the referenced file precisely. It can only be interpreted meaningfully in conjunction with the BETYPE or EXTTYPE, which specify the kind of beginning/ending point values or beginning/extent values that are being used. The BEGIN attribute can be used with or without a companion END or EXTENT element. In this case, the end of the content file is assumed to be the end point.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="END" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">END (string/O): An attribute that specifies the point in the content file where the relevant section of content ends. It can only be interpreted meaningfully in conjunction with the BETYPE, which specifies the kind of ending point values being used. Typically the END attribute would only appear in conjunction with a BEGIN element.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="BETYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used. For example, if BYTE is specified, then the BEGIN and END point values represent the byte offsets into a file. If IDREF is specified, then the BEGIN element specifies the ID value that identifies the element in a structured text file where the relevant section of the file begins; and the END value (if present) would specify the ID value that identifies the element with which the relevant section of the file ends.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areabetype
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="EXTENT" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">EXTENT (string/O): An attribute that specifies the extent of the relevant section of the content file. Can only be interpreted meaningfully in conjunction with the EXTTYPE which specifies the kind of value that is being used. Typically the EXTENT attribute would only appear in conjunction with a BEGIN element and would not be used if the BEGIN point represents an IDREF.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="EXTTYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">EXTTYPE (string/O): An attribute that specifies the kind of EXTENT values that are being used. For example if BYTE is specified then EXTENT would represent a byte count. If TIME is specified the EXTENT would represent a duration of time.
+
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#areaexttype.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values identifying the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain or link to metadata pertaining to the content represented by the &lt;area&gt; element.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CONTENTIDS" type="URIs" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CONTENTIDS (URI/O): Content IDs for the content represented by the &lt;area&gt; (equivalent to DIDL DII or Digital Item Identifier, a unique external ID).
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="ORDERLABELS"/>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="mdType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">mdType: Complex Type for Metadata Sections
+			A generic framework for pointing to/including metadata within a METS document.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:all>
+      <xsd:element name="mdRef" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The metadata reference element &lt;mdRef&gt; element is a generic element used throughout the METS schema to provide a pointer to metadata which resides outside the METS document.  NB: &lt;mdRef&gt; is an empty element.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attributeGroup ref="LOCATION"/>
+          <xsd:attributeGroup ref="METADATA"/>
+          <xsd:attributeGroup ref="FILECORE"/>
+          <xsd:attribute name="LABEL" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">LABEL (string/O): Provides a label to display to the viewer of the METS document that identifies the associated metadata.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="mdWrap" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						A metadata wrapper element &lt;mdWrap&gt; provides a wrapper around metadata embedded within a METS document. The element is repeatable. Such metadata can be in one of two forms: 1) XML-encoded metadata, with the XML-encoding identifying itself as belonging to a namespace other than the METS document namespace. 2) Any arbitrary binary or textual form, PROVIDED that the metadata is Base64 encoded and wrapped in a &lt;binData&gt; element within the internal metadata element.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:choice>
+            <xsd:element name="binData" type="xsd:base64Binary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The binary data wrapper element &lt;binData&gt; is used to contain Base64 encoded metadata.												</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="xmlData" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									The xml data wrapper element &lt;xmlData&gt; is used to contain XML encoded metadata. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; is set to “lax”. Therefore, if the source schema and its location are identified by means of an XML schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element. 												
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attributeGroup ref="METADATA"/>
+          <xsd:attributeGroup ref="FILECORE"/>
+          <xsd:attribute name="LABEL" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">LABEL: an optional string attribute providing a label to display to the viewer of the METS document identifying the metadata.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:all>
+    <xsd:attribute name="ID" type="xsd:ID" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/R): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. The ID attribute on the &lt;md&gt; element is required, and its value should be referenced from one or more MDID attributes that are associated with other elements in the METS document. The following elements support references to a &lt;md&gt; element via a MDID attribute: &lt;file&gt;, &lt;fileGrp&gt; &lt;stream&gt;, &lt;div&gt;, &lt;metsHdr&gt;, &lt;md&gt;.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="USE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">USE: Specifies the purpose of metadata in this section.
+        Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mduse-mdgrpuse
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="GROUPID" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">GROUPID (string/O): This identifier is used to indicate that different metadata sections may be considered as part of a group. Two metadata sections with the same GROUPID value are to be considered part of the same group. For example this facility might be used to group changed versions of the same metadata if previous versions are maintained in a file for tracking purposes.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the current &lt;md&gt; element. Typically used in this context to reference preservation metadata (use="DIGIPROV") which applies to the current metadata.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the metadata.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="STATUS" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">STATUS (string/O): Indicates the status of this metadata
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#status-md-mdgrp
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:complexType name="fileType">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="en">fileType: Complex Type for Files
+				The file element provides access to content files for a METS object.  A file element may contain one or more FLocat elements, which provide pointers to a content file, and/or an FContent element, which wraps an encoded version of the file. Note that ALL FLocat and FContent elements underneath a single file element should identify/contain identical copies of a single file.
+			</xsd:documentation>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="FLocat" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The file location element &lt;FLocat&gt; provides a pointer to the location of a content file. NOTE: &lt;FLocat&gt; is an empty element.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="USE" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file  represented by the &lt;FLocat&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#flocatuse-fcontentuse
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attributeGroup ref="LOCATION"/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="FContent" minOccurs="0">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The file content element &lt;FContent&gt; is used to identify a content file contained internally within a METS document. The content file must be either Base64 encoded and contained within the subsidiary &lt;binData&gt; wrapper element, or consist of XML information and be contained within the subsidiary &lt;xmlData&gt; wrapper element.
+					</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:choice>
+            <xsd:element name="binData" type="xsd:base64Binary" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									A binary data wrapper element &lt;binData&gt; is used to contain a Base64 encoded file.
+								</xsd:documentation>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="xmlData" minOccurs="0">
+              <xsd:annotation>
+                <xsd:documentation xml:lang="en">
+									An xml data wrapper element &lt;xmlData&gt; is used to contain  an XML encoded file. The content of an &lt;xmlData&gt; element can be in any namespace or in no namespace. As permitted by the XML Schema Standard, the processContents attribute value for the metadata in an &lt;xmlData&gt; element is set to “lax”. Therefore, if the source schema and its location are identified by means of an xsi:schemaLocation attribute, then an XML processor will validate the elements for which it can find declarations. If a source schema is not identified, or cannot be found at the specified schemaLocation, then an XML validator will check for well-formedness, but otherwise skip over the elements appearing in the &lt;xmlData&gt; element.
+								</xsd:documentation>
+              </xsd:annotation>
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:any namespace="##any" maxOccurs="unbounded" processContents="lax"/>
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+          </xsd:choice>
+          <xsd:attribute name="ID" type="xsd:ID" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+          <xsd:attribute name="USE" type="xsd:string" use="optional">
+            <xsd:annotation>
+              <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of the specific copy of the file represented by the &lt;FContent&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+ 
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#flocatuse-fcontentuse
+							</xsd:documentation>
+            </xsd:annotation>
+          </xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="stream" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						A component byte stream element &lt;stream&gt; may be composed of one or more subsidiary streams. An MPEG4 file, for example, might contain separate audio and video streams, each of which is associated with technical metadata. The repeatable &lt;stream&gt; element provides a mechanism to record the existence of separate data streams within a particular file, and the opportunity to &lt;mdSec&gt; elements with those subsidiary data streams if desired. </xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+              <xsd:attribute name="ID" type="xsd:ID" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="streamType" type="xsd:string" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">streamType (string/O): The IANA MIME media type for the bytestream.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="OWNERID" type="xsd:string" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">OWNERID (string/O): Used to provide a unique identifier (which could include a URI) assigned to the file. This identifier may differ from the URI used to retrieve the file.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the bytestream.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="BEGIN" type="xsd:string" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">BEGIN (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the current &lt;stream&gt; begins. It can be used in conjunction with the END attribute as a means of defining the location of the stream within its parent file. However, the BEGIN attribute can be used with or without a companion END attribute. When no END attribute is specified, the end of the parent file is assumed also to be the end point of the stream. The BEGIN and END attributes can only be interpreted meaningfully in conjunction with a BETYPE attribute, which specifies the kind of beginning/ending point values that are being used.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="END" type="xsd:string" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">END (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the &lt;stream&gt; ends. It can only be interpreted meaningfully in conjunction with the BETYPE, which specifies the kind of ending point values being used. Typically the END attribute would only appear in conjunction with a BEGIN attribute.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="BETYPE" use="optional" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
+                    BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used.
+
+                    Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filebetype-streambetype
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+            </xsd:restriction>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="transformFile" minOccurs="0" maxOccurs="unbounded">
+        <xsd:annotation>
+          <xsd:documentation xml:lang="en">
+						The transform file element &lt;transformFile&gt; provides a means to access any subsidiary files listed below a &lt;file&gt; element by indicating the steps required to "unpack" or transform the subsidiary files. This element is repeatable.</xsd:documentation>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:complexContent>
+            <xsd:restriction base="xsd:anyType">
+              <xsd:attribute name="ID" type="xsd:ID" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">ID (ID/O): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR.
+									</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="TRANSFORMTYPE" use="required" type="xsd:string">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">TRANSFORMTYPE (string/R): Is used to indicate the type of transformation needed to render content of a file accessible. This may include unpacking a file into subsidiary files/streams.
+
+                  Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#transformfiletransformtype
+                  </xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="TRANSFORMALGORITHM" type="xsd:string" use="required">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">TRANSFORMALGORITHM (string/R): Specifies the decompression or decryption routine used to access the contents of the file. Algorithms for compression can be either loss-less or lossy.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="TRANSFORMKEY" type="xsd:string" use="optional">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">TRANSFORMKEY (string/O): A key to be used with the transform algorithm for accessing the file’s contents.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+              <xsd:attribute name="TRANSFORMORDER" type="xsd:positiveInteger" use="required">
+                <xsd:annotation>
+                  <xsd:documentation xml:lang="en">TRANSFORMORDER (postive-integer/R): The order in which the instructions must be followed in order to unpack or transform the container file.</xsd:documentation>
+                </xsd:annotation>
+              </xsd:attribute>
+            </xsd:restriction>
+          </xsd:complexContent>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="file" type="fileType" minOccurs="0" maxOccurs="unbounded"/>
+    </xsd:sequence>
+    <xsd:attribute name="ID" type="xsd:ID" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ID (ID/R): This attribute uniquely identifies the element within the METS document, and would allow the element to be referenced unambiguously from another element or document via an IDREF or an XPTR. Typically, the ID attribute value on a &lt;file&gt; element would be referenced from one or more FILEID attributes (which are of type IDREF) on &lt;fptr&gt;and/or &lt;area&gt; elements within the &lt;structMap&gt;.  Such references establish links between  structural divisions (&lt;div&gt; elements) and the specific content files or parts of content files that manifest them.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="SEQ" type="xsd:int" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">SEQ (integer/O): Indicates the sequence of this &lt;file&gt; relative to the others in its &lt;fileGrp&gt;.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attributeGroup ref="FILECORE"/>
+    <xsd:attribute name="OWNERID" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">OWNERID (string/O): A unique identifier assigned to the file by its owner.  This may be a URI which differs from the URI used to retrieve the file.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="MDID" type="xsd:IDREFS" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDID (IDREFS/O): Contains the ID attribute values of the &lt;md&gt; elements within the &lt;mdSec&gt; of the METS document that contain metadata pertaining to the file.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="GROUPID" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">GROUPID (string/O): An identifier that establishes a correspondence between this file and files in other file groups. Typically, this will be used to associate a master file in one file group with the derivative files made from it in other file groups.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="USE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">USE (string/O): A tagging attribute to indicate the intended use of all copies of the file aggregated by the &lt;file&gt; element. A USE attribute can be expressed at the&lt;fileGrp&gt; level, the &lt;file&gt; level, the &lt;FLocat&gt; level and/or the &lt;FContent&gt; level.  A USE attribute value at the &lt;fileGrp&gt; level should pertain to all of the files in the &lt;fileGrp&gt;.  A USE attribute at the &lt;file&gt; level should pertain to all copies of the file as represented by subsidiary &lt;FLocat&gt; and/or &lt;FContent&gt; elements.  A USE attribute at the &lt;FLocat&gt; or &lt;FContent&gt; level pertains to the particular copy of the file that is either referenced (&lt;FLocat&gt;) or wrapped (&lt;FContent&gt;).
+
+              Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filegrpuse-fileuse
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="BEGIN" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">BEGIN (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the current &lt;file&gt; begins.  When used in conjunction with a &lt;file&gt; element, this attribute is only meaningful when this element is nested, and its parent &lt;file&gt; element represents a container file. It can be used in conjunction with the END attribute as a means of defining the location of the current file within its parent file. However, the BEGIN attribute can be used with or without a companion END attribute. When no END attribute is specified, the end of the parent file is assumed also to be the end point of the current file. The BEGIN and END attributes can only be interpreted meaningfully in conjunction with a BETYPE attribute, which specifies the kind of beginning/ending point values that are being used.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="END" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">END (string/O): An attribute that specifies the point in the parent &lt;file&gt; where the current, nested &lt;file&gt; ends. It can only be interpreted meaningfully in conjunction with the BETYPE, which specifies the kind of ending point values being used. Typically the END attribute would only appear in conjunction with a BEGIN attribute.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="BETYPE" use="optional" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">BETYPE: Begin/End Type.
+					BETYPE (string/O): An attribute that specifies the kind of BEGIN and/or END values that are being used.
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#filebetype-streambetype
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:anyAttribute namespace="##other" processContents="lax"/>
+  </xsd:complexType>
+  <xsd:simpleType name="URIs">
+    <xsd:list itemType="xsd:anyURI"/>
+  </xsd:simpleType>
+  <xsd:attributeGroup name="ORDERLABELS">
+    <xsd:attribute name="ORDER" type="xsd:integer" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ORDER (integer/O): A representation of the element's order among its siblings (e.g., its absolute, numeric sequence). For an example, and clarification of the distinction between ORDER and ORDERLABEL, see the description of the ORDERLABEL attribute.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="ORDERLABEL" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">ORDERLABEL (string/O): A representation of the element's order among its siblings (e.g., “xii”), or of any non-integer native numbering system. It is presumed that this value will still be machine actionable (e.g., it would support ‘go to page ___’ function), and it should not be used as a replacement/substitute for the LABEL attribute. To understand the differences between ORDER, ORDERLABEL and LABEL, imagine a text with 10 roman numbered pages followed by 10 arabic numbered pages. Page iii would have an ORDER of “3”, an ORDERLABEL of “iii” and a LABEL of “Page iii”, while page 3 would have an ORDER of “13”, an ORDERLABEL of “3” and a LABEL of “Page 3”.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LABEL" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">LABEL (string/O): An attribute used, for example, to identify a &lt;div&gt; to an end user viewing the document. Thus a hierarchical arrangement of the &lt;div&gt; LABEL values could provide a table of contents to the digital content represented by a METS document and facilitate the users’ navigation of the digital object. Note that a &lt;div&gt; LABEL should be specific to its level in the structural map. In the case of a book with chapters, the book &lt;div&gt; LABEL should have the book title and the chapter &lt;div&gt;; LABELs should have the individual chapter titles, rather than having the chapter &lt;div&gt; LABELs combine both book title and chapter title . For further of the distinction between LABEL and ORDERLABEL see the description of the ORDERLABEL attribute.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="METADATA">
+    <xsd:attribute name="MDTYPE" use="required" type="xsd:string">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDTYPE (string/R): Is used to indicate the type of the associated metadata.
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#mdtype-mdref-mdwrap
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="MDTYPEVERSION" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MDTYPEVERSION(string/O): Provides a means for recording the version of the type of metadata (as recorded in the MDTYPE attribute) that is being used.  This may represent the version of the underlying data dictionary or metadata model rather than a schema version. </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="LOCATION">
+    <xsd:attribute name="LOCREF" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          LOCREF (string/R): Specifies the location for resources. This may be a directly-resolvable URL (preferred for interoperability), or it may require the use of an external resolver or be system-specific. The LOCTYPE attribute identifies the type of location.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="LOCTYPE" type="xsd:string" use="required">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">
+          LOCTYPE (string/R): Specifies the locator type used in the LOCREF attribute.
+            Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#loctype-mptr-mdref-flocat
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+  <xsd:attributeGroup name="FILECORE">
+    <xsd:attribute name="MIMETYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">MIMETYPE (string/O): The IANA media type (formerly known as MIME type) for the associated file or wrapped content.
+
+        Registered media/MIME types: https://www.iana.org/assignments/media-types/media-types.xhtml
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="SIZE" type="xsd:long" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">SIZE (long/O): Specifies the size in bytes of the associated file or wrapped content.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CREATED" type="xsd:dateTime" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CREATED (dateTime/O): Specifies the date and time of creation for the associated file or wrapped content.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CHECKSUM" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CHECKSUM (string/O): Provides a checksum value for the associated file or wrapped content.
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="CHECKSUMTYPE" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation xml:lang="en">CHECKSUMTYPE (enumerated string/O): Specifies the checksum algorithm used to produce the value contained in the CHECKSUM attribute.
+          Suggested attribute values: https://github.com/mets/METS-schema/wiki/METS2-Suggested-Attribute-Values#checksumtype-file-mdref-mdwrap
+				</xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+</xsd:schema>

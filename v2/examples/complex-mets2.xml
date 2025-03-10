@@ -1,0 +1,213 @@
+<mets OBJID="01234567-0123-4567-0123-456789abcdef"
+    PROFILE="my-profile"
+    xmlns="http://www.loc.gov/METS/v2">
+  <metsHdr CREATEDATE="2022-07-06T14:05:00">
+    <agent ROLE="CREATOR">
+      <name>METS Editorial Board</name>
+    </agent>
+  </metsHdr>
+  <mdSec>
+    <mdGrp USE="DESCRIPTIVE">
+      <md USE="DESCRIPTIVE" ID="dmd-001">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+         MDTYPE="DC" MDTYPEVERSION="1.1"
+         LOCTYPE="URL"
+         LOCREF="http://example.org/mymetadata/dc.xml" />
+      </md>
+    </mdGrp>
+    <mdGrp USE="ADMINISTRATIVE">
+      <md USE="TECHNICAL" ID="tech-001">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech1.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-002">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech2.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-003">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech3.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-004">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech4.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-005">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech5.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-006">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech6.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-007">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech7.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-008">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech8.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-009">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech9.xml" />
+      </md>
+      <md USE="TECHNICAL" ID="tech-010">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/tech10.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="event-001">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/creation_event1.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="agent-001">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/creation_agent1.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="event-002">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/normalization_event1.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="agent-002">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/normalization_agent1.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="event-003">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/normalization_event2.xml" />
+      </md>
+      <md USE="PROVENANCE" ID="agent-003">
+        <mdRef CHECKSUMTYPE="MD5" CHECKSUM="0123456789abcdef0123456789abcdef"
+             MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0"
+             LOCTYPE="URL"
+             LOCREF="http://example.org/mymetadata/normalization_agent2.xml" />
+      </md>
+    </mdGrp>
+  </mdSec>
+  <fileSec>
+    <fileGrp USE="computer-readable">
+      <file ID="file-001" MDID="tech-001 event-002 agent-002">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/data/measurements.xyz" />
+      </file>
+      <file ID="file-002" MDID="tech-002 event-002 agent-002">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/data/measurements.csv" />
+      </file>
+      <file ID="file-003" MDID="tech-003">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/data/analysis.csv" />
+      </file>
+      <file ID="file-004" MDID="tech-004">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/data/device.conf" />
+      </file>
+      <file ID="file-005" MDID="tech-005">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/code/myanalysis.java" />
+      </file>
+    </fileGrp>
+    <fileGrp USE="human-readable">
+      <file ID="file-006" MDID="tech-006 event-003 agent-003">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/documents/publication.docx" />
+      </file>
+      <file ID="file-007" MDID="tech-007 event-003 agent-003">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/documents/publication.pdf" />
+      </file>
+      <file ID="file-008" MDID="tech-008">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/documents/research_plan.txt" />
+      </file>
+      <file ID="file-009" MDID="tech-009">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/README.txt" />
+      </file>
+      <file ID="file-010" MDID="tech-010">
+        <FLocat LOCTYPE="URL"
+         LOCREF="http://example.org/myresearch/license.txt" />
+      </file>
+    </fileGrp>
+  </fileSec>
+  <structSec>
+    <structMap TYPE="LOGICAL">
+      <div TYPE="RESEARCH" MDID="dmd-001 event-001 agent-001">
+        <div TYPE="SOURCE">
+          <fptr FILEID="file-001" />
+          <fptr FILEID="file-002" />
+        </div>
+        <div TYPE="OUTCOME">
+          <fptr FILEID="file-003" />
+        </div>
+        <div TYPE="CONFIGURATION">
+          <fptr FILEID="file-004" />
+        </div>
+        <div TYPE="METHOD">
+          <fptr FILEID="file-005" />
+        </div>
+        <div TYPE="PUBLICATION">
+          <fptr FILEID="file-006" />
+          <fptr FILEID="file-007" />
+        </div>
+        <div TYPE="DOCUMENTATION">
+          <fptr FILEID="file-008" />
+          <fptr FILEID="file-009" />
+        </div>
+        <div TYPE="RIGHTS">
+          <fptr FILEID="file-010" />
+        </div>
+      </div>
+    </structMap>
+    <structMap TYPE="PHYSICAL">
+      <div TYPE="directory" LABEL="myresearch" MDID="dmd-001 event-001 agent-001">
+        <fptr FILEID="file-009" />
+        <fptr FILEID="file-010" />
+        <div TYPE="directory" LABEL="data">
+          <fptr FILEID="file-001" />
+          <fptr FILEID="file-002" />
+          <fptr FILEID="file-003" />
+          <fptr FILEID="file-004" />
+        </div>
+        <div TYPE="directory" LABEL="code">
+          <fptr FILEID="file-005" />
+        </div>
+        <div TYPE="directory" LABEL="documents">
+          <fptr FILEID="file-006" />
+          <fptr FILEID="file-007" />
+          <fptr FILEID="file-008" />
+        </div>
+      </div>
+    </structMap>
+  </structSec>
+</mets>
