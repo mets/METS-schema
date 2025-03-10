@@ -45,7 +45,7 @@
       * Add links to recommended schema attributes
       * Remove transformfile references to behaviorSec; transformfile@TRANSFORMBEHAVIOR
 
-      2.0 final - DATE TBD, 2024
+      2.0 final - Dec 9, 2024
 
       * Edit documentation elements to clarify usage and remove references to the METS 1 Primer
     </xsd:documentation>
