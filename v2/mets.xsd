@@ -21,15 +21,15 @@
       Tobias Steinke (German National Library)
       Robin Wendler (Harvard University)
 
-      August, 2023
-      Version 2.0 beta
+      March, 2024
+      Version 2.0
 
       For version 1.x credits, change log, and documentation, see https://www.loc.gov/standards/mets/mets.xsd
     </xsd:documentation>
     <xsd:documentation xml:lang="en">
       This schema is a major revision of the METS schema. A white paper describing the new version and the rationale for the differences between the two is available: https://github.com/mets/METS-schema/blob/mets2/METS2.md.
 
-      The latest draft of this schema is available at https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd.
+      The latest version of this schema is available at https://github.com/mets/METS-schema/blob/main/v2/mets.xsd as well as https://www.loc.gov/standards/mets/v2/mets.xsd
 
       METS 2 will live alongside METS 1; METS 1 will continue to be supported and maintained.
     </xsd:documentation>
@@ -45,9 +45,10 @@
       * Add links to recommended schema attributes
       * Remove transformfile references to behaviorSec; transformfile@TRANSFORMBEHAVIOR
 
-      2.0 final - Dec 9, 2024
+      2.0 final - March 10, 2024
 
       * Edit documentation elements to clarify usage and remove references to the METS 1 Primer
+      * Mark schema as final
     </xsd:documentation>
   </xsd:annotation>
   <xsd:element name="mets">
