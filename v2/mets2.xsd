@@ -21,7 +21,7 @@
       Tobias Steinke (German National Library)
       Robin Wendler (Harvard University)
 
-      March, 2024
+      March, 2025
       Version 2.0
 
       For version 1.x credits, change log, and documentation, see https://www.loc.gov/standards/mets/mets.xsd
@@ -45,7 +45,7 @@
       * Add links to recommended schema attributes
       * Remove transformfile references to behaviorSec; transformfile@TRANSFORMBEHAVIOR
 
-      2.0 final - March 10, 2024
+      2.0 final - March 10, 2025
 
       * Edit documentation elements to clarify usage and remove references to the METS 1 Primer
       * Mark schema as final
