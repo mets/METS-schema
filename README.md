@@ -2,7 +2,7 @@
 
 This repository holds [the METS 2.x schema](https://github.com/mets/METS-schema/blob/main/v2/mets.xsd).
 
-There is also a [detailed description of the proposed changes](https://github.com/mets/METS-schema/blob/main/METS2.md) along with [fully-worked examples](https://github.com/mets/METS-schema/tree/main/v2/examples) of migrating METS 1 to METS 2.
+There is also a [detailed description of the changes](https://github.com/mets/METS-schema/blob/main/METS2.md) along with [fully-worked examples](https://github.com/mets/METS-schema/tree/main/v2/examples) of migrating METS 1 to METS 2.
 
 METS 2 simplifies the schema, makes it more consistent, and removes reliance on the outdated XLink standard. It aims to retain a clear path for migration from METS 1 for most use cases.
 
