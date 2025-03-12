@@ -2,7 +2,7 @@
 
 ## Example METS (version 2)
 
-The (example METS)[mets2-example-borndigital.xml] has been created by the METS Editorial Board as a complete METS2 example for born digital material.
+The [example METS](mets2-example-borndigital.xml) has been created by the METS Editorial Board as a complete METS2 example for born digital material.
 
 ## Examples of equivalent METS 1 and METS 2 documents
 
@@ -46,8 +46,8 @@ nested files, but that would lose the ability to group files by use into
 separate file groups -- that's an issue in METS1 that is neither helped nor
 hindered in METS2, and unrelated to the issue of nested file groups.
 
-Also perhaps worth noting that the IDs of metadata elements reflected or
+It is also perhaps worth noting that the IDs of metadata elements reflected or
 included the element name, which is not the same in METS2.
 
-These translations are not intended to be normative or definitive, just to give
-one possibility as to how these documents could be represented using METS 2.
+These translations from METS 1 to METS 2 are not intended to be normative or definitive, 
+just to give one possibility as to how these documents could be represented using METS 2.
