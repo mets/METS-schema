@@ -3,23 +3,25 @@
 <mets:mets xmlns:mets="http://www.loc.gov/METS/v2"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xmlns:premis="http://www.loc.gov/premis/v3"
- xsi:schemaLocation="https://github.com/mets/METS-schema/blob/mets2/v2/mets.xsd" 
+ xsi:schemaLocation="http://www.loc.gov/METS/v2 https://raw.githubusercontent.com/mets/METS-schema/mets2/v2/mets.xsd
+ http://www.loc.gov/premis/v3 https://www.loc.gov/standards/premis/v3/premis-v3-0.xsd
+ http://purl.org/dc/elements/1.1/ https://www.dublincore.org/schemas/xmls/qdc/2008/02/11/dc.xsd
+ http://purl.org/dc/terms/ https://www.dublincore.org/schemas/xmls/qdc/2008/02/11/dcterms.xsd" 
  OBJID="OBJIDexample1" 
  LABEL="Born digital METS2 example created by the METS Editorial Board">
-    
+
     <mets:metsHdr CREATEDATE="2024-01-01T00:00:00" LASTMODDATE="2024-09-16T00:00:00" RECORDSTATUS="EXAMPLE">        
         <mets:agent ROLE="CREATOR" TYPE="ORGANIZATION">
             <mets:name>METS Editorial Board</mets:name>
             <mets:note>This METS file has been created by the METS Editorial Board as a METS2 example for born digital material</mets:note>
         </mets:agent>
     </mets:metsHdr>
-    
-    
+
     <mets:mdSec>
-        
+
         <!-- descriptive Dublin Core metadata -->
         <mets:mdGrp USE="DESCRIPTIVE">            
-            <mets:md ID="dmd-001" USE="DESCRIPTIVE">
+            <mets:md ID="dmd-001">
                 <mets:mdWrap MDTYPE="DC">
                     <mets:xmlData>
                         <dc:record xmlns:dc="http://purl.org/dc/elements/1.1/"
@@ -31,9 +33,9 @@
                             <dc:date>2023-09-19</dc:date>
                             <dc:description>Tutorial</dc:description>
                             <dcterms:license>Copyright held by the author(s). The text of this paper is published under a CC BY-SA license (https://creativecommons.org/licenses/by/4.0/).</dcterms:license>
-                            
+
                             <dc:identifier>https://hdl.handle.net/2142/121056</dc:identifier>
-                            
+
                             <dc:subject>Metadata and information strategies and workflows</dc:subject>
                             <dc:subject>Infrastructure, systems, and tools</dc:subject>
                             <dc:subject>Case studies, best practices and novel challenges</dc:subject>
@@ -51,7 +53,7 @@
                                 the World Wide Web Consortium. It is maintained by
                                 the METS Editorial Board, and the METS Maintenance
                                 Activity is managed by the Library of Congress.</dcterms:abstract>
-                            
+
                             <dc:type>text</dc:type>
                             <dcterms:isPartOf>iPRES 2023 Conference Proceedings</dcterms:isPartOf>
                         </dc:record>
@@ -59,7 +61,7 @@
                 </mets:mdWrap>
             </mets:md>
         </mets:mdGrp>
-        
+
         <mets:mdGrp USE="ADMINISTRATIVE">
             <!-- technical metadata in PREMIS of Paper DOCX  -->            
             <mets:md ID="tech-001" USE="TECHNICAL"> 
@@ -94,7 +96,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- technical metadata in PREMIS of Presentation PPTX  -->            
             <mets:md ID="tech-002" USE="TECHNICAL"> 
                 <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
@@ -128,7 +130,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- technical metadata in PREMIS of Handout PDF -->
             <mets:md ID="tech-003" USE="TECHNICAL">
                 <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
@@ -162,7 +164,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- technical metadata in PREMIS of Paper PDF -->
             <mets:md ID="tech-004" USE="TECHNICAL">
                 <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
@@ -196,7 +198,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>  
-            
+
             <!-- technical metadata in PREMIS of Presentation PDF  -->
             <mets:md ID="tech-005" USE="TECHNICAL"> 
                 <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
@@ -230,7 +232,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- technical metadata in PREMIS of complete Tutorial IE  -->
             <mets:md ID="tech-006" USE="TECHNICAL"> 
                 <mets:mdWrap MDTYPE="PREMIS:OBJECT" MDTYPEVERSION="3.0">
@@ -244,7 +246,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance event for creation of Paper DOCX -->
             <mets:md ID="event-001" USE="PROVENANCE" MDID="agent-001">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -268,7 +270,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance agent for creation of Paper DOCX -->
             <mets:md ID="agent-001" USE="PROVENANCE" MDID="event-001">
                 <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
@@ -288,7 +290,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance event for creation of Presentation PPTX -->
             <mets:md ID="event-002" USE="PROVENANCE" MDID="agent-002">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -312,7 +314,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance agent for creation of Presentation PPTX -->
             <mets:md ID="agent-002" USE="PROVENANCE" MDID="event-002">
                 <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
@@ -332,9 +334,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>           
-            
-            
-            
+
             <!-- provenance event for creation of Handout PDF -->
             <mets:md ID="event-003" USE="PROVENANCE" MDID="agent-003">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -358,7 +358,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance agent for creation of Handout PDF -->
             <mets:md ID="agent-003" USE="PROVENANCE" MDID="event-003">
                 <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
@@ -368,7 +368,7 @@
                                 <premis:agentIdentifierType>local</premis:agentIdentifierType>
                                 <premis:agentIdentifierValue>agent-003</premis:agentIdentifierValue>
                             </premis:agentIdentifier>
-                            <premis:agentName>not available</premis:agentName>
+                            <premis:agentName>Microsoft Word</premis:agentName>
                             <premis:agentType authority="premisAgentType" authorityURI="http://id.loc.gov/vocabulary/preservation/agentType" valueURI="http://id.loc.gov/vocabulary/preservation/agentType/sof">software</premis:agentType>
                             <premis:linkingEventIdentifier>
                                 <premis:linkingEventIdentifierType>local</premis:linkingEventIdentifierType>
@@ -378,7 +378,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance event for creation/migration of Paper PDF -->
             <mets:md ID="event-004" USE="PROVENANCE" MDID="agent-004">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -402,7 +402,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance agent for creation of Paper PDF -->
             <mets:md ID="agent-004" USE="PROVENANCE" MDID="event-004">
                 <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
@@ -422,7 +422,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance event for creation/migration of Presentation PDF -->
             <mets:md ID="event-005" USE="PROVENANCE" MDID="agent-005">
                 <mets:mdWrap MDTYPE="PREMIS:EVENT" MDTYPEVERSION="3.0">
@@ -446,7 +446,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- provenance agent for creation/migration of Presentation PDF -->
             <mets:md ID="agent-005" USE="PROVENANCE" MDID="event-005">
                 <mets:mdWrap MDTYPE="PREMIS:AGENT" MDTYPEVERSION="3.0">
@@ -466,7 +466,7 @@
                     </mets:xmlData>
                 </mets:mdWrap>
             </mets:md>
-            
+
             <!-- rights in PREMIS for Tutorial IE -->
             <mets:md ID="rights-001" USE="RIGHTS">
                 <mets:mdWrap MDTYPE="PREMIS:RIGHTS" MDTYPEVERSION="3.0">
@@ -492,44 +492,41 @@
             </mets:md>
         </mets:mdGrp>
     </mets:mdSec>
-    
-    
+
     <mets:fileSec>
-        
+
         <mets:fileGrp USE="original">
             <!-- 1 paper DOCX -->
             <mets:file ID="file-001" MDID="tech-001 event-001">
-                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/iPRES2023_METS_Tutorial.docx" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://raw.githubusercontent.com/mets/METS-board/master/iPres2023Tutorial/originalfiles/iPRES2023_METS_Tutorial.docx" />
             </mets:file>
-            
-            
+
             <!-- 2 presentation PPTX -->
             <mets:file ID="file-002" MDID="tech-002 event-002">
-                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/originalfiles/1702_1A_Bredenberg.pptx" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://raw.githubusercontent.com/mets/METS-board/master/iPres2023Tutorial/originalfiles/1702_1A_Bredenberg.pptx" />
             </mets:file>
-            
+
             <!-- 3 handout PDF -->
             <mets:file ID="file-003" MDID="tech-003 event-003">
-                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/METS%20Exercise%20iPRES%202023.pdf" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://raw.githubusercontent.com/mets/METS-board/master/iPres2023Tutorial/METS%20Exercise%20iPRES%202023.pdf" />
             </mets:file>
         </mets:fileGrp>
-        
+
         <mets:fileGrp USE="archival">
             <!-- 4 paper PDF -->
             <mets:file ID="file-004" MDID="tech-004 event-004">
-                <mets:FLocat LOCTYPE="URL" LOCREF="https://hdl.handle.net/2142/121056" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://www.ideals.illinois.edu/items/128260/bitstreams/428885/object" />
             </mets:file>
-            
+
             <!-- 5 presentation PDF -->            
             <mets:file ID="file-005" MDID="tech-005 event-005">
-                <mets:FLocat LOCTYPE="URL" LOCREF="https://github.com/mets/METS-board/blob/master/iPres2023Tutorial/METS%20Tutorial%20iPRES%202023.pdf" />
+                <mets:FLocat LOCTYPE="URL" LOCREF="https://raw.githubusercontent.com/mets/METS-board/master/iPres2023Tutorial/METS%20Tutorial%20iPRES%202023.pdf" />
             </mets:file>
-            
+
         </mets:fileGrp>
-         
-        
-        </mets:fileSec>
-    
+
+    </mets:fileSec>
+
     <mets:structSec>
         <mets:structMap>
             <mets:div LABEL="Understanding and implementing METS, A tutorial focused on METS 2" MDID="dmd-001 tech-006 rights-001">                
@@ -546,6 +543,6 @@
                 </mets:div>                
             </mets:div>
         </mets:structMap>
-        
+
     </mets:structSec>
 </mets:mets>
