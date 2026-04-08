@@ -398,7 +398,7 @@ Note in this case the `<fileGrp>` elements are preserved, and the multiple `<str
 
 ## METS Profiles
 
-For METS 1 one important feature has been [METS profiles](https://www.loc.gov/standards/mets/mets-profiles.html). These allow implementors to describe a class of METS documents in sufficient detail to provide both document authors and programmers the guidance they require to create and process METS documents conforming with a particular profile. Profiles describe what METS elements are expected to be present and how they will be used in a particular application. Implementors may register the profile for purposes around re-use or interoperability, or may use profiles primarily for internal documentation.
+For METS 1 one important feature has been [METS profiles](https://www.loc.gov/standards/mets/mets-profiles.html). These allow implementers to describe a class of METS documents in sufficient detail to provide both document authors and programmers the guidance they require to create and process METS documents conforming with a particular profile. Profiles describe what METS elements are expected to be present and how they will be used in a particular application. Implementers may register the profile for purposes around reuse or interoperability, or may use profiles primarily for internal documentation.
 
 ### METS Profiles for METS 2
 
