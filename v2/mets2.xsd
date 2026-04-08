@@ -325,7 +325,7 @@ A &lt;fileGrp&gt; may contain zero or more &lt;file&gt; elements.
   <xsd:complexType name="mdSecType">
     <xsd:annotation>
       <xsd:documentation xml:lang="en">mdSecType: Complex Type for Metadata Sections
-			The metadata section consists of elements that can contain any kind of metdata, included but not limited to technical metadata technical metadata for text/image/audio/video files, intellectual property rights metadata, analog/digital source metadata, and digital provenance metadata, that is, the history of migrations/translations performed on a digital library object from it's original digital capture/encoding.
+			The metadata section consists of elements that can contain any kind of metadata, included but not limited to technical metadata technical metadata for text/image/audio/video files, intellectual property rights metadata, analog/digital source metadata, and digital provenance metadata, that is, the history of migrations/translations performed on a digital library object from it's original digital capture/encoding.
 			</xsd:documentation>
     </xsd:annotation>
     <xsd:choice>
